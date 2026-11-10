@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>《闪客快打7重置版》工程进展日报 (2026-11-10) — Wings Sol (xhigh) 参谋台</title>
+<style>
+:root {
+  --bg: #0b0f17;
+  --panel: #131a27;
+  --panel-alt: #182132;
+  --border: #26334d;
+  --text: #e6edf3;
+  --muted: #8b9bb4;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.14);
+  --green: #22c55e;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --purple: #a855f7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.68;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 15, 23, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.model-tag {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: var(--panel);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 6px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.tab-btn.active, .tab-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.date-select, .search-input {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.search-input { width: 210px; }
+.ext-btn {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.layout {
+  max-width: 1420px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 24px;
+  padding: 20px;
+}
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; padding: 12px; }
+  .sidebar { position: static !important; max-height: none !important; }
+}
+.sidebar {
+  position: sticky;
+  top: 68px;
+  align-self: start;
+  max-height: calc(100vh - 88px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+.sidebar-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+.quick-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.jump-chip {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+.jump-chip:hover { border-color: var(--accent); color: var(--accent); }
+.toc-link {
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toc-link:hover { background: var(--panel-alt); color: var(--text); text-decoration: none; }
+.toc-h2 { font-weight: 700; color: var(--text); margin-top: 6px; }
+.toc-h3 { padding-left: 18px; font-size: 12.5px; }
+.main-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 34px;
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .main-card { padding: 16px; }
+}
+.report-h1 { font-size: 24px; margin-top: 0; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.report-h2 {
+  font-size: 19px;
+  margin-top: 32px;
+  padding: 8px 12px;
+  background: var(--panel-alt);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+}
+.report-h3 { font-size: 16px; margin-top: 24px; color: #f8fafc; }
+.report-h4 { font-size: 14.5px; margin-top: 18px; color: var(--accent); }
+.report-p { margin: 10px 0; }
+.report-list { margin: 8px 0 14px 0; padding-left: 22px; }
+.report-list li { margin-bottom: 6px; }
+.report-list li.sub-li { margin-left: 18px; list-style-type: circle; color: #cbd5e1; }
+.sec-divider { border: none; border-top: 1px solid var(--border); margin: 26px 0; }
+.report-quote {
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  color: #cbd5e1;
+}
+.table-wrap { overflow-x: auto; margin: 14px 0; }
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.report-table th, .report-table td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.report-table th { background: var(--panel-alt); font-weight: 700; }
+.report-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: rgba(148, 163, 184, 0.15);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 12.5px;
+}
+.code-card {
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #090d14;
+}
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: var(--panel-alt);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+}
+.copy-btn {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 5px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 11.5px;
+}
+.code-card pre { margin: 0; padding: 12px 14px; overflow-x: auto; }
+.code-card pre code { background: none; padding: 0; font-size: 12.5px; line-height: 1.55; }
+.issue-pill {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 5px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  font-weight: 600;
+}
+.commit-pill code {
+  background: rgba(168, 85, 247, 0.18);
+  color: #d8b4fe;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+.tester-pill {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 5px;
+  background: rgba(234, 179, 8, 0.18);
+  color: #fde047;
+  font-weight: 600;
+}
+.status-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge-red { background: rgba(239, 68, 68, 0.18); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+.badge-yellow { background: rgba(234, 179, 8, 0.18); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.4); }
+.badge-green { background: rgba(34, 197, 94, 0.18); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.4); }
+.badge-done { background: rgba(56, 189, 248, 0.18); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4); }
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+.topic-card { background: var(--panel-alt); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.topic-meta { font-size: 11.5px; color: var(--accent); margin-bottom: 6px; font-family: monospace; }
+.hidden { display: none !important; }
+mark.hl { background: rgba(234, 179, 8, 0.35); color: #fff; padding: 0 2px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span>🐉 《闪客快打7重置版》工程与测试情报中心</span>
+    <span class="model-tag">gpt-6.1-sol · xhigh</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('report', this)">📄 每日进展完整报告 (2026-11-10)</button>
+    <button class="tab-btn" onclick="switchTab('radar', this)">🎯 实时待验收雷达</button>
+    <button class="tab-btn" onclick="switchTab('memory', this)">🧠 跨天技术专题与长期记忆</button>
+  </div>
+  <div class="controls">
+    <input type="text" id="searchBox" class="search-input" placeholder="🔍 搜测试员昵称 / #Issue / 文件..." oninput="filterReport(this.value)" />
+    <select class="date-select" onchange="if(this.value) window.location.href=this.value">
+      <option value="2026-11-10.html" selected>📅 2026-11-10 日报</option>
+    </select>
+    <a class="ext-btn" href="https://github.com/FlashNightModReborn/cf7-evidence/blob/main/reports/2026-11-10.md" target="_blank" rel="noopener">GitHub Markdown 原文</a>
+    <a class="ext-btn" href="http://107.173.80.8:18080/reports/2026-11-10.html" target="_blank" rel="noopener">⚡ 国内直连镜像</a>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="tocSidebar">
+    <div class="sidebar-title">⚡ 快速定位章节</div>
+    <div class="quick-jumps">
+      <button class="jump-chip" onclick="jumpByKeyword('总览')">📊 总览</button>
+      <button class="jump-chip" onclick="jumpByKeyword('新增玩家反馈')">🔥 活跃工单</button>
+      <button class="jump-chip" onclick="jumpByKeyword('提交模块聚类')">🧱 提交聚类</button>
+      <button class="jump-chip" onclick="jumpByKeyword('今日测试员求测指南')">🎯 求测指南</button>
+      <button class="jump-chip" onclick="jumpByKeyword('开发者关注重点')">🧭 排期参谋</button>
+      <button class="jump-chip" onclick="jumpByKeyword('顺手消灭')">🍬 顺手修</button>
+      <button class="jump-chip" onclick="jumpByKeyword('今日结论')">📌 结论</button>
+    </div>
+    <div class="sidebar-title">📑 章节目录 (34)</div>
+    <nav id="tocNav">
+      <a href="#sec-2" class="toc-link toc-h2">总览</a><a href="#sec-3" class="toc-link toc-h3">本报告采用的证据状态</a><a href="#sec-4" class="toc-link toc-h2">一、新增玩家反馈与活跃工单进展</a><a href="#sec-5" class="toc-link toc-h3">1. Issue #224：存档删除后仍占槽位，清空操作疑似还原存档</a><a href="#sec-6" class="toc-link toc-h3">2. Issue #221：Web 地图缺少同盟下水道；研究所与同盟咖啡厅 NPC </a><a href="#sec-7" class="toc-link toc-h3">3. Issue #220：C# 原生注释图标模糊，显示效果对齐 Web 端</a><a href="#sec-8" class="toc-link toc-h3">4. Issue #219：五种升阶组件与战术涂料的合成获取地点显示不准确</a><a href="#sec-9" class="toc-link toc-h3">5. Issue #223：支持调整已学技能的使用等级</a><a href="#sec-10" class="toc-link toc-h3">6. Issue #222：增加手枪卡宾转换套件主线获取途径及全自动效果</a><a href="#sec-11" class="toc-link toc-h3">7. Issue #213：SP 或等级不足时仍显示“可学”</a><a href="#sec-12" class="toc-link toc-h3">8. Issue #202：死者之手 AS 设计与实现</a><a href="#sec-13" class="toc-link toc-h3">9. Issue #210：Lady 寒冰喷射器及全技能动态光效</a><a href="#sec-14" class="toc-link toc-h3">10. Issue #200：七张新外交地图交付</a><a href="#sec-15" class="toc-link toc-h3">11. Issue #208：插件嵌套 merge 数值降档失效</a><a href="#sec-16" class="toc-link toc-h3">12. Issue #207：灰蛊节点、退层重装与收益可读性</a><a href="#sec-17" class="toc-link toc-h3">13. Issue #206：灰蛊对体育老师击溃／易伤异常与视频取证</a><a href="#sec-18" class="toc-link toc-h2">二、昨日遗留问题追踪与主要工程开发进展</a><a href="#sec-19" class="toc-link toc-h3">2.1 近期重点遗留问题状态追踪</a><a href="#sec-20" class="toc-link toc-h3">2.2 主分支（`main`）开发提交模块聚类</a><a href="#sec-28" class="toc-link toc-h2">三、🎯 今日测试员求测指南（To 测试群）</a><a href="#sec-29" class="toc-link toc-h3">开测前统一要求</a><a href="#sec-30" class="toc-link toc-h3">【求测项 1】#224 存档删除与清理——@稳如泰山</a><a href="#sec-31" class="toc-link toc-h3">【求测项 2】#214 换弹后人物无法控制——@清水結衣</a><a href="#sec-32" class="toc-link toc-h3">【求测项 3】#216／#217 移动射击、换弹与保向——@清水結衣</a><a href="#sec-33" class="toc-link toc-h3">【求测项 4】#215 翻滚换弹与幽灵装填——@清水結衣</a><a href="#sec-34" class="toc-link toc-h3">【求测项 5】#213 技能“可学”角标——@清水結衣</a><a href="#sec-35" class="toc-link toc-h3">【求测项 6】#202 死者之手四形态与借用长枪——@屑化添加剂</a><a href="#sec-36" class="toc-link toc-h3">【求测项 7】#210 Lady 动态光效</a><a href="#sec-37" class="toc-link toc-h3">📣 求测命令提示与回报格式</a><a href="#sec-38" class="toc-link toc-h2">四、🧭 开发者关注重点与排期参谋（To 开发者 — gpt-6.1-sol 自主研判</a><a href="#sec-39" class="toc-link toc-h3">4.1 🚨 严重性拔高 / 建议跳过排期优先处置（High-Severity Esc</a><a href="#sec-43" class="toc-link toc-h3">4.2 🍬 高性价比「顺手消灭」推荐（Cheap Wins / Low-Hangin</a><a href="#sec-47" class="toc-link toc-h3">4.3 ⚖️ 待设计裁决与架构关注项（Design Rulings &amp; Archit</a><a href="#sec-54" class="toc-link toc-h2">今日结论</a>
+    </nav>
+  </aside>
+
+  <main class="main-card">
+    <section id="tab-report">
+      <h1 id="sec-1" class="report-h1">《闪客快打7重置版》GitHub Issues 每日进展报告（2026-11-10）</h1>
+<h2 id="sec-2" class="report-h2">总览</h2>
+<div class="table-wrap"><table class="report-table"><thead><tr><th>项目</th><th>本期情况</th></tr></thead><tbody><tr><td><strong>名义统计窗口</strong></td><td>2026-11-09 08:00—2026-11-10 08:00，UTC+8</td></tr><tr><td><strong>补采截止时间</strong></td><td>2026-11-10 21:51:21，UTC+8；本报告纳入截止前的重要更新，并标明窗口外补采</td></tr><tr><td><strong>证据包汇总</strong></td><td>活跃 <strong>13</strong> 项，新增 <strong>6</strong> 项，关闭 <strong>7</strong> 项</td></tr><tr><td><strong>严格窗口复核</strong></td><td>按所列工单时间逐条核对：窗口内活跃 <strong>7</strong> 项、新增 <strong>2</strong> 项、关闭 <strong>5</strong> 项；其余为补采更新</td></tr><tr><td><strong>当前 Open Backlog</strong></td><td>汇总 <strong>27</strong> 项；本包实际展开 <strong>12</strong> 项，未展开的 15 项不代编状态或根因</td></tr><tr><td><strong><code>main</code> 提交统计</strong></td><td>证据包记录窗口提交 <strong>16</strong> 次；提交明细与时间未完整展示，不据补采到的近期提交反推全部窗口归属</td></tr><tr><td><strong>当前 HEAD</strong></td><td><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/ab91755904d33dc5e7415ece0876832dff345d71" target="_blank" rel="noopener"><code>ab9175590</code></a></td></tr><tr><td><strong>HEAD 主题</strong></td><td><code>test(interject): 补打字确认自动接取的 Host 用例</code></td></tr></tbody></table></div>
+<p class="report-p"><strong>时间口径说明：</strong>新增 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/219" target="_blank" rel="noopener">#219</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> 在严格窗口内；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a>—<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 于 11 月 10 日白天补采。关闭的 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/207" target="_blank" rel="noopener">#207</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/208" target="_blank" rel="noopener">#208</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/200" target="_blank" rel="noopener">#200</a> 在严格窗口内；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/202" target="_blank" rel="noopener">#202</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/210" target="_blank" rel="noopener">#210</a> 的关闭发生在 11 月 10 日 08:00 之后。因此，“13 活跃、6 新增、7 关闭”应作为<strong>本次报告采集集合的汇总</strong>，不能全部写成严格 24 小时窗口内发生。</p>
+<p class="report-p"><strong>整体判断：本周期处于“功能集中合入、正式运行态推进与问题收敛复验交叠期”。</strong>死者之手、Lady 动态光效、新外交地图、原生修改器交互及对白自动接取均有明确交付进展；灰蛊三单已获维护者裁决收口。但交付速度已开始快于标准入口验收速度：新增反馈触及<strong>存档删除语义、换弹控制恢复、NPC 出现链路</strong>，风险性质明显高于普通显示瑕疵。今天的核心任务不是继续追求关闭数量，而是先保护持久化与核心操作链，再把“源码、编译产物、发布入口、玩家实测”逐层对账。</p>
+<h3 id="sec-3" class="report-h3">本报告采用的证据状态</h3>
+<p class="report-p"><code>compiled</code>（按本报告约定指源码已进入 <code>main</code>）→ <code>candidate_built</code>（候选产物已构建）→ <code>promoted</code>（已发布至启动器标准入口）→ <code>standard_entry_verified</code>（测试员已从该入口实机复验通过）。</p>
+<ul class="report-list"><li><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/911183038" target="_blank" rel="noopener"><code>911183038</code></a> 明确包含重新编译的 <code>scripts/asLoader.swf</code>，不是只有源码。</li><li><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a> 有双签名正式运行态部署记录，但<strong>发布记录不等于标准入口实机验收</strong>。</li><li><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/ab9175590" target="_blank" rel="noopener"><code>ab9175590</code></a> 的 129 条控制器测试、Lady 的 104 条专项断言、死者之手的 45 条专项断言，均不能替代玩家场景实测。</li><li>工单中的“仓库只读核对基线”只说明核查源码时看到了什么，<strong>不是反馈人实际运行包的身份</strong>。</li></ul>
+<hr class="sec-divider" />
+<h2 id="sec-4" class="report-h2">一、新增玩家反馈与活跃工单进展</h2>
+<h3 id="sec-5" class="report-h3">1. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a>：存档删除后仍占槽位，清空操作疑似还原存档（状态徽标：<span class="status-badge badge-red">🔴 待处理</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>稳如泰山，11 月 10 日补采新增。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">玩家观察到“删除后隐藏但仍占槽”“清空后重新出现”，涉及的可能不是单一文件删除，而是 <strong>Flash SOL、启动器 JSON 副本、删除标记及槽位目录</strong>之间的状态关系。</li><li class="sub-li">本轮直接核对了 <code>launcher/web/modules/archive-editor.js:1274–1294</code> 的 <code>onResetSlot()</code>：</li><li class="sub-li">确认框明确写明：仅清理启动器侧 JSON 备份与删除标记，<strong>不影响 Flash 内部 SOL</strong>。</li><li class="sub-li">成功后调用 <code>refreshList()</code>，并显示笼统的“清理成功”。</li><li class="sub-li">因而，“清理删除标记后，尚存的 SOL 被重新发现”是<strong>符合现有入口语义的解释方向</strong>，但尚不能认定玩家使用的就是这个入口，更不能直接认定槽位占用问题已经定位。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li">工单基线为 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a>，其发布主题不是存档删除修复。</li><li class="sub-li">当前可见提交中没有 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 的修复记录。</li><li class="sub-li"><code>launcher/src/Save/SaveSlotCatalog.cs</code> 是后续目录与槽位枚举排查入口；本轮未读取其实现，不对其内部行为下结论。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li"><strong>建议提级 P1，先诊断、后修改。</strong>目前没有坏档证据，但误导性的删除／清空操作可能诱发玩家反复删文件或覆盖。</li><li class="sub-li">使用隔离数据分别记录：删除前、删除后、清理后、重启后四个时点的 SOL、JSON、删除标记与槽位列表。</li><li class="sub-li">可以先微修清理成功提示，但<strong>文案改善不能作为 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 整单修复关闭的依据</strong>。</li></ul>
+<h3 id="sec-6" class="report-h3">2. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a>：Web 地图缺少同盟下水道；研究所与同盟咖啡厅 NPC 消失（状态徽标：<span class="status-badge badge-yellow">🟡 部分进展·待跟进</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>屑化添加剂，11 月 10 日补采新增。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">这是两类故障，建议分成两个验收子项：</li><li class="sub-li"><strong>Web 地图接入缺失：</strong>环境表已有同盟下水道，但本轮对 <code>data/map/map_definition.json</code> 的精确名称检索没有命中“同盟下水道”。</li><li class="sub-li"><strong>运行场景 NPC 消失：</strong>发生在修改对应地图 SWF 之后，涉及场景资产、实例或链接名、NPC 数据关联与加载时序。</li><li class="sub-li">地图 JSON 已有研究所接待处、同盟咖啡厅的场景条目，分别可定位到约 <code>5831</code>、<code>5945</code> 行，并存在多条对应 <code>sourceSwf</code>／<code>sceneKey</code> 引用。因此不能把“NPC 不出现”简单归因于“整张地图完全没登记”。</li><li class="sub-li">“已排除 SWF”目前是反馈者的排查结论，缺少可复核的替换前后对照，不能升级为源码事实。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li"><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/0b17f1cc" target="_blank" rel="noopener"><code>0b17f1cc</code></a> 是相关七图正式部署的历史线索。</li><li class="sub-li">最新 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/d3d6cee4e" target="_blank" rel="noopener"><code>d3d6cee4e</code></a> 修改 <code>data/dialogues/npc_dialogue_禁区人员.xml</code>，补基础对话，<strong>不等于修复 NPC 实例生成或地图入口缺失</strong>。</li><li class="sub-li">当前没有可确认解决 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a> 两个子项的提交。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">NPC 消失若阻断接任务、交付或商店，应按流程阻断优先处理；下水道 Web 标记另排小任务。</li><li class="sub-li">请屑化提供被替换 SWF 的文件名、替换前后版本、进入方式及消失 NPC 名单。</li><li class="sub-li">精确名称未命中只能证明当前缺少该名称的静态配置证据，仍需检查别名或动态入口，不能直接随手添加一条孤立记录后关单。</li></ul>
+<h3 id="sec-7" class="report-h3">3. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a>：C# 原生注释图标模糊，显示效果对齐 Web 端（状态徽标：<span class="status-badge badge-red">🔴 待处理</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>不存在；fs 明确要求 C# 注释效果对齐 Web。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">工单给出的链路是：<code>LootIconCatalog</code> 将常规帧缩成 <strong>64×64 缓存</strong>，<code>NativeTooltipWidget</code> 再按注释目标矩形缩放。</li><li class="sub-li">若最终显示大于缓存尺寸，先缩小再放大会丢失细节；但原图质量、DPI、透明混合及比例处理也可能参与。</li><li class="sub-li">这是<strong>图像供给与缓存用途混用的高可信排查方向</strong>，尚不是本轮已复现的唯一根因。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li">线索文件：</li><li class="sub-li"><code>launcher/src/Guardian/Hud/Loot/LootIconCatalog.cs:339–383</code></li><li class="sub-li"><code>launcher/src/Guardian/Hud/Tooltip/NativeTooltipWidget.cs:1013–1051</code></li><li class="sub-li"><code>launcher/web/css/panels/foundation-rest.css:545–565</code></li><li class="sub-li">基线 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/59ac725d" target="_blank" rel="noopener"><code>59ac725d</code></a> 不是图标修复提交。</li><li class="sub-li"><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/74d90bdff4" target="_blank" rel="noopener"><code>74d90bdff</code></a> 修复原生修改器布局、透明度与焦点；<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a> 发布这些改动，<strong>不能据此宣称 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> 已修复</strong>。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">优先做同图源、同目标尺寸、同 DPI 的两端对照。</li><li class="sub-li">不建议直接全局放大共享缩略图缓存；应评估注释专用高分辨率读取或按尺寸缓存，并验证对象释放与内存上限。</li></ul>
+<h3 id="sec-8" class="report-h3">4. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/219" target="_blank" rel="noopener">#219</a>：五种升阶组件与战术涂料的合成获取地点显示不准确（状态徽标：<span class="status-badge badge-red">🔴 待处理</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>清水結衣。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">二阶、三阶、四阶复合防御组件及墨冰、狱火战术涂料的获取说明，把内部分类“属性武器”当成玩家可导航的地点。</li><li class="sub-li">期望是显示 <strong>“堕落城商业区 → 升阶与涂装”</strong>，不改变配方及其他来源。</li><li class="sub-li"><code>data/crafting/属性武器.json</code>、<code>data/crafting/list.xml</code> 与材料目录派生物证明分类存在，但<strong>还未读到最终获取方式格式化链</strong>。</li><li class="sub-li">本轮仅额外确认 <code>launcher/web/modules/crafting-runtime.js:78</code> 把“属性武器”列为合法分类。该处不是已确认的地点显示映射，不能随手替换。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li"><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/079b2f8fd" target="_blank" rel="noopener"><code>079b2f8fd</code></a> 更新了 <code>data/dictionaries/material_dictionary.generated.json</code>，提交说明明确是同步 <code>武器_刀_刀剑.xml</code> 来源摘要。</li><li class="sub-li"><strong>“改过同一个派生文件”不代表已修复这五项地点提示。</strong></li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">这是很有希望低成本解决的显示问题，但目前还不能给出经核实的“一行修复位置”。</li><li class="sub-li">找到获取方式最终展示边界后，优先做显示名／地点映射；不要改配方文件名、内部分类键或只手改派生物。</li></ul>
+<h3 id="sec-9" class="report-h3">5. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a>：支持调整已学技能的使用等级（状态徽标：<span class="status-badge badge-yellow">🟡 部分进展·待跟进</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>稳如泰山；aa 补充审核状态及解锁思路。11 月 10 日补采新增。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">玩家需要的是“已经学到 10 级，但暂时按较低等级使用”，不是退还 SP、降低已学等级或重新选升级目标。</li><li class="sub-li">小跳在轻／重装下的位移体验是需求动机；是否扩展到其他技能仍待设计。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li">基线 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a> 没有该功能交付记录。</li><li class="sub-li"><code>data/skills/skills.xml:8</code> 为小跳定义。</li><li class="sub-li"><code>launcher/web/modules/skills-render.js:233</code> 的训练目标等级选择与此需求不同，不能复用界面后就宣称完成机制。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li"><strong>待 fs 审核，而非待修 Bug。</strong></li><li class="sub-li">必须先定义“已学等级”和“使用等级”的数据边界、默认值、适用范围及存档迁移。</li><li class="sub-li">aa 提议通过支线或基建解锁，仍只是方案建议，尚未定案。</li></ul>
+<h3 id="sec-10" class="report-h3">6. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a>：增加手枪卡宾转换套件主线获取途径及全自动效果（状态徽标：<span class="status-badge badge-yellow">🟡 部分进展·待跟进</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>清水結衣；aa 建议把售卖地点改为大学门口售卖机。11 月 10 日补采新增。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">应拆成两个独立设计子项：</li><li class="sub-li">主线可及性：新增售卖／获取来源。</li><li class="sub-li">战斗机制：装备后是否覆盖半自动开火模式。</li><li class="sub-li">现有套件定义提供长枪配件兼容、3 插件槽和重量 +2，工单所列配置没有全自动效果。</li><li class="sub-li">“手枪”插件分类能否自然覆盖“大威力手枪”不能靠名称推断。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li">相关定义：<code>data/items/equipment_mods/高等材料_枪械专用.xml:69</code>。</li><li class="sub-li">现有 CF6 商店及路线有该物品引用；迷之盔甲君商品表未列该套件。</li><li class="sub-li">当前可见提交没有新增主线售卖或全自动覆盖的实现；<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a> 仅为核查基线。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">由 fs 先拍板售卖地点、价格、解锁条件与适配枪种。</li><li class="sub-li"><strong>“商店加一条商品”可以很小，但整个 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a> 不是配置级 Cheap Win。</strong></li><li class="sub-li">全自动效果必须查清最终射击模式结算与卸下插件恢复机制，再实施。</li></ul>
+<h3 id="sec-11" class="report-h3">7. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a>：SP 或等级不足时仍显示“可学”（状态徽标：<span class="status-badge badge-green">🟢 代码已提交·待实机复验</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>清水結衣；GitHub 已关闭。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">修复回执指出 <code>launcher/web/modules/skills-library.js</code> 的 <code>healthLabel(entry, view)</code> 与 <code>compactStateLabel(entry, view)</code>，在教师视图只按当前等级输出“已学／可学”，没有消费玩家等级与 SP 条件。</li><li class="sub-li">左侧角标与右侧详情／禁用按钮使用不同判断链，形成明显状态矛盾。</li><li class="sub-li">回执同时纠正了原正文中不存在的 <code>buildSkillState</code> 函数引用，后续排查应使用真实函数名。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li">维护者明确记录修复已推送 <code>main</code>。</li><li class="sub-li"><strong>原始提交号带控制字符，不能安全作为完整 SHA 抄录；需维护者补录可点击的提交链接。</strong></li><li class="sub-li">本包没有该修复对应的独立构建身份及标准入口实测记录。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">GitHub 关闭成立；工程状态仍须补齐发布归属及标准入口复验。</li><li class="sub-li">覆盖等级／SP 两条件的四组合，并测试训练后列表角标是否即时刷新。</li></ul>
+<h3 id="sec-12" class="report-h3">8. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/202" target="_blank" rel="noopener">#202</a>：死者之手 AS 设计与实现（状态徽标：<span class="status-badge badge-green">🟢 代码已提交·待实机复验</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>屑化添加剂；11 月 10 日补采关闭。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">最终交付是冷兵器 <strong>钝器／长矛／镰刀三态</strong>，加上空长枪槽借用射击，以及两阶段超载战技。</li><li class="sub-li">关键工程风险不止动画：还包括动作模组、伤害属性、分段碰撞盒、临时装备投影和换装中断的一致性。</li><li class="sub-li">原始需求中的直剑／长枪／双刀、畏光灼烧与最终交付描述并非逐项同义。应以已接受的最终方案为验收对象，不能仅凭“四形态”宣称原正文所有细节逐一实现。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li"><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/911183038" target="_blank" rel="noopener"><code>911183038</code></a>：</li><li class="sub-li"><code>scripts/逻辑/装备函数/死者之手.as</code></li><li class="sub-li"><code>scripts/类定义/org/flashNight/arki/unit/UnitComponent/Dressup/EquipmentUtil/DeadHandController.as</code></li><li class="sub-li">同目录 <code>DeadHandTuning.as</code></li><li class="sub-li"><code>data/items/武器_刀_刀剑.xml</code></li><li class="sub-li">已提交重新编译的 <code>scripts/asLoader.swf</code>，并记录 <strong>45 项专项断言</strong>。</li><li class="sub-li"><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a> 正式部署回归清单包含本项。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">工单回执明确称“通过实机验收”，<strong>已有实机证据，不能说从未测过</strong>。</li><li class="sub-li">但包身份、标准入口与配套资产对应关系未在本包展开，因此仍待补齐 <code>standard_entry_verified</code> 记录。</li><li class="sub-li">优先验证真实长枪不被覆盖、借用不写入真实装备、超载中断与冷却收尾。</li></ul>
+<h3 id="sec-13" class="report-h3">9. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/210" target="_blank" rel="noopener">#210</a>：Lady 寒冰喷射器及全技能动态光效（状态徽标：<span class="status-badge badge-green">🟢 代码已提交·待实机复验</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>Issue 原发起人昵称未在本包提供；维护者有修复回执。11 月 10 日补采关闭。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">寒冰喷射器使用冷属性“透明子弹”做区域伤害，原 <code>EquipmentLightBridge.registerBullet</code> 的无实体弹匹配未覆盖这类弹。</li><li class="sub-li">长条冰流只补单点光源也不能完整覆盖，因此修复同时加入宽范围双脉冲。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li"><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/a22b68bcc" target="_blank" rel="noopener"><code>a22b68bcc</code></a> 修改：</li><li class="sub-li"><code>scripts/类定义/org/flashNight/arki/render/EquipmentLightBridge.as</code></li><li class="sub-li"><code>scripts/类定义/org/flashNight/arki/render/EquipmentEmissiveTest.as</code></li><li class="sub-li"><code>scripts/run-equipment-emissive-tests.ps1</code></li><li class="sub-li">横向包络跨度达到 180px 时，在包络约 28%／74% 位置生成双归并冷光脉冲。</li><li class="sub-li">扩展覆盖 Lady 全 <strong>13 个招式</strong>；专项断言 <strong>104/104</strong>。</li><li class="sub-li">提交说明明确对应字节码已随 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/911183038" target="_blank" rel="noopener"><code>911183038</code></a> 编译进入 <code>scripts/asLoader.swf</code>。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">源码与编译产物有证据；标准入口玩家复验仍待记录。</li><li class="sub-li">不只看“有蓝光”，还应测冰流末端照明、光源回收、其他技能爆炸光效及密集释放性能。</li></ul>
+<h3 id="sec-14" class="report-h3">10. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/200" target="_blank" rel="noopener">#200</a>：七张新外交地图交付（状态徽标：<span class="status-badge badge-green">🟢 代码已提交·待实机复验</span>）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>屑化添加剂，aa 协助挂单；GitHub 已关闭。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">交付包含地图数据、房间底图、NPC 头像、世界地图分页、选关 3D 沙盘入口和正式运行态部署，不是“SWF 做完就结束”。</li><li class="sub-li">回执列出 <strong>7 张无损 WebP 房间底图与 15 张 NPC 头像</strong>。</li><li class="sub-li">原始待办名单与最终交付名单存在命名及组成调整，应保留最终映射，不以“总数都是 7”代替逐图验收。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li"><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/0b17f1cc" target="_blank" rel="noopener"><code>0b17f1cc</code></a> 为“正式部署同盟与地下研究所 7 张新外交地图及世界地图研究所分页发布包”的发布线索。</li><li class="sub-li">核心配置包括 <code>data/map/map_definition.json</code>、<code>data/environment/scene_environment.xml</code> 及 <code>launcher/web/assets/map/</code>。</li><li class="sub-li">发布回执明确有 v2 双签名正式运行态部署。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">达到交付／发布阶段，但本包没有完整逐图标准入口验收矩阵。</li><li class="sub-li"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a> 是后续新反馈，应独立追踪，不能因 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/200" target="_blank" rel="noopener">#200</a> 已关就驳回，也不能未经复现就认定整个七图交付失效。</li></ul>
+<h3 id="sec-15" class="report-h3">11. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/208" target="_blank" rel="noopener">#208</a>：插件嵌套 merge 数值降档失效（状态徽标：<span class="status-badge badge-done">🟢 已闭环</span>〔维护者交付收口〕）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>由清水結衣的 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a> 视频拆分；维护者确认可行并要求收尾。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li"><code>PropertyOperators.merge</code> 对双方正数叶子使用 <code>Math.max</code>；插件根层先合并，再合并枪种分支，导致更低的专属数值无法覆盖根层。</li><li class="sub-li">修复采用完整 <code>override.hitBehavior</code> 档位，而非全局修改 MAX 合并语义。</li><li class="sub-li">最终档位：</li><li class="sub-li">冲锋枪：每次 1 格，节点 1% 击溃，8% 斩杀；</li><li class="sub-li">大威力手枪：每次 2 格，节点 0.1% 击溃，5% 斩杀；</li><li class="sub-li">普通手枪：每次 3 格，节点 0.3% 击溃，8% 斩杀；</li><li class="sub-li">三档均保留每层 1% 易伤。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li">相关配置为 <code>data/items/equipment_mods/高等材料_枪械专用.xml</code>。</li><li class="sub-li">收口回执确认配置、schema 约束、真实原生专项及发布已完成。</li><li class="sub-li"><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/d44a6d02" target="_blank" rel="noopener"><code>d44a6d02</code></a> 可作为灰蛊修补运行包的相关部署线索；本包未展开逐项修复 SHA，不能把收口标记冒充代码提交号。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li"><strong>维护者已接受交付并关闭，不建议因缺一段视频机械重开。</strong></li><li class="sub-li">“已闭环”在此指维护者交付收口，不代表新增了标准入口体育老师专项实战验收；回执明确说明本轮未补该录像。</li></ul>
+<h3 id="sec-16" class="report-h3">12. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/207" target="_blank" rel="noopener">#207</a>：灰蛊节点、退层重装与收益可读性（状态徽标：<span class="status-badge badge-done">🟢 已闭环</span>〔维护者交付收口〕）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>由 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a> 拆分，维护者已选择表达方案并收口。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">原问题混合了真实数值覆盖错误与机制不透明，两者已拆开治理。</li><li class="sub-li">节点为 6／12／18；满层持续命中不会无限重复触发节点，需退层后重新武装。</li><li class="sub-li">最终方案采用Ⅰ／Ⅱ／Ⅲ节点徽记；只有实际 <code>_crumbleDamage &gt; 0</code> 时播放相应击溃动画，不把单纯节点增长伪装成收益。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li">收口回执确认修正标记高度，并采用青白收束、断裂与碎屑剥离反馈。</li><li class="sub-li">不新增“击溃 -N 上限”浮字；精确数值归既有伤害数字职责。</li><li class="sub-li">本包未提供该 UX 改动完整逐文件 SHA 清单，状态依据维护者实施与发布回执。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">交付按维护者裁决关闭；仍可补真人长战斗验证，不应把专项夹具结果写成体育老师录像。</li><li class="sub-li">不应顺手改成“满层持续击溃”，那属于玩法变更。</li></ul>
+<h3 id="sec-17" class="report-h3">13. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a>：灰蛊对体育老师击溃／易伤异常与视频取证（状态徽标：<span class="status-badge badge-done">🟢 已闭环</span>〔维护者交付收口〕）</h3>
+<ul class="report-list"><li><strong>反馈人／来源：</strong>清水結衣；原始目标已从“大学老师”更正为“体育老师”。</li><li><strong>问题实质与源码根因剖析：</strong></li><li class="sub-li">原视频不是“全程击溃无效”。最大 HP 的变化：<br/><strong>48,766 → 48,279 → 47,797 → 47,320</strong>，<br/>高度吻合按变化后最大 HP 逐次取整的 <strong>1%×3 节点</strong>。</li><li class="sub-li">这反而支持普通手枪应有的 0.3% 档被根层 1% 吞没，不能拿视频证明“0.3% 已正确生效”。</li><li class="sub-li">只看血条比例容易误判最大 HP 削减；易伤仍需独立控制变量验证。</li><li><strong>代码与分支核查：</strong></li><li class="sub-li"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/208" target="_blank" rel="noopener">#208</a> 治理配置契约，<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/207" target="_blank" rel="noopener">#207</a> 治理文案与反馈。</li><li class="sub-li">原始基线 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/d423d154" target="_blank" rel="noopener"><code>d423d154</code></a> 和后续核查基线 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/6da5581f" target="_blank" rel="noopener"><code>6da5581f</code></a> 均不能当成修复提交。</li><li class="sub-li">维护者于 11 月 9 日接受两个子项后，关闭原始工单。</li><li><strong>当前结论与下一步建议：</strong></li><li class="sub-li">原始报障按维护者裁决收口，录像及计算更正应继续保留。</li><li class="sub-li">后续补测应验证“新档位、退层重装、真实削减动画、易伤”，而不是继续围绕已经纠正的“完全无效”前提测试。</li></ul>
+<hr class="sec-divider" />
+<h2 id="sec-18" class="report-h2">二、昨日遗留问题追踪与主要工程开发进展</h2>
+<h3 id="sec-19" class="report-h3">2.1 近期重点遗留问题状态追踪</h3>
+<div class="table-wrap"><table class="report-table"><thead><tr><th>工单</th><th>当前卡点</th><th>今日建议</th></tr></thead><tbody><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 存档删除／清空</strong></td><td>待确认入口、运行包与跨存储状态；未修代码</td><td><strong>P1 插队诊断</strong>；隔离数据测试，禁止指导玩家继续删真实存档</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a> 换弹后人物失控</strong></td><td>触发条件未知，待状态与控制恢复证据</td><td><strong>P1 排查</strong>；UI 尚可操作，优先检查玩家动作／输入状态，不等同全进程崩溃</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a> NPC 消失</strong></td><td>待原版／修改版 SWF 对照及 NPC 加载链定位</td><td>任务或商店被阻断时提级；Web 下水道缺标单独验收</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a> 移动射击期间移动打断换弹</strong></td><td>已看到明确静态危险路径，待实机确认状态切换是否命中</td><td>与 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/217" target="_blank" rel="noopener">#217</a> 共用一次状态观测，避免分开盲改</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/217" target="_blank" rel="noopener">#217</a> 移动射击反向移动会转向</strong></td><td>行走分支有保向，奔跑分支无相同保护；实际触发分支待确认</td><td>记录奔跑、后摇、射击标志，不能直接改全局射击状态</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/215" target="_blank" rel="noopener">#215</a> 翻滚换弹不触发幽灵装填</strong></td><td>技能换弹是否应付费补幽灵弹尚待设计确认</td><td>先裁决，再比较 <code>SkillReloadCore.reloadAllWeapons</code> 与手动换弹路径</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/218" target="_blank" rel="noopener">#218</a> 长流程诊断日志</strong></td><td>日志保留、任务进度安全采集和实现方案待定</td><td>联动 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/205" target="_blank" rel="noopener">#205</a> 现场；记录长局时间轴，不把“遥测过期”称为存档过期</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/212" target="_blank" rel="noopener">#212</a> CF6 肉鸽中途保存</strong></td><td>安全保存节点与恢复模型待设计</td><td>明确检查点、恢复权威和奖励幂等，不是简单加保存按钮</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/219" target="_blank" rel="noopener">#219</a> 获取地点误导</strong></td><td>待找到最终显示格式化／生成链</td><td>优先级可低于流程阻断，但很适合定位后快速修复</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> 注释图标模糊</strong></td><td>待同条件图像链对照与缓存方案</td><td>避免全局放大缓存造成内存回归</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a> 卡宾套件</strong></td><td>售卖与射击模式均待裁决</td><td>两子项分别排期，不以加商品替代机制交付</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a> 使用等级调整</strong></td><td>待适用范围、数据与 UI 方案</td><td>分离“已学等级／使用等级”，禁止隐式退点</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a> 技能角标</strong></td><td>代码已修；提交链接、包归属及标准入口复验待补</td><td>修复 SHA 原文异常需先校正</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/202" target="_blank" rel="noopener">#202</a>／<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/210" target="_blank" rel="noopener">#210</a></strong></td><td>已有源码及 SWF 构建；标准入口验收记录不足</td><td>直接进入专项复验，不重复写“待开发实现”</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/200" target="_blank" rel="noopener">#200</a></strong></td><td>已正式部署；逐图标准入口验收未完整展开</td><td>与 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a> 新回归联动，但保持工单边界</td></tr><tr><td><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a>／<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/207" target="_blank" rel="noopener">#207</a>／<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/208" target="_blank" rel="noopener">#208</a></strong></td><td>维护者已收口；体育老师修补后专项录像未新增</td><td>保持关闭，补证不冒充已有实测</td></tr></tbody></table></div>
+<p class="report-p"><strong>范围边界：</strong>上表覆盖本包展开的重点问题及相关关闭单，并不代表已对全部 27 项 Open Issue 做过源码审计。</p>
+<h3 id="sec-20" class="report-h3">2.2 主分支（<code>main</code>）开发提交模块聚类</h3>
+<p class="report-p">以下归纳覆盖本次可见及回执明确引用的提交。<strong>16 次为证据包统计值；未展示的提交不猜测标题、文件或业务归属。</strong></p>
+<h4 id="sec-21" class="report-h4">A. 武器与运行时装备投影</h4>
+<ul class="report-list"><li><strong>提交：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/911183038" target="_blank" rel="noopener"><code>911183038</code></a></li><li><strong>交付：</strong>死者之手三态冷兵器、空长枪槽借用射击、两阶段超载战技；新增控制器与调参层，重编 <code>asLoader.swf</code>。</li><li><strong>验证证据：</strong>45 项专项断言，工单有实机验收回执。</li><li><strong>主要回归面：</strong></li><li class="sub-li">临时投影与真实长枪装备冲突；</li><li class="sub-li">切武器、换装、收纳时超载清理；</li><li class="sub-li">模式对应的动作、碰撞盒、属性与装扮一致性；</li><li class="sub-li">临时状态误写持久化。</li></ul>
+<h4 id="sec-22" class="report-h4">B. Lady 全技能动态光效</h4>
+<ul class="report-list"><li><strong>提交：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/a22b68bcc" target="_blank" rel="noopener"><code>a22b68bcc</code></a>；对应字节码随 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/911183038" target="_blank" rel="noopener"><code>911183038</code></a> 编译。</li><li><strong>交付：</strong>冷属性透明区域弹识别、长条冰流双脉冲及 13 招式光效补齐。</li><li><strong>验证证据：</strong>104/104 专项断言。</li><li><strong>主要回归面：</strong>无实体弹光源归并、透明弹误触发、宽范围光源定位、连续施放后残留与性能。</li></ul>
+<h4 id="sec-23" class="report-h4">C. 原生修改器布局、透明度与输入焦点</h4>
+<ul class="report-list"><li><strong>实现提交：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/74d90bdff4" target="_blank" rel="noopener"><code>74d90bdff</code></a></li><li><strong>正式部署：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a></li><li><strong>交付：</strong>原生修改器布局、透明度及焦点修复。</li><li><strong>主要回归面：</strong>窗口缩放后的布局、透明度控件、编辑输入与游戏热键互抢。</li><li><strong>特别提醒：</strong>这是交互层修复，不能据此关闭 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> 的图像清晰度问题。</li></ul>
+<h4 id="sec-24" class="report-h4">D. NPC 对白打字确认自动接取</h4>
+<ul class="report-list"><li><strong>实现提交：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/399cf7797" target="_blank" rel="noopener"><code>399cf7797</code></a></li><li><strong>测试补充：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/ab9175590" target="_blank" rel="noopener"><code>ab9175590</code></a></li><li><strong>正式部署：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a></li><li><strong>交付：</strong></li><li class="sub-li"><code>TryStartHandoff</code> 不再强制依赖按钮动作旁路；</li><li class="sub-li">以 <code>done.task_publish.auto_accept == true</code> 及既有 NPC／slot／turn 安全守卫决定 handoff；</li><li class="sub-li">无 <code>action_id</code> 时 token 回落本轮 <code>_turnId</code>；</li><li class="sub-li">HEAD 在 <code>launcher/tests/Tasks/NativeDialogueInterjectControllerTests.cs</code> 补普通打字轮用例，记录控制器测试 129 条全绿。</li><li><strong>主要回归面：</strong>非任务对白误接取、重复接取、跨 NPC／跨轮串接、打字与按钮路径行为不一致。</li><li><strong>证据边界：</strong>HEAD 是测试补充，不应称为“新一轮玩家验收通过”。</li></ul>
+<h4 id="sec-25" class="report-h4">E. 正式运行态发布与派生数据</h4>
+<ul class="report-list"><li><strong>提交：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/079b2f8fd" target="_blank" rel="noopener"><code>079b2f8fd</code></a>、<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a></li><li><strong>交付：</strong></li><li class="sub-li">同步材料目录中刀剑来源摘要；</li><li class="sub-li">冻结源标签 <code>runtime-build-v2/20261110-modifier-interject-deadhand-v1</code>；</li><li class="sub-li">双签名者 <code>builder-local-b</code> 与 <code>github-oidc</code>，对应运行记录 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/42739612579" target="_blank" rel="noopener"><code>427396125</code></a>；</li><li class="sub-li">更新 <code>runtime/CRAZYFLASHER7MercenaryEmpire.Core.dll</code>、运行清单及发布共识配置。</li><li><strong>主要回归面：</strong>源码标签与产物不一致、DLL／SWF／数据错配、派生物未同步。</li><li><strong>特别提醒：</strong></li><li class="sub-li">材料派生摘要更新不代表 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/219" target="_blank" rel="noopener">#219</a> 地点显示已修。</li><li class="sub-li">当前 HEAD 在发布提交之后；不能默认 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/d3d6cee4e" target="_blank" rel="noopener"><code>d3d6cee4e</code></a> 的新对白已经进入上一轮正式包。</li></ul>
+<h4 id="sec-26" class="report-h4">F. 同盟 NPC 基础对话与外交地图</h4>
+<ul class="report-list"><li><strong>近期提交：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/d3d6cee4e" target="_blank" rel="noopener"><code>d3d6cee4e</code></a>，修改 <code>data/dialogues/npc_dialogue_禁区人员.xml</code>。</li><li><strong>历史相关发布：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/0b17f1cc" target="_blank" rel="noopener"><code>0b17f1cc</code></a>，七图与世界地图研究所分页。</li><li><strong>交付边界：</strong>补基础对白与补 NPC 生成是两件事；地图页面存在也不保证场景 NPC 能出现。</li><li><strong>主要回归面：</strong>场景名称、分页入口、SWF 链接名、NPC 定义和对话标识之间的关联。</li></ul>
+<h4 id="sec-27" class="report-h4">G. 近期收敛项：技能角标与灰蛊配置契约</h4>
+<ul class="report-list"><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a>：</strong><code>skills-library.js</code> 的教师列表角标条件修正；修复提交号需清洗补录。</li><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a>—<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/208" target="_blank" rel="noopener">#208</a>：</strong>完整档位覆盖、schema 约束、最终值文案及真实收益反馈。</li><li><strong>相关灰蛊部署线索：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/d44a6d02" target="_blank" rel="noopener"><code>d44a6d02</code></a>。</li><li><strong>主要回归面：</strong>列表／详情状态漂移；插件实例、弹体与 Tooltip 使用不同配置；通用 merge 规则被为单一插件改坏。</li></ul>
+<hr class="sec-divider" />
+<h2 id="sec-28" class="report-h2">三、🎯 今日测试员求测指南（To 测试群）</h2>
+<h3 id="sec-29" class="report-h3">开测前统一要求</h3>
+<ol class="report-list"><li><strong>先从启动器标准入口启动。</strong>记录启动器显示的版本／构建身份和测试时间；不要把工单里的源码核查基线当成自己的运行包。</li><li>区分“无改动正式包”与“手工替换 SWF 包”，分别记录，不能混成一份验收。</li><li>涉及存档、装备投影及恢复的测试使用隔离存档；真实存档先备份。</li><li>下列标为“复现采证”的项目尚无确认修复提交，测不到问题只能登记“本条件未复现”，不能直接认定新补丁已修复。</li></ol>
+<h3 id="sec-30" class="report-h3">【求测项 1】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 存档删除与清理——<span class="tester-pill">@稳如泰山</span></h3>
+<ul class="report-list"><li><strong>对应修复提交：</strong>暂无；<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a> 不是本项修复。</li><li><strong>操作步骤：</strong></li><li class="sub-li">建立一个可丢弃测试存档，记录槽位、角色识别信息和启动入口。</li><li class="sub-li">记录所点按钮的名称与所在界面，先只做一次删除。</li><li class="sub-li">刷新列表、重启启动器，检查槽位是否仍被占用。</li><li class="sub-li">只有确认是“清理启动器副本”入口后，才在隔离数据上执行清理；保留清理前后的截图与文件清单。</li><li class="sub-li">分别记录 SOL 是否还在、JSON 是否还在、是否出现删除标记。</li><li><strong>本轮目标：</strong>确定删除、清理、重枚举各自发生了什么。</li><li><strong>最终通过标准：</strong>删除入口确实释放其承诺释放的槽位；清理入口明确告知保留 SOL，不把重新发现的原存档包装成“已彻底清空”。</li></ul>
+<h3 id="sec-31" class="report-h3">【求测项 2】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a> 换弹后人物无法控制——<span class="tester-pill">@清水結衣</span></h3>
+<ul class="report-list"><li><strong>对应修复提交：</strong>暂无，属于高优先级复现采证。</li><li><strong>操作步骤：</strong></li><li class="sub-li">记录关卡、武器、弹匣／备弹、移动射击及幽灵装填状态。</li><li class="sub-li">分别测试普通换弹、换弹中移动、Shift、切武器及受击。</li><li class="sub-li">若失控，先录像展示方向、射击、技能是否都失效，以及鼠标 UI 是否仍可操作。</li><li class="sub-li">记录返回基地是否恢复；退出前保留对应时段日志。</li><li><strong>通过标准：</strong>换弹完成或合法取消后，控制能恢复；没有必须回基地才能解锁的残留状态。</li><li><strong>注意：</strong>不要因“能点 UI”就认为没有 Bug，也不要将其描述为整个启动器崩溃。</li></ul>
+<h3 id="sec-32" class="report-h3">【求测项 3】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a>／<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/217" target="_blank" rel="noopener">#217</a> 移动射击、换弹与保向——<span class="tester-pill">@清水結衣</span></h3>
+<ul class="report-list"><li><strong>对应修复提交：</strong>暂无；本轮已定位可疑分支，尚未合入修复。</li><li><strong>操作步骤：</strong></li><li class="sub-li">同一武器分别在装备／不装备移动射击时测试。</li><li class="sub-li">面向右开火，按 A 向左移动；反向再测一次。</li><li class="sub-li">分别从站立、行走、已奔跑状态进入开火。</li><li class="sub-li">开始换弹后分别按 A、D、Shift，并额外测试松开所有方向键。</li><li class="sub-li">记录装填是否结束、实际弹量是否改变、人物是否改变朝向。</li><li><strong>通过标准：</strong></li><li class="sub-li">约定允许的移动射击过程保持射击朝向；</li><li class="sub-li">约定允许的移动换弹不中断；</li><li class="sub-li">不出现动画看似完成但弹量未更新，或弹量更新但人物失控。</li><li><strong>开发协测建议：</strong>同步记录 <code>isAnyShooting</code>、<code>man.换弹标签</code>、<code>强制奔跑</code> 和状态切换前后值。</li></ul>
+<h3 id="sec-33" class="report-h3">【求测项 4】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/215" target="_blank" rel="noopener">#215</a> 翻滚换弹与幽灵装填——<span class="tester-pill">@清水結衣</span></h3>
+<ul class="report-list"><li><strong>对应修复提交：</strong>暂无，且技能换弹的预期尚待裁决。</li><li><strong>操作步骤：</strong></li><li class="sub-li">固定支持幽灵装填的武器、技能开关、弹匣与备弹。</li><li class="sub-li">先手动换弹，记录幽灵弹及弹药消耗。</li><li class="sub-li">恢复同样初始条件，再使用翻滚换弹。</li><li><strong>本轮目标：</strong>得到两条路径的实际差异。</li><li><strong>通过标准：</strong>待 fs 确认技能换弹是否应付费补装后，再按该规则验收；不要把当前设计未定写成代码必然错误。</li></ul>
+<h3 id="sec-34" class="report-h3">【求测项 5】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a> 技能“可学”角标——<span class="tester-pill">@清水結衣</span></h3>
+<ul class="report-list"><li><strong>对应修复：</strong>维护者已记录提交 <code>main</code>；原回执 SHA 含控制字符，待补录正确链接及包归属。</li><li><strong>操作步骤：</strong></li><li class="sub-li">选择未学习技能，覆盖“等级够／不够”与“SP 够／不够”的四组合。</li><li class="sub-li">对比左侧角标、右侧条件与学习按钮。</li><li class="sub-li">学习一次，再检查列表是否即时刷新。</li><li><strong>通过标准：</strong>不满足学习条件时不误标“可学”；满足条件时不误禁用；训练后列表与详情同步。</li></ul>
+<h3 id="sec-35" class="report-h3">【求测项 6】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/202" target="_blank" rel="noopener">#202</a> 死者之手四形态与借用长枪——<span class="tester-pill">@屑化添加剂</span></h3>
+<ul class="report-list"><li><strong>对应提交：</strong><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/911183038" target="_blank" rel="noopener"><code>911183038</code></a>；正式发布回归清单见 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/5e9da9048" target="_blank" rel="noopener"><code>5e9da9048</code></a>。</li><li><strong>操作步骤：</strong></li><li class="sub-li">依最终交付方案循环钝器、长矛、镰刀，检查模型、动作及碰撞距离。</li><li class="sub-li">长枪槽为空时切入射击，检查持枪装扮、枪口和能量弹。</li><li class="sub-li">装上真实长枪重测，确认不被借用覆盖。</li><li class="sub-li">开启超载后，分别测试正常终结、切其他武器、换装和收纳。</li><li class="sub-li">使用隔离存档重进，检查临时借用是否污染真实装备。</li><li><strong>通过标准：</strong>三态表现与属性一致；借用只作用于允许场景；超载能可靠退出并进入正确冷却；真实装备不被覆盖。</li><li><strong>补充：</strong>请确认原始需求与最终交付方案的差异已获接受，不再以旧形态名称误判当前实现。</li></ul>
+<h3 id="sec-36" class="report-h3">【求测项 7】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/210" target="_blank" rel="noopener">#210</a> Lady 动态光效</h3>
+<ul class="report-list"><li><strong>对应修复提交：</strong>本段材料未提供可核验的修复 SHA；请先确认测试包是否包含该项变更，再区分“现状采证”与“修复验收”。</li><li><strong>操作步骤：</strong></li><li class="sub-li">在可稳定观察 Lady 光效的同一场景，记录角色位置、朝向及画质设置，先保留一段静止画面。</li><li class="sub-li">分别测试移动、转向、攻击和受击，观察光效是否跟随正确对象，有无偏移、延迟、残留或突然消失。</li><li class="sub-li">切换场景后返回，检查光效是否正常恢复，是否出现重复叠加。</li><li class="sub-li">如界面已有对应开关，比较开／关效果；不要把未提供的开关当作测试前提。</li><li class="sub-li">如有明显卡顿，在相同场景、相同操作下记录帧率或录像，对比有无光效时的差异。</li><li><strong>通过标准：</strong>按已确认的美术方案正确显示；转向、动作和场景切换后无错误残留；没有可稳定复现的异常性能下降。</li><li><strong>边界说明：</strong>光效是否应照亮地面、影响其他角色或参与遮挡，需以实际需求为准，不能自行扩展验收范围；启动器掉落图标的缩略图代码也不是本项动态光效的修复证据。</li></ul>
+<h3 id="sec-37" class="report-h3">📣 求测命令提示与回报格式</h3>
+<p class="report-p">当前材料未提供测试群机器人或项目工具的真实命令语法，<strong>不将自拟格式冒充可执行命令</strong>。如群内已有求测机器人，请使用其实际帮助中列出的指令；人工发起求测、回填 Issue 时可直接使用：</p>
+<div class="code-card"><div class="code-header"><span class="code-lang">text</span><button class="copy-btn" onclick="copyCode(this)">📋 复制代码</button></div><pre><code>求测 #工单号
+测试包／构建身份：
+对应修复 SHA：已核验链接／暂无，属于复现采证
+测试入口：启动器标准入口／手工替换 SWF
+存档条件：新档／隔离旧档；是否已备份
+操作步骤：
+预期结果：
+实际结果：
+结论：通过／失败／本条件未复现／设计待确认
+附件：截图、录像、对应时段日志</code></pre></div>
+<p class="report-p"><strong>“本条件未复现”不等于“已修复”；“源码已有提交”也不等于“测试包已包含”。</strong>涉及存档和临时装备投影的求测，继续优先使用隔离数据。</p>
+<hr class="sec-divider" />
+<h2 id="sec-38" class="report-h2">四、🧭 开发者关注重点与排期参谋（To 开发者 — gpt-6.1-sol 自主研判）</h2>
+<p class="report-p">以下按<strong>数据安全、战斗可控性、流程可达性、设计一致性</strong>排序。源码判断仅以本次附带片段为依据；没有后端实现或完整调用链支撑的部分，明确列为待核查，不将推测写成已确认根因。</p>
+<h3 id="sec-39" class="report-h3">4.1 🚨 严重性拔高 / 建议跳过排期优先处置（High-Severity Escalations）</h3>
+<h4 id="sec-40" class="report-h4">① <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a>：不是单纯“按钮文案问题”，而是存档生命周期与槽位语义问题</h4>
+<p class="report-p"><strong>建议：按 P1 阻断风险优先核查；若证实会误覆盖其他存档、丢失唯一有效副本，再升级为数据安全级紧急处置。当前不能直接宣称已经发生数据丢失。</strong></p>
+<p class="report-p">所附 <code>launcher/web/modules/archive-editor.js:1274–1294</code> 已说明一个关键事实：</p>
+<ul class="report-list"><li><code>1277</code> 行的确认文案明确承诺：清理 launcher 侧 JSON 备份和删除标记，<strong>不影响 Flash 内部 SOL</strong>。</li><li><code>1293</code> 行发送的是 <code>reset</code> 命令，不是可据名称推断为“删除全部存档”的命令。</li><li><code>1285</code> 行随后刷新列表；<code>1283</code> 行却只显示泛化的“清理成功”。</li></ul>
+<p class="report-p">由此必须拆开三个问题：</p>
+<ol class="report-list"><li><strong>用户点击的是哪个入口？</strong>删除角色、释放槽位、清理启动器副本，不能共享一个含糊的“清空”解释。</li><li><strong>槽位由谁判定占用？</strong>SOL、JSON、删除标记之间，哪些参与枚举，哪个是权威来源？</li><li><strong>清理删除标记会产生什么结果？</strong>如果枚举逻辑会重新发现仍存在的 SOL，撤掉删除标记后，旧存档可能重新出现。这是需要验证的机制风险，不是已经由前端片段证明的后端行为。</li></ol>
+<p class="report-p"><strong>建议先补一张操作契约表，而不是先改删除代码：</strong></p>
+<div class="table-wrap"><table class="report-table"><thead><tr><th>操作</th><th>SOL</th><th>launcher JSON</th><th>删除标记</th><th>刷新后的槽位预期</th></tr></thead><tbody><tr><td>清理启动器副本</td><td>保留</td><td>按当前文案应清理</td><td>按当前文案应清理</td><td>必须说明是否可能重新发现 SOL</td></tr><tr><td>删除／释放槽位</td><td>需明确产品承诺</td><td>需明确</td><td>需明确</td><td>必须与入口承诺一致</td></tr><tr><td>恢复／重新导入</td><td>需明确来源</td><td>需明确生成规则</td><td>需明确处理规则</td><td>不得静默覆盖其他有效存档</td></tr></tbody></table></div>
+<p class="report-p">这张表需要由前后端共同核对，不能只改前端后便宣告 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 关闭。</p>
+<p class="report-p"><strong>优先交付边界：</strong></p>
+<ul class="report-list"><li>先让界面准确说明“删了什么、保留什么、是否释放槽位”。</li><li>再验证刷新、重启及再次进入游戏后的枚举结果。</li><li>任何扩大删除范围的修复，都要先有备份、失败回报及目标槽位校验；<strong>不能为解决“看起来没清掉”而顺手增加 SOL 删除。</strong></li></ul>
+<h4 id="sec-41" class="report-h4">② <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a>：换弹后失控属于核心玩法阻断，不能被普通换弹兼容问题淹没</h4>
+<p class="report-p"><strong>建议：按 P1 优先复现和定位，不等待 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/215" target="_blank" rel="noopener">#215</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/217" target="_blank" rel="noopener">#217</a> 全部设计收敛后才处理。</strong></p>
+<p class="report-p">现有片段能够证明“值得查哪里”，但还不能证明“根因就是换弹标签没清”：</p>
+<ul class="report-list"><li><code>单位函数_fs_aka_玩家模板迁移.as:497</code>：三类场景／姿态所有权标记会直接让行走函数返回。</li><li><code>507</code>：读取 <code>self.man.换弹标签</code>。</li><li><code>513–515</code>：换弹与射击限制共同决定移动限制。</li><li><code>528–538</code>：是否禁止横向、纵向移动，还分别取决于移动射击能力。</li><li><code>540–541</code>：已有移动决策观测入口，但执行不到这里的提前返回不会经过该观测点。</li></ul>
+<p class="report-p">因此，至少要区分：</p>
+<ol class="report-list"><li><strong>输入没有进入角色逻辑；</strong></li><li><strong>输入进入了，但移动门控持续关闭；</strong></li><li><strong>门控允许了，但状态切换或动作所有权仍阻止执行。</strong></li></ol>
+<p class="report-p">尤其不能把“方向、射击、技能均失效”全部归因于这个行走函数；它只覆盖已展示的移动路径。</p>
+<p class="report-p"><strong>建议用同一单位、连续时间线采证：</strong></p>
+<ul class="report-list"><li>换弹开始、正常完成、合法取消分别是否触发；</li><li><code>man.换弹标签</code>、当前状态、<code>强制奔跑</code>、射击判定的前后值；</li><li>三类所有权标记由谁设置、由谁释放；</li><li>输入事件是否仍到达，状态切换由哪个调用方发起；</li><li>返回基地恢复时，究竟重建了哪个对象或清掉了哪个状态。</li></ul>
+<p class="report-p"><strong>修复原则：</strong>正常完成、取消、受击、切武器及场景退出要有一致的收尾约定。不要先加“超过几秒强制清零全部状态”的兜底；那可能把受控动作提前解锁，制造免费装填、重复结算或穿插动作。</p>
+<p class="report-p">另外，片段里的 <code>强制奔跑</code>、<code>射击最大后摇中</code> 是裸变量。未确认 AS2 作用域及调用上下文前，也不应批量替换成 <code>self.xxx</code>，以免把定位改成另一轮行为变更。</p>
+<h4 id="sec-42" class="report-h4">③ <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a>：NPC 消失若卡住任务链，应从内容缺漏升级为流程阻断</h4>
+<p class="report-p"><strong>建议：先确认是否影响必经交互。若阻断主流程，按 P1 处理；若只是非必需对白或支线表现，再按实际影响回落优先级。</strong></p>
+<p class="report-p">“地图分页已经存在”“对白文件已经补齐”“历史提交包含研究所入口”，都不能单独证明 NPC 可以在当前运行包中生成。</p>
+<p class="report-p">应沿以下链路逐层排查：</p>
+<blockquote class="report-quote">入口／分页 → 实际加载场景 → NPC 定义与生成条件 → 运行实例 → 显示与交互 → 对白关联</blockquote>
+<p class="report-p">优先收集：</p>
+<ul class="report-list"><li>当前包实际进入的场景标识，是否与预期一致；</li><li>新档和旧档是否都缺失，是否受任务旗标或章节状态影响；</li><li>NPC 是根本没有实例，还是实例存在但不可见、不可交互；</li><li>配置引用、SWF 链接名及对白标识是否对应；</li><li>正式包是否确实包含相关资源，避免仅在本地替换包上成立。</li></ul>
+<p class="report-p"><strong>不建议的临时修法：</strong>在场景入口无条件补生成一个 NPC。它可能绕过剧情条件，并在原生成路径恢复后造成重复实例、重复交互或重复奖励。</p>
+<p class="report-p"><strong>关闭标准：</strong>不仅要看到 NPC，还要在受影响的存档状态下走通其必要交互；离开重进后不重复生成，也不再次消失。</p>
+<h3 id="sec-43" class="report-h3">4.2 🍬 高性价比「顺手消灭」推荐（Cheap Wins / Low-Hanging Fruits）</h3>
+<p class="report-p">下面提名 <strong>3 个范围明确的微改点</strong>。行号均对应所附源码基线；“分钟级”指编码范围，不代表免除编译和回归。后两项属于源码直接可见的表现／诊断改进，<strong>不冒充已有工单的确认根因</strong>。</p>
+<h4 id="sec-44" class="report-h4">① <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 先消除“清理成功＝彻底清空”的误读</h4>
+<ul class="report-list"><li><strong>文件：</strong><code>launcher/web/modules/archive-editor.js</code></li><li><strong>准确位置：</strong><code>1277</code>、<code>1283</code> 行；关联自动关闭逻辑在 <code>1286</code> 行。</li><li><strong>改法：</strong></li><li class="sub-li"><code>1277</code> 行保留现有 SOL 保留说明，再明确提示：保留的 SOL 在后续枚举中仍可能被发现，清理副本不等于删除游戏存档。</li><li class="sub-li"><code>1283</code> 行将：<br/>```js<br/>_statusEl.textContent = &#x27;清理成功&#x27;;<br/>```<br/>改为：<br/>```js<br/>_statusEl.textContent = &#x27;启动器副本清理成功（Flash SOL 存档保留）&#x27;;<br/>```</li></ul>
+<p class="report-p"><strong>收益：</strong>两处文案便能减少操作后误判。由于成功后 <code>600ms</code> 自动关闭，关键提示必须放在操作前的确认框，不能只依赖成功状态文字。</p>
+<p class="report-p"><strong>边界：</strong>不改 <code>reset</code> 协议，不增加删除动作，也不据此关闭“槽位没有释放”的原问题。</p>
+<h4 id="sec-45" class="report-h4">② 非方形掉落图标避免被强拉成正方形</h4>
+<ul class="report-list"><li><strong>文件：</strong><code>launcher/src/Guardian/Hud/Loot/LootIconCatalog.cs</code></li><li><strong>准确位置：</strong><code>372–384</code> 行的 <code>CreateThumb</code>，具体替换 <code>383</code> 行绘制方式。</li><li><strong>源码事实：</strong>目前始终将整张源图画到 <code>ThumbSize × ThumbSize</code>，非方形输入会改变宽高比。</li><li><strong>建议改法：</strong>若图标规范没有要求拉伸填满，改为等比缩放、居中透明留边：</li></ul>
+<div class="code-card"><div class="code-header"><span class="code-lang">csharp</span><button class="copy-btn" onclick="copyCode(this)">📋 复制代码</button></div><pre><code>float scale = Math.Min(
+    (float)ThumbSize / full.Width,
+    (float)ThumbSize / full.Height);
+float width = full.Width * scale;
+float height = full.Height * scale;
+
+g.Clear(Color.Transparent);
+g.DrawImage(
+    full,
+    (ThumbSize - width) / 2f,
+    (ThumbSize - height) / 2f,
+    width,
+    height);</code></pre></div>
+<p class="report-p">保留现有高质量插值、像素格式和异常释放逻辑。</p>
+<p class="report-p"><strong>最小回归：</strong>方形、横长、竖长、透明边缘各一张；确认方形资源不退化，长条资源不变形。如果现有资源契约明确要求铺满，则不直接采用此改法。</p>
+<p class="report-p"><strong>边界：</strong>这是 launcher 掉落图标缩略图改进，<strong>不是 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/210" target="_blank" rel="noopener">#210</a> Lady 动态光效修复</strong>。</p>
+<h4 id="sec-46" class="report-h4">③ 解码失败日志补齐异常类型与实际路径</h4>
+<ul class="report-list"><li><strong>文件：</strong><code>launcher/src/Guardian/Hud/Loot/LootIconCatalog.cs</code></li><li><strong>准确位置：</strong><code>357–360</code> 行，具体修改 <code>359</code> 行。</li><li><strong>改法示例：</strong></li></ul>
+<div class="code-card"><div class="code-header"><span class="code-lang">csharp</span><button class="copy-btn" onclick="copyCode(this)">📋 复制代码</button></div><pre><code>LogManager.Log(
+    &quot;[LootIcon] decode failed: uri=&#x27;&quot; + uri
+    + &quot;&#x27;, path=&#x27;&quot; + path
+    + &quot;&#x27;, exception=&quot; + ex.ToString());</code></pre></div>
+<p class="report-p"><strong>收益：</strong>现有日志只保留 URI 和 <code>ex.Message</code>；补齐实际拼接路径及异常上下文，便于区分资源路径、解码器和缩略图生成阶段的问题，减少来回索要环境信息。</p>
+<p class="report-p"><strong>最小回归：</strong>正常图片仍正常；损坏图片仍返回 <code>null</code>，但日志信息足够定位。<code>347</code> 行“文件不存在”的提前返回不在这个异常分支内，不能声称本改动覆盖了所有缺图原因。</p>
+<p class="report-p"><strong>边界：</strong>不改变缓存策略、不增加重试、不触碰 <code>363–367</code> 行的位图所有权处理；这是诊断补强，不计作业务 Bug 已修复。</p>
+<p class="report-p"><strong>本轮不凑数的两类改动：</strong></p>
+<ul class="report-list"><li>玩家模板虽然已有精确行号，但换弹门控和状态切换不应被包装成“随手删一个条件”。相关判断放到下节处理。</li><li>合成地点／材料字典检索片段实际是 <strong>grep 超时</strong>，没有取得有效脚本路径和行号。不能据此宣称脚本不存在，更不能编一个 <code>tools/...</code> 路径进入微改清单。</li></ul>
+<h3 id="sec-47" class="report-h3">4.3 ⚖️ 待设计裁决与架构关注项（Design Rulings &amp; Architectural Watch）</h3>
+<h4 id="sec-48" class="report-h4">A. <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/215" target="_blank" rel="noopener">#215</a> 翻滚换弹与幽灵装填：先决定是否同一种“换弹交易”</h4>
+<p class="report-p">需要 fs 明确：</p>
+<ol class="report-list"><li>翻滚换弹是否触发幽灵装填，还是只执行技能自身的基础装填；</li><li>若触发，是否沿用手动换弹的弹药／资源消耗；</li><li>条件不满足时，是退回普通装填、部分补装，还是不触发；</li><li>中断、受击或切武器后，已扣资源与已生成弹量如何结算。</li></ol>
+<p class="report-p"><strong>架构建议：</strong>不要仅在翻滚动作末尾复制一遍手动换弹代码。应明确两条入口是否共用同一套装填结算，并保证一次动作最多结算一次。</p>
+<p class="report-p">验收需同时对账<strong>动作、弹匣、备弹、幽灵弹或相关资源</strong>；只看“弹匣满了”不足以通过。</p>
+<h4 id="sec-49" class="report-h4">B. <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a> 卡宾套件：先裁决改装后的武器身份</h4>
+<p class="report-p">本段没有足够信息确认套件的最终分类规则，因此不预设它一定应算某一枪种。fs 至少需要决定：</p>
+<ul class="report-list"><li>它只改变外观／射击行为，还是改变武器分类；</li><li>技能和配件适配按原武器身份还是改装后身份判断；</li><li>装备槽位、持枪动作、弹药规则分别是否变化；</li><li>拆卸套件后，哪些属性和状态必须恢复。</li></ul>
+<p class="report-p"><strong>架构关注：</strong>基础物品身份、派生战斗属性、UI 展示分类应分清。不要为让某一处适配通过，直接修改永久物品 ID，继而影响背包、存档、配件及技能判定。</p>
+<p class="report-p">先形成一张“改装前／改装后”的契约表，再决定改动落在哪层；避免多个系统各自硬编码一次“卡宾例外”。</p>
+<h4 id="sec-50" class="report-h4">C. <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a> 技能使用等级：学习条件不等于施放条件</h4>
+<p class="report-p"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a> 的“可学”角标修正，只解决学习资格的展示，不能顺带证明 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a> 已解决。</p>
+<p class="report-p">需 fs 裁决：</p>
+<ul class="report-list"><li>等级是只在学习时检查，还是每次使用也检查；</li><li>已学习技能遇到降级、读入旧档或其他等级变化时，是否仍可使用；</li><li>若存在基础等级与加成后等级，使用门槛采用哪一个；</li><li>不满足条件时，技能保留但禁用，还是采取其他明确规则。</li></ul>
+<p class="report-p"><strong>实现原则：</strong>学习资格、使用资格分别建模，各自让 UI 和实际执行复用一致判断。不要在施放失败时自动删技能，也不要只把按钮置灰，却让快捷键或其他调用入口继续绕过。</p>
+<h4 id="sec-51" class="report-h4">D. <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/212" target="_blank" rel="noopener">#212</a> 肉鸽保存：保存粒度与恢复语义必须先定</h4>
+<p class="report-p">需要明确保存的是哪一层：</p>
+<ul class="report-list"><li>长期角色进度；</li><li>当前局的检查点；</li><li>可跨退出恢复的完整局内状态。</li></ul>
+<p class="report-p">这三者不是同一个功能，不能因为 launcher 已有 JSON 副本，就推导出肉鸽局内恢复已经具备条件。</p>
+<p class="report-p">fs 应拍板：</p>
+<ol class="report-list"><li>允许在哪些时点保存：房间结束、安全点，还是任意退出；</li><li>正常退出、崩溃和强制关闭，分别恢复到哪里；</li><li>死亡后快照如何失效，结算与恢复如何避免重复发奖；</li><li>随机进度、已领取奖励和消耗状态是否必须随快照固定；</li><li>旧版本快照是否兼容；不兼容时如何安全提示。</li></ol>
+<p class="report-p"><strong>架构建议：</strong>先保证恢复结果有效、结算不重复，再扩展保存频率。快照应带版本与明确的局实例标识；它与长期存档的关联、权威来源和失败处理需要单独定义，不能与 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 的“清理启动器副本”混成一个操作。</p>
+<h4 id="sec-52" class="report-h4">E. <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a>／<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/217" target="_blank" rel="noopener">#217</a>：走、跑、射击与换弹的组合规则需要统一</h4>
+<p class="report-p">片段中存在一个明确的实现差异：</p>
+<ul class="report-list"><li><code>551–565</code> 行：横向行走会在满足移动射击条件时保留射击朝向，并设置 <code>isBackwardsShooting</code>。</li><li><code>580–587</code> 行：已展示的横向奔跑分支直接改变朝向，没有同样的判断。</li></ul>
+<p class="report-p">这是 <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/217" target="_blank" rel="noopener">#217</a> 的可疑点，不是已确认根因</strong>。若 fs 确认奔跑中也应保向，可考虑复用行走分支的判定；但仍需检查后续对 <code>isBackwardsShooting</code> 的消费及动作支持，不能只凭片段宣布修复。</p>
+<p class="report-p"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a> 还需要确认：换弹期间允许的行走／奔跑切换，是否应保持原装填过程。重点检查 <code>557</code>、<code>565</code>、<code>571</code>、<code>574</code> 等状态切换与换弹时间线的交互，不能直接删掉状态切换来“保住换弹”。</p>
+<p class="report-p"><strong>设计顺序应是：</strong>先列允许的组合，再统一入口与退出约定；不要让走路、跑步、技能各自拥有一套互相覆盖的换弹规则。</p>
+<h4 id="sec-53" class="report-h4">建议推进顺序</h4>
+<ol class="report-list"><li><strong>先止住阻断风险：</strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 核清操作语义与槽位枚举；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a> 建立可复现状态链；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a> 确认是否卡必经流程。</li><li><strong>并行合入小补丁：</strong>文案、缩略图表现及日志可小提交推进，独立验收，不捆绑状态机重构。</li><li><strong>集中请 fs 裁决：</strong>优先解决会阻塞实现的规则问题；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/215" target="_blank" rel="noopener">#215</a> 与 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a>／<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/217" target="_blank" rel="noopener">#217</a> 一起审视，避免修改互相打架。</li><li><strong>裁决后再承诺交付：</strong>为 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/212" target="_blank" rel="noopener">#212</a> 补齐规则表和测试矩阵，再给实现排期。本文顺序是建议，不代表已获维护者确认的日程。</li></ol>
+<hr class="sec-divider" />
+<h2 id="sec-54" class="report-h2">今日结论</h2>
+<ul class="report-list"><li><strong>最应前移的是 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a>，以及确认阻断流程后的 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a>。</strong>它们分别影响存档操作可信度、战斗可控性和任务链可达性，不宜被普通表现项挤到后面。</li><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 先纠正语义，再处理机制。</strong>清理 launcher 副本不等于删除 SOL，更不必然等于释放槽位；禁止用扩大删除范围来制造“清空成功”的表象。</li><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a> 必须形成状态闭环。</strong>能点 UI、回基地能恢复，都不能降低其战斗阻断性质；同时也不足以证明某个标签就是根因。</li><li><strong>微改可以先走，规则不能偷定。</strong>本轮三处小改具备明确源码位置；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/215" target="_blank" rel="noopener">#215</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/212" target="_blank" rel="noopener">#212</a> 仍需 fs 裁决，不能以局部补丁代替产品决定。</li><li><strong>验收继续绑定构建身份与有效提交。</strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/202" target="_blank" rel="noopener">#202</a> 按已有交付清单回归；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a> 补齐有效 SHA 和包归属；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/210" target="_blank" rel="noopener">#210</a> 未核验修复归属前，只登记对应构建下的测试事实。</li></ul>
+<p class="report-p"><strong>今天最有价值的进展，不是多写几个“已修复”，而是让高风险问题可复现、操作语义可解释、设计边界可执行、测试结论可追溯。</strong></p>
+    </section>
+    <section id="tab-radar" class="hidden">
+      <h2 class="report-h2">🎯 实时待测试群实机复验雷达（支持群内发 `/验收 #编号 通过` 一键回写）</h2>
+      <p class="report-p">【Wings 实机复验雷达 &amp; 求测看板】（当前基线：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/ab917559" target="_blank" rel="noopener"><code>ab917559</code></a>）</p>
+<p class="report-p">🎯 <strong>一、已提交修复代码、等待群友实机复验的 Issue 单据</strong> • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a></strong> [OPEN] [测试群反馈] C# 原生注释图标模糊，显示效果对齐 Web 端（反馈人：不存在） ↳ 👤 原反馈人：<code>不存在</code> | ⏳ <strong>待实机复验 (<code>candidate -&gt; standard_entry_verified</code>)</strong> ↳ 🛠️ 关联修复提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/74d90bd" target="_blank" rel="noopener"><code>74d90bd</code></a> [11-09 23:51] fix(modifier): 修复原生修改器布局、透明度与输入焦点 ↳ 🔍 <strong>复验要点</strong>：覆盖四页按钮命中、动态图标、通用注释、兵种遮罩、半透明合成、输入层级与焦点切换 • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a></strong> [CLOSED] [测试群反馈] 技能学习界面在 SP 或等级不足时仍显示「可学」（反馈人：清水結衣） ↳ 👤 原反馈人：<code>清水結衣</code> | ⏳ <strong>待实机复验 (<code>candidate -&gt; standard_entry_verified</code>)</strong> ↳ 🛠️ 关联修复提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/aeab1fe" target="_blank" rel="noopener"><code>aeab1fe</code></a> [11-09 11:39] fix(web/skills): 修复技能学习页在等级或SP不足时仍显示「可学」的问题 ↳ 🔍 <strong>复验要点</strong>：进入技能面板切换至「技能学习」页，观察未学技能在角色等级不足时显示「需 Lv.X」、等级满足但 SP 不足时显示「SP不足」、条件均满足时显示「可学」；已学未满级且 SP 足够时显示「可升级」，已满级显示「已满级」。学习 • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/210" target="_blank" rel="noopener">#210</a></strong> [CLOSED] 给lady的这招加光效渲染 ↳ 👤 原反馈人：<code>群测试员</code> | ⏳ <strong>待实机复验 (<code>candidate -&gt; standard_entry_verified</code>)</strong> ↳ 🛠️ 关联修复提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/a22b68b" target="_blank" rel="noopener"><code>a22b68b</code></a> [11-10 09:32] feat(render): 补齐 Lady 寒冰喷射器与全技能动态光效配置 ↳ 🔍 <strong>复验要点</strong>：1. 验证 Lady 释放「寒冰喷射器」时喷口至冰流末端具备连续冰蓝动态光源且无光源堆积； • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/208" target="_blank" rel="noopener">#208</a></strong> [CLOSED] [P1][配置契约] 装备插件嵌套 merge 数值降档失效：声明式 hitBehavior 覆盖语义与约束审计（关联 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a>） ↳ 👤 原反馈人：<code>群测试员</code> | ⏳ <strong>待实机复验 (<code>candidate -&gt; standard_entry_verified</code>)</strong> ↳ 🛠️ 关联修复提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/13740b4" target="_blank" rel="noopener"><code>13740b4</code></a> [11-09 01:33] 修复灰蛊分档契约、里程碑反馈和异常配置属性预览 ↳ 🔍 <strong>复验要点</strong>：实战检查三类枪的 6/12/18 格反馈、封顶后的斩杀以及停火退层后重新跨节点；专项自动验证不替代真人对美术与手感的签收 • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/207" target="_blank" rel="noopener">#207</a></strong> [CLOSED] [P2][机制可读性] 灰蛊裂隙弹节点、退层重装与击溃收益的文案及战斗反馈治理（关联 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a>） ↳ 👤 原反馈人：<code>群测试员</code> | ⏳ <strong>待实机复验 (<code>candidate -&gt; standard_entry_verified</code>)</strong> ↳ 🛠️ 关联修复提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/13740b4" target="_blank" rel="noopener"><code>13740b4</code></a> [11-09 01:33] 修复灰蛊分档契约、里程碑反馈和异常配置属性预览 ↳ 🔍 <strong>复验要点</strong>：实战检查三类枪的 6/12/18 格反馈、封顶后的斩杀以及停火退层后重新跨节点；专项自动验证不替代真人对美术与手感的签收 • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/204" target="_blank" rel="noopener">#204</a></strong> [CLOSED] [测试群反馈] 防暴僵尸缺少精英标签，无法受到精英破击（反馈人：清水結衣） ↳ 👤 原反馈人：<code>清水結衣</code> | ⏳ <strong>待实机复验 (<code>candidate -&gt; standard_entry_verified</code>)</strong> ↳ 🛠️ 关联修复提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/6da5581" target="_blank" rel="noopener"><code>6da5581</code></a> [11-08 16:12] 将防暴僵尸魔法抗性由凡俗调整为精英0并同步选关情报哈希 ↳ 🔍 <strong>复验要点</strong>：防暴僵尸精英破击与击杀奖励结算 (Closes <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/204" target="_blank" rel="noopener">#204</a>) • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/202" target="_blank" rel="noopener">#202</a></strong> [CLOSED] [开发待办] 需要完善武器 死者之手 的as文件设计（提出人：屑化添加剂） ↳ 👤 原反馈人：<code>屑化添加剂</code> | ⏳ <strong>待实机复验 (<code>candidate -&gt; standard_entry_verified</code>)</strong> ↳ 🛠️ 关联修复提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/9111830" target="_blank" rel="noopener"><code>9111830</code></a> [11</p>
+    </section>
+    <section id="tab-memory" class="hidden">
+      <h2 class="report-h2">🧠 Wings 自组织长期记忆与跨天技术专题 (`gpt-6.1-sol` Dream Mode 自动维护)</h2>
+      <div class="topic-grid">
+        <div class="topic-card"><h3>🧭 全局记忆路由索引 (MEMORY.md)</h3><h1 id="sec-1" class="report-h1">Wings 长期记忆路由</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。档案已落地；状态来自本轮快照，未实时复查仓库/GitHub。</p>
+<h2 id="sec-2" class="report-h2">👥 活跃成员画像索引</h2>
+<ul class="report-list"><li><strong>fs</strong>（主程/管理员，Crazyfs）→ users/fs.md：偏好证据化日报、跨栈对照；关注存档/原生UI/发布回归。GPT-7即时战斗仅闲聊展望。</li><li><strong>清水結衣</strong>（核心实机测试）→ users/清水結衣.md：长局日志、技能/枪械/插件；#216装填、#218诊断、#219提示、#222手枪套件。</li><li><strong>屑化添加剂</strong>（武器/地图/NPC共创）→ users/屑化添加剂.md：#202已关闭，#221地图/NPC阻塞测试；与aa是不同成员。</li><li><strong>稳如泰山</strong>（玩法反馈）→ users/稳如泰山.md：#223轻重装小跳使用等级、#224存档删除/清空；排查先备份。</li><li><strong>aa</strong>（设计/需求分流）→ users/aa.md：#222大学门口售卖机建议；#223待审核、支线/基建解锁思路，非定案。</li><li><strong>不存在</strong>（界面反馈）→ users/不存在.md：<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> C#原生注释大图模糊，期望对齐Web。</li><li><strong>布鲁.谍沃齐格</strong>（空手共创）→ users/布鲁.谍沃齐格.md：期望兽王/黑犀/内力套收益排序；仅设计偏好。</li></ul>
+<h2 id="sec-3" class="report-h2">🧩 跨天技术专题索引</h2>
+<ul class="report-list"><li>topics/runtime_blackscreen_151_205.md：长局黑屏/#218；“1078p/M数据过期”、遥测中断仅线索，根因未定。</li><li>topics/save_slot_semantics.md：#224删除/TOMB/副本语义待查；先备份补复现。</li><li>topics/skills_reload_and_levels.md：#213学习面板、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a>~217装填、#223已学与使用等级分离。</li><li>topics/npc_maps_dialogue.md：#221地图注册/NPC可见性/对白进度分层验收。</li><li>topics/weapon_and_effect_regressions.md：死者之手#202、Lady#210、灰蛊#206~208；#222许愿与#219提示。</li><li>topics/native_ui_tooltip.md：#220缩放嫌疑；修改器布局/透明度/焦点回归。</li><li>topics/unarmed_style_design.md：腿技/Lee机动性讨论；伤害构成与单双按未定。</li></ul>
+<h2 id="sec-4" class="report-h2">📌 近期工作流连续性备忘</h2>
+<ul class="report-list"><li>daily/latest_continuity.md：HEAD ab917559为打字确认自动接取Host用例补充。旧记忆称129条测试通过、部署5e9da9048，本轮未核验；仓库HEAD≠测试包≠实机验收。</li><li>待测修改器布局/透明度/焦点、对白打字确认自动接取、死者之手形态/超载、Lady光效。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a> open：Web缺同盟下水道，更换SWF后研究所/同盟咖啡厅NPC消失；d3d6cee4e对白进度不证明可见性修复。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a> open：装备【移动射击】，Shift或A/D均中断装填；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a>/#215/#217开闭未核实。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a>/#223 open：售卖机/全自动仍许愿，等级调整需求待审核；aa为补充者，原反馈人分别为清水結衣/稳如泰山。评论不等于实体标签变更。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> open：删除占槽、清空疑似还原；先备份，补入口/版本/路径/重启表现，不定性损坏。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/218" target="_blank" rel="noopener">#218</a> open：约4小时全流程日志需求，记录版本/时间/分辨率/任务；旧观察1078p→918p→810p→722…末尾截断。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/219" target="_blank" rel="noopener">#219</a> open：三种复合防御组件与墨冰/狱火提示“堕落城商业区→升阶与涂装”；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> open：疑似64×64缓存放大，须同物品同DPI双栈对照。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a>/#200/#202/#210/#206~208快照closed；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/151" target="_blank" rel="noopener">#151</a>/#205状态未知。转发去重，猜测/自动测试勿作实机结论。</li></ul></div><div class="topic-card"><div class="topic-meta">topics/unarmed_style_design.md</div><h1 id="sec-1" class="report-h1">空手流派设计（未定案）</h1>
+<p class="report-p">更新：2026-11-10 21:33。仅迁移原索引历史，没有新增实现证据。</p>
+<ul class="report-list"><li>空手可包含腿技，讨论过借鉴 Lee 的机动性；不等于已确定招式或参数。</li><li>布鲁.谍沃齐格期望新技能收益顺序为兽王套最高、黑犀次之、内力套再次。这是个人设计取向，不是当前实装强度排行。</li><li>伤害构成、单双按方案仍未定案；后续先区分设计提议与实测机制，再核验代码或征求方案。</li><li>当前没有可核实的关联 Issue 编号、排期或批准结论，不补造。</li></ul></div><div class="topic-card"><div class="topic-meta">topics/native_ui_tooltip.md</div><h1 id="sec-1" class="report-h1">C# 原生注释与修改器 UI</h1>
+<p class="report-p">更新：2026-11-10 21:33。来源：原索引、Issue 快照；本轮未查实现。</p>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> open，反馈人不存在：C# 原生注释大图模糊，目标对齐 Web。</li><li>原排查线索为疑似64×64缓存再放大；这只是嫌疑，未确认为根因。</li><li>双栈复验需同物品、同 DPI、相同预期显示尺寸，记录版本、系统缩放、截图，区分资源质量和渲染缩放。</li><li>原生修改器另有布局、透明度、焦点回归需求；与 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> 并行跟踪，不默认由同一原因造成，也不当作“不存在”的新增反馈。</li><li>原索引提到部署提交5e9da9048，本轮未核验。仓库 HEAD、部署线索、测试员实际包必须分开描述。</li></ul></div><div class="topic-card"><div class="topic-meta">topics/weapon_and_effect_regressions.md</div><h1 id="sec-1" class="report-h1">武器、光效与插件回归</h1>
+<p class="report-p">更新：2026-11-10 21:33。来源：原索引、Issue 与问答快照；未新查源码或实测。</p>
+<h2 id="sec-2" class="report-h2">已关闭但保留回归</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/202" target="_blank" rel="noopener">#202</a> closed：屑化添加剂提出完善死者之手 AS 设计；关注形态切换与超载。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/210" target="_blank" rel="noopener">#210</a> closed：Lady 招式光效渲染；需在实际运行包确认显示。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/206" target="_blank" rel="noopener">#206</a>/#207/#208 closed：灰蛊裂隙弹对体育老师击溃/易伤反馈，已拆分机制可读性与配置契约问题。</li><li class="sub-li"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/207" target="_blank" rel="noopener">#207</a>：节点、退层重装、击溃收益文案及战斗反馈。</li><li class="sub-li"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/208" target="_blank" rel="noopener">#208</a>：插件嵌套 merge 数值降档失效，声明式 hitBehavior 覆盖语义及约束审计。</li><li>关闭状态不代表本轮实机通过；没有本轮证据时不扩写修复细节或当前伤害数值。</li></ul>
+<h2 id="sec-3" class="report-h2"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a> 手枪卡宾转换套件</h2>
+<ul class="report-list"><li>open，清水結衣提出便捷取得途径及全自动效果，仍属许愿。</li><li>11-10 14:24 aa 建议改为大学门口售卖机售卖；问答显示已补充评论，原全自动建议保留。</li><li>具体接入、配置、定价待评估；不能声称售卖机已上架或已能全自动。</li></ul>
+<h2 id="sec-4" class="report-h2"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/219" target="_blank" rel="noopener">#219</a> 获取提示</h2>
+<ul class="report-list"><li>open，清水結衣反馈。二/三/四阶复合防御组件、墨冰/狱火涂料应提示“堕落城商业区→升阶与涂装”。这是提示纠正诉求，不证明配方已改。</li></ul></div><div class="topic-card"><div class="topic-meta">topics/npc_maps_dialogue.md</div><h1 id="sec-1" class="report-h1">地图接入、NPC 与对白</h1>
+<p class="report-p">更新：2026-11-10 21:33。来源：原索引与本轮 Issue 快照；未重新核验仓库。</p>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a> open，屑化添加剂反馈：Web 缺同盟下水道；更换对应地图 SWF 后研究所、同盟咖啡厅 NPC 消失，阻塞测试。时间先后不证明 SWF 是根因。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/200" target="_blank" rel="noopener">#200</a> closed：7张新外交地图的 SWF 部分完成；提出人为屑化添加剂，aa 协助挂单。素材完成不代表地图入口、NPC 与对白全链路完成。</li><li>原索引记载 d3d6cee4e 补全同盟 NPC 基础对白，天网侧基础对话已写完；本轮未复查，不当作 NPC 可见性修复证据。</li></ul>
+<h2 id="sec-2" class="report-h2">分层复验</h2>
+<ol class="report-list"><li>确认测试包、SWF 文件版本与替换路径，检查 Web 地图注册/入口。</li><li>独立确认 NPC 是否生成、是否可见、能否交互；尚未定位消失原因。</li><li>NPC 出现后再检验对白内容与打字确认自动接取流程。</li><li>HEAD ab917559 是 Host 用例补充，不等于玩家包已更新或实机验收通过。</li></ol></div><div class="topic-card"><div class="topic-meta">topics/skills_reload_and_levels.md</div><h1 id="sec-1" class="report-h1">技能学习、装填与使用等级</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。状态来自本轮快照与原索引，未重查实现。</p>
+<h2 id="sec-2" class="report-h2">装填 / 移动射击</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a> open，清水結衣反馈：装备【移动射击】时装填中按 Shift 或 A/D 均会打断。复述必须保留技能前提与两类按键，不能只照标题记 Shift。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a>/#215/#217 是原索引中的相关换弹追踪编号，具体内容和当前开闭未核实。</li><li>建议复验记录实际包、武器、技能配置，分别测 Shift、A/D，并加未装备技能对照；这是后续取证方案，非已有测试结果。</li></ul>
+<h2 id="sec-3" class="report-h2">学习面板</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a> closed：SP 或等级不足仍显示“可学”。保持关闭状态与实机复验结论分开。</li></ul>
+<h2 id="sec-4" class="report-h2"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a>：调整已学技能的使用等级</h2>
+<ul class="report-list"><li>open，原始反馈人稳如泰山。例子为轻重装切换时的小跳；“已学等级”和“使用等级”是两个概念，不自动等于重置技能点。</li><li>11-10 14:25 aa 要求“需求待审核”；机器人已在评论记录，不能据此断言实际标签变更或方案已审批。</li><li>14:27 aa 初步建议通过支线/基建等内容解锁额外功能，不初始开放，以降低上手复杂度。</li><li>待开发者确认需求范围、交互、等级约束与解锁条件；本轮没有实施证据。</li></ul>
+<h2 id="sec-5" class="report-h2">相邻需求</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a> 手枪卡宾转换套件获取与全自动效果仍为许愿，详见 topics/weapon_and_effect_regressions.md；不要与装填 Bug 混成同一修复。</li></ul></div><div class="topic-card"><div class="topic-meta">topics/save_slot_semantics.md</div><h1 id="sec-1" class="report-h1">存档槽位、删除与清空语义</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。来源：原索引、问答 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/43" target="_blank" rel="noopener">#43</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 快照。</p>
+<h2 id="sec-2" class="report-h2">已知反馈</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> open，反馈人稳如泰山。删除后仍占槽位，清空操作疑似还原存档；原问答还提到手动删文件现象，缺少可完整重放的步骤。</li><li>暂未确认是 UI 刷新、逻辑删除、备份恢复、入口混淆或真正文件持久化问题。上述只是排查维度，不是诊断结论。</li><li>原索引留下“删除/TOMB/清理副本语义”检索线索；本轮没有源码证据，不把 TOMB 的具体行为当作既定实现。</li></ul>
+<h2 id="sec-3" class="report-h2">安全排查顺序</h2>
+<ol class="report-list"><li>先备份现有存档及相关副本，注明原路径；不要直接建议删目录或清备份。</li><li>补运行版本/平台、删除与清空入口截图、存档路径、槽位与文件对应关系。</li><li>记录每步操作前后 UI、文件变化、重启后结果；手动删除了哪些文件须单列。</li><li>明确区分占位未刷新、空槽不可复用、内容恢复、文件重新生成；再对照实现。</li></ol>
+<h2 id="sec-4" class="report-h2">沟通边界</h2>
+<ul class="report-list"><li>不将“疑似还原”改写成确认丢档或数据损坏。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a> 与 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a> 同由稳如泰山委托挂单，但技能需求与存档 Bug 分开跟踪。</li></ul></div><div class="topic-card"><div class="topic-meta">topics/runtime_blackscreen_151_205.md</div><h1 id="sec-1" class="report-h1">长局黑屏与全流程诊断</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。从21:28原索引迁移；本轮未查日志/代码。</p>
+<h2 id="sec-2" class="report-h2">状态与证据边界</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/218" target="_blank" rel="noopener">#218</a> open，反馈人清水結衣：请求覆盖长流程的分辨率变化、任务进度诊断日志。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/151" target="_blank" rel="noopener">#151</a>/#205 是旧黑屏追踪锚点，当前开闭状态未核实。</li><li>旧线索包括“1078p/M 数据过期”、帧末遥测中断；保留为检索原文的线索，不解释为已定位根因。</li><li>分辨率观察串为“1078p→918p→810p→722…”；末尾截断，不补全缺失值或单位，不据此直接认定内存泄漏/缩放故障。</li></ul>
+<h2 id="sec-3" class="report-h2">下一步取证</h2>
+<ul class="report-list"><li>希望约4小时不自动清理日志；这是测试建议/需求，不能回复为日志能力已上线。</li><li>收集启动包/版本、开始时间、分辨率变化时间点、任务进度、异常前后日志；区分渲染黑屏、任务停滞与遥测停止。</li><li>重现版本必须对应测试员实际包，仓库 HEAD 不替代版本凭据。</li><li>有新日志先保存原件，再比较症状时间线；没有可复现证据时不关闭根因调查。</li></ul></div><div class="topic-card"><div class="topic-meta">users/布鲁.谍沃齐格.md</div><h1 id="sec-1" class="report-h1">布鲁.谍沃齐格</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。仅迁移原索引中的有限历史，未新增推断。</p>
+<h2 id="sec-2" class="report-h2">已知定位与议题</h2>
+<ul class="report-list"><li>参与空手流派共创；希望新技能的套装收益顺序为兽王套最高、黑犀次之、内力套再次。</li><li>此为个人设计期望，不是现行实装强度排序，也不是已经批准的数值方案。</li><li>关联讨论：空手流派可包含腿技、参考 Lee 的机动性；伤害构成及单双按方案未定。详见 topics/unarmed_style_design.md。</li></ul>
+<h2 id="sec-3" class="report-h2">互动注意</h2>
+<ul class="report-list"><li>讨论时先确认其在谈设计愿景还是现有实测；不能把偏好包装成机制结论。</li><li>暂无本轮可核实的个人 Issue 编号或稳定沟通习惯，不补造。</li></ul></div><div class="topic-card"><div class="topic-meta">users/不存在.md</div><h1 id="sec-1" class="report-h1">不存在</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。来源：原索引、Issue 快照。</p>
+<h2 id="sec-2" class="report-h2">已知定位</h2>
+<ul class="report-list"><li>界面显示反馈者；当前集中于 C# 原生注释图标清晰度。暂无足够资料判断更多玩法或沟通偏好。</li></ul>
+<h2 id="sec-3" class="report-h2">代表反馈</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/220" target="_blank" rel="noopener">#220</a> open：C# 原生注释大图模糊，希望显示效果对齐 Web。</li><li>原记忆中的排查方向为疑似先缓存到64×64再放大，尚未证实，本轮未查实现。</li><li>复验应同物品、同 DPI、相同预期显示尺寸对照原生与 Web，附运行版本、截图与缩放设置。不要拿不同缩放环境得出渲染已修复的结论。</li><li>相关修改器布局/透明度/焦点是并行发布回归项，不自动视为其本人新反馈。详见 topics/native_ui_tooltip.md。</li></ul></div><div class="topic-card"><div class="topic-meta">users/aa.md</div><h1 id="sec-1" class="report-h1">aa</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。来源：当日问答 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/45" target="_blank" rel="noopener">#45</a>~47、Issue 概览、原索引。</p>
+<h2 id="sec-2" class="report-h2">定位与互动</h2>
+<ul class="report-list"><li>参与设计讨论与需求分流，会明确要求机器人补充评论、保留“待审核”边界。</li><li>与屑化添加剂不是同一人；协助挂单或补充设计不等于原始反馈归属改变。</li><li>回复适宜简明确认“补充了哪条意见、仍待谁审核”，不要把个人初步思路写成开发定案或已实装。</li></ul>
+<h2 id="sec-3" class="report-h2">11-10 已记录意见</h2>
+<ul class="report-list"><li>14:24 / <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a>：将手枪卡宾转换套件获取途径建议改为“大学门口的售卖机售卖”，保留原全自动效果建议；具体配置与定价待评估。原始反馈人为清水結衣。</li><li>14:25 / <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a>：要求标记“需求待审核，等待开发者确认具体需求方案”。问答记录显示机器人已在评论注明，不据此断言 GitHub 实体标签已更改。</li><li>14:27 / <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a>：初步思路为通过支线或基建等游戏内容达成条件后解锁额外功能，不作为初始功能，避免增加上手复杂度。原始反馈人为稳如泰山。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/200" target="_blank" rel="noopener">#200</a> closed：曾协助屑化添加剂挂7张外交地图 SWF 完成的待办单。</li></ul>
+<h2 id="sec-4" class="report-h2">状态边界</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a>/#223 在本轮快照均 open；售卖机和等级调整解锁方式均属建议，非承诺。</li></ul></div><div class="topic-card"><div class="topic-meta">users/稳如泰山.md</div><h1 id="sec-1" class="report-h1">稳如泰山</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。来源：11-10 问答 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/43" target="_blank" rel="noopener">#43</a>~44、原索引、Issue 快照。</p>
+<h2 id="sec-2" class="report-h2">定位与交流</h2>
+<ul class="report-list"><li>从实际玩法和存档操作提出反馈；本次关注轻重装切换时的小跳等级与存档管理。</li><li>14:22 明确请机器人代挂两单，原始反馈人均为本人。14:23 用“龙龙不错”及表情夸赞机器人；可自然亲切回应，不据单次互动推导长期人格。</li></ul>
+<h2 id="sec-3" class="report-h2"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/223" target="_blank" rel="noopener">#223</a>：技能使用等级调整（open，需求待审核）</h2>
+<ul class="report-list"><li>希望已学技能的使用等级可调整，小跳在轻重装切换中的适配为例。</li><li>区分“已学等级”与“实际使用等级”，不擅自扩写为洗点或退款需求。</li><li>aa 14:25 要求评论注明“需求待审核”；14:27 补充可通过支线/基建解锁，不宜初始开放，以免增加上手复杂度。</li><li>aa 的意见不改变原始反馈人，也不是开发者已确认的方案；具体 UI、规则、解锁条件仍未定。</li></ul>
+<h2 id="sec-4" class="report-h2"><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/224" target="_blank" rel="noopener">#224</a>：存档删除/清空（open）</h2>
+<ul class="report-list"><li>已记录删除仍占槽位、清空疑似还原，以及手动删文件相关现象；当前摘要不足以复原每一步，须补原始操作。</li><li>先备份再排查，补入口截图、运行版本、存档路径、操作顺序、重启后的表现。</li><li>未证实数据损坏，不能要求直接清空目录或删除备份。专题：topics/save_slot_semantics.md。</li></ul></div><div class="topic-card"><div class="topic-meta">users/屑化添加剂.md</div><h1 id="sec-1" class="report-h1">屑化添加剂</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。来源：原索引、当日 Issue 快照；未重新核验代码。</p>
+<h2 id="sec-2" class="report-h2">定位</h2>
+<ul class="report-list"><li>武器、地图、NPC 内容共创者；关注作品是否真正进入可测试流程。</li><li>与 aa 是不同成员，不合并身份。aa 曾协助挂单，不应据此改写提出人。</li></ul>
+<h2 id="sec-3" class="report-h2">近期工作</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/202" target="_blank" rel="noopener">#202</a> closed：完善武器“死者之手”的 AS 设计；仍保留形态/超载实机回归，见 topics/weapon_and_effect_regressions.md。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/200" target="_blank" rel="noopener">#200</a> closed：7张新外交地图的 SWF 部分完成，由屑化添加剂提出、aa 协助挂单。SWF 完成不等于 Web 注册、NPC 可见与对白全链路验收。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/221" target="_blank" rel="noopener">#221</a> open：Web 地图缺同盟下水道；更换对应地图 SWF 后，研究所与同盟咖啡厅 NPC 消失，阻塞相关测试，根因待定。</li><li>原记忆记载 d3d6cee4e 补全同盟 NPC 基础对白、天网侧基础对话已写完；本轮未重查。内容进度不可当作 NPC 可见性已修复的证据。</li></ul>
+<h2 id="sec-4" class="report-h2">互动注意</h2>
+<ul class="report-list"><li>跟进地图反馈时分开问：运行包/地图文件版本、Web 注册入口、NPC 是否出现、对白是否存在。</li><li>明确区分素材完成、配置接入、运行时故障；不要因 Issue 关闭就回复“已实机通过”。</li></ul></div><div class="topic-card"><div class="topic-meta">users/清水結衣.md</div><h1 id="sec-1" class="report-h1">清水結衣</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。由原索引及本轮 Issue/问答快照整理；状态非实时复查。</p>
+<h2 id="sec-2" class="report-h2">定位与互动</h2>
+<ul class="report-list"><li>核心实机测试员，持续反馈长流程日志、技能/枪械/插件与获取提示。</li><li>检索兼容“清水结衣”；称呼以“清水結衣”为准。复述其反馈须保留装备、操作、版本等前提，尤其不能把特定技能问题扩大到所有枪械。</li></ul>
+<h2 id="sec-3" class="report-h2">代表性跟进</h2>
+<ul class="report-list"><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/216" target="_blank" rel="noopener">#216</a> open：装备【移动射击】时，装填过程中按 Shift 或 A/D 都会中断；标题只写 Shift，跟进不得漏掉移动键。<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/214" target="_blank" rel="noopener">#214</a>/#215/#217 关联换弹问题的当前状态未核实。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/218" target="_blank" rel="noopener">#218</a> open：建议约4小时、不过早自动清理的全流程诊断日志，记录启动版本、时间、分辨率变化及任务进度。长局黑屏旧线索详见 topics/runtime_blackscreen_151_205.md，未定位根因。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/219" target="_blank" rel="noopener">#219</a> open：二/三/四阶复合防御组件、墨冰/狱火涂料，获取提示应指向“堕落城商业区→升阶与涂装”。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/222" target="_blank" rel="noopener">#222</a> open：希望手枪卡宾转换套件更便捷取得并有全自动效果；aa 后补“大学门口售卖机”建议，未实装、定价未定。不要把 aa 当原始反馈人。</li><li><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/213" target="_blank" rel="noopener">#213</a> closed：技能学习面板在 SP 或等级不足时仍显示“可学”；关闭只是快照状态。</li></ul>
+<h2 id="sec-4" class="report-h2">互动注意</h2>
+<ul class="report-list"><li>需要实机复验时，先给明确版本与最小步骤；区分需求单和故障单，不承诺许愿已生效。</li></ul></div><div class="topic-card"><div class="topic-meta">users/fs.md</div><h1 id="sec-1" class="report-h1">fs / Crazyfs</h1>
+<p class="report-p">更新：2026-11-10 21:33（北京时间）。来源：原索引迁移、当日群聊；未新查仓库。</p>
+<h2 id="sec-2" class="report-h2">身份与互动</h2>
+<ul class="report-list"><li>项目主程/架构师、管理员；沿用原记忆中的别名 Crazyfs。</li><li>偏好有证据的完整日报、跨栈对比，关注存档、原生注释、发布回归。回答宜分清现象、实现证据、推测和待实测项，不把设计建议说成已交付。</li><li>汇报需注明测试包版本与仓库提交的区别；Issue 关闭、自动测试通过都不等于实机验收。</li></ul>
+<h2 id="sec-3" class="report-h2">近期连续性</h2>
+<ul class="report-list"><li>回归线索：原生修改器布局/透明度/焦点、对白打字确认自动接取、死者之手形态/超载、Lady 光效，详见 daily/latest_continuity.md。</li><li>11-10 20:33:52~20:34:08（群消息 #2989949~2989951）：说“后面等gpt7出来了”“估计真能参加即时战斗了”，中间发送视频。仅为对未来模型即时战斗能力的闲聊展望；视频内容未解析，不据此记作开发排期、当前能力或确定的模型发布时间。</li></ul></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['report', 'radar', 'memory'].forEach(t => {
+    const el = document.getElementById('tab-' + t);
+    if (el) el.classList.toggle('hidden', t !== name);
+  });
+}
+function copyCode(btn) {
+  const code = btn.closest('.code-card').querySelector('code').innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    const old = btn.innerText;
+    btn.innerText = '✅ 已复制';
+    setTimeout(() => btn.innerText = old, 1500);
+  });
+}
+function jumpByKeyword(kw) {
+  switchTab('report', document.querySelector('.tab-btn'));
+  const headings = document.querySelectorAll('#tab-report h2, #tab-report h3');
+  for (const h of headings) {
+    if (h.innerText.includes(kw)) {
+      h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+  }
+}
+function filterReport(q) {
+  const kw = (q || '').trim().toLowerCase();
+  const links = document.querySelectorAll('#tocNav .toc-link');
+  links.forEach(a => {
+    a.style.display = (!kw || a.innerText.toLowerCase().includes(kw)) ? 'block' : 'none';
+  });
+  if (kw.length >= 2) {
+    const allEls = document.querySelectorAll('#tab-report h3, #tab-report li, #tab-report p, #tab-report td');
+    for (const el of allEls) {
+      if (el.innerText.toLowerCase().includes(kw)) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        break;
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>
