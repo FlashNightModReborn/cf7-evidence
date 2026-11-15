@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 271,
+  "file_id": 1015,
+  "original_filename": "大机器人完整版.rar",
+  "sender_nick": "fs",
+  "generated_at_utc": "2026-11-15T04:55:55Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "大机器人完整版.rar",
+      "asset_name": "issue271-file1015-evidence.rar",
+      "size_bytes": 4788439,
+      "sha256": "44b7fed4ca1e0218318d7fdc82d53bd24be91743c92a5ca5cf6f6c2fe15ef112",
+      "release_download_url": "https://github.com/FlashNightModReborn/cf7-evidence/releases/download/test-evidence-assets/issue271-file1015-evidence.rar",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-271/file-1015-evidence.rar/issue271-file1015-evidence.rar"
+    }
+  ]
+}
