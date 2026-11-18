@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 295,
+  "file_id": 1668,
+  "original_filename": "bandicam+2026-11-18+22-40-02-096_exported.mp4",
+  "sender_nick": "稳如泰山",
+  "generated_at_utc": "2026-11-18T14:46:50Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "bandicam+2026-11-18+22-40-02-096_exported.mp4",
+      "asset_name": "issue295-file1668-bandicam_2026-11-18_22-40-02-096_exporte.mp4",
+      "size_bytes": 6520183,
+      "sha256": "d40116e182628732914477ff09632019df828be788d8c6068d3aad6439e1ba9f",
+      "release_download_url": "https://github.com/FlashNightModReborn/cf7-evidence/releases/download/test-evidence-assets/issue295-file1668-bandicam_2026-11-18_22-40-02-096_exporte.mp4",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-295/file-1668-bandicam_2026-11-18_22-40-02-096_exporte.mp4/issue295-file1668-bandicam_2026-11-18_22-40-02-096_exporte.mp4"
+    }
+  ]
+}
