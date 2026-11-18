@@ -1,0 +1,489 @@
+# 现场日志关键时窗逐行原文 (`cfn-rag.log` | 总行数: 1,685 行 | 脱敏规则: Windows 用户名替换为 <USER_REDACTED>)
+
+## [1] 启动与运行身份锚点 (Boot & Identity Anchors)
+L00001: 2026-09-10 23:03:26,053 INFO [core.startup] ==================================================
+L00002: 2026-09-10 23:03:26,053 INFO [core.startup] 开始执行后端启动任务...
+L00003: 2026-09-10 23:03:26,069 INFO [core.startup] 已修复 XML 列表条目: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\data\task\list.xml ->   <task>agent_tasks.json</task>
+L00004: 2026-09-10 23:03:26,069 INFO [core.startup] 已修复 XML 列表条目: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\data\task\text\list.xml ->   <text>agent_text.json</text>
+L00005: 2026-09-10 23:03:26,464 INFO [services.memory.store] 旧库迁移完成：session_task_drafts 补 bargain_count 列（4 行回填）
+L00006: 2026-09-10 23:03:26,464 INFO [core.startup] 会话存储（SQLite/WAL）就绪，摘要 worker 已启动
+L00007: 2026-09-10 23:03:26,464 INFO [core.startup] NPC 状态库加载完成（86 个 NPC）
+L00008: 2026-09-10 23:03:27,054 ERROR [core.startup] GameDataRegistry 加载失败（将在首次使用时重试）: 未找到 shops.json: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\data\shops\shops.json
+L00009: 2026-09-10 23:03:27,479 INFO [services.retrieval.hybrid] 向量库不可用（索引文件缺失: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\tools\vector_index_v3），将重建
+L00010: 2026-09-10 23:03:27,479 INFO [core.startup] 检索初始化: embedder 就绪，向量库未命中（后台构建中）（1.41s）
+L00011: 2026-09-10 23:03:27,479 INFO [core.startup] 所有启动任务完成（1.42s），服务就绪
+L00012: 2026-09-10 23:03:27,479 INFO [core.startup] ==================================================
+L00013: 2026-09-10 23:03:27,581 WARNING [services.retrieval.loader] docs 目录中无 PDF/DOCX 文件，跳过世界观文档加载
+L00014: 2026-09-10 23:03:27,876 INFO [services.retrieval.loader] 语料加载完成: 4290 条节点（对话=368 任务=1723 世界观块=0 loading=99 情报=313 实体=1787）
+L00015: 2026-09-10 23:04:17,718 INFO [services.retrieval.store] 向量库构建完成: 4290 条, dim=512
+L00016: 2026-09-10 23:04:18,033 INFO [services.retrieval.store] 向量库已保存: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\tools\vector_index_v3（4290 条）
+L00017: 2026-09-10 23:04:20,867 INFO [core.startup] 向量库后台构建完成（4290 条）
+L00018: 2026-09-10 23:37:51,196 INFO [services.portraits.manifest_lookup] 对话立绘 manifest 已加载: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\web\assets\dialogue-portraits\manifest.json
+L00019: 2026-09-10 23:38:19,646 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00020: 2026-09-10 23:38:20,014 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00021: 2026-09-10 23:38:22,080 INFO [httpx2] HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 404 Not Found"
+L00022: 2026-09-10 23:38:22,081 WARNING [services.orchestrator.turn] 回合 LLM 错误: Not found the model kimi-k2.5 or Permission denied
+L00023: 2026-09-10 23:39:53,151 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00024: 2026-09-10 23:39:53,464 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00025: 2026-09-10 23:39:55,744 INFO [httpx2] HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+L00026: 2026-09-10 23:40:27,112 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00027: 2026-09-10 23:40:27,412 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00028: 2026-09-10 23:40:29,533 INFO [httpx2] HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+L00029: 2026-09-10 23:41:31,259 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00030: 2026-09-10 23:41:31,567 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00031: 2026-09-10 23:41:33,538 INFO [httpx2] HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+L00032: 2026-09-10 23:45:13,524 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00033: 2026-09-10 23:45:13,815 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+L00034: 2026-09-10 23:45:15,980 INFO [httpx2] HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+L00035: 2026-09-10 23:47:21,778 WARNING [services.orchestrator.turn] 游戏数据不可用，任务功能将受限
+... (中段关键状态与加载锚点摘录) ...
+L00099: openai.NotFoundError: Error code: 404 - {'error': {'message': 'Not found the model kimi-k2.5 or Permission denied', 'type': 'resource_not_found_error'}}
+L00101: The above exception was the direct cause of the following exception:
+L00110: services.llm.errors.LLMError: Not found the model kimi-k2.5 or Permission denied
+L00125: openai.NotFoundError: Error code: 404 - {'error': {'message': 'Not found the model kimi-k2.5 or Permission denied', 'type': 'resource_not_found_error'}}
+L00127: The above exception was the direct cause of the following exception:
+L00136: services.llm.errors.LLMError: Not found the model kimi-k2.5 or Permission denied
+L00151: openai.NotFoundError: Error code: 404 - {'error': {'message': 'Not found the model kimi-k2.5 or Permission denied', 'type': 'resource_not_found_error'}}
+L00153: The above exception was the direct cause of the following exception:
+L00162: services.llm.errors.LLMError: Not found the model kimi-k2.5 or Permission denied
+L00177: openai.NotFoundError: Error code: 404 - {'error': {'message': 'Not found the model kimi-k2.5 or Permission denied', 'type': 'resource_not_found_error'}}
+L00179: The above exception was the direct cause of the following exception:
+L00188: services.llm.errors.LLMError: Not found the model kimi-k2.5 or Permission denied
+L00204: openai.NotFoundError: Error code: 404 - {'error': {'message': 'Not found the model kimi-k2.5 or Permission denied', 'type': 'resource_not_found_error'}}
+L00206: The above exception was the direct cause of the following exception:
+L00215: services.llm.errors.LLMError: Not found the model kimi-k2.5 or Permission denied
+L00230: openai.NotFoundError: Error code: 404 - {'error': {'message': 'Not found the model kimi-k2.5 or Permission denied', 'type': 'resource_not_found_error'}}
+L00232: The above exception was the direct cause of the following exception:
+L00241: services.llm.errors.LLMError: Not found the model kimi-k2.5 or Permission denied
+L00258: openai.NotFoundError: Error code: 404 - {'error': {'message': 'Not found the model kimi-k2.5 or Permission denied', 'type': 'resource_not_found_error'}}
+L00260: The above exception was the direct cause of the following exception:
+L00269: services.llm.errors.LLMError: Not found the model kimi-k2.5 or Permission denied
+L00286: openai.NotFoundError: Error code: 404 - {'error': {'message': 'Not found the model kimi-k2.5 or Permission denied', 'type': 'resource_not_found_error'}}
+L00288: The above exception was the direct cause of the following exception:
+L00297: services.llm.errors.LLMError: Not found the model kimi-k2.5 or Permission denied
+L00387: openai.RateLimitError: Error code: 429 - {'error': {'message': 'The engine is currently overloaded, please try again later', 'type': 'engine_overloaded_error'}}
+L00389: The above exception was the direct cause of the following exception:
+L00398: services.llm.errors.LLMQuotaError: The engine is currently overloaded, please try again later
+L00420: openai.RateLimitError: Error code: 429 - {'error': {'message': 'The engine is currently overloaded, please try again later', 'type': 'engine_overloaded_error'}}
+L00422: The above exception was the direct cause of the following exception:
+L00431: services.llm.errors.LLMQuotaError: The engine is currently overloaded, please try again later
+L00446: openai.RateLimitError: Error code: 429 - {'error': {'message': 'The engine is currently overloaded, please try again later', 'type': 'engine_overloaded_error'}}
+L00448: The above exception was the direct cause of the following exception:
+L00457: services.llm.errors.LLMQuotaError: The engine is currently overloaded, please try again later
+L00506: openai.RateLimitError: Error code: 429 - {'error': {'message': 'The engine is currently overloaded, please try again later', 'type': 'engine_overloaded_error'}}
+L00508: The above exception was the direct cause of the following exception:
+L00517: services.llm.errors.LLMQuotaError: The engine is currently overloaded, please try again later
+
+## [2] 尾部非指针原文 (L01336..L01685)
+L01336: 2026-11-04 23:37:49,800 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01337: 2026-11-04 23:37:50,608 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01338: 2026-11-04 23:37:59,430 INFO [services.dialogue_interject.api] [interject] request mode=task action=- dialogue=5a814f57-3fe9-4312-92b4-f292cfc758d5 turn=ba1effbd-2cab-44e7-9bce-bae6a154ec58
+L01339: 2026-11-04 23:37:59,451 INFO [services.dialogue_interject.sessions] [interject] session=030c81fa-ddb1-4637-818d-dee0e02c91a6 种入已播 1 行 seq=[0]
+L01340: 2026-11-04 23:37:59,451 INFO [services.dialogue_interject.sessions] [interject] session=030c81fa-ddb1-4637-818d-dee0e02c91a6 dialogue=5a814f57-3fe9-4312-92b4-f292cfc758d5 created=True turn_dup=False mode=task kind=task_post
+L01341: 2026-11-04 23:37:59,935 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=task dialogue=5a814f57-3fe9-4312-92b4-f292cfc758d5 turn=ba1effbd-2cab-44e7-9bce-bae6a154ec58 model=glm-5.3-flash tools=2 system_chars=3952 user_chars=5775
+L01342: 2026-11-04 23:38:04,610 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01343: 2026-11-04 23:38:07,229 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=7297ms 首字=4679ms prompt=6917 completion=77 cached=640
+L01344: 2026-11-04 23:38:07,229 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=task dialogue=5a814f57-3fe9-4312-92b4-f292cfc758d5 turn=ba1effbd-2cab-44e7-9bce-bae6a154ec58 first_content_ms=4680 chars=128 tools=0 elapsed_ms=7298
+L01345: 2026-11-04 23:38:07,235 INFO [services.dialogue_interject.orchestrator] [interject] plan dialogue=5a814f57-3fe9-4312-92b4-f292cfc758d5 turn=ba1effbd-2cab-44e7-9bce-bae6a154ec58 end=None edits=0 implied_nochange=[] rejected=[]
+L01346: 2026-11-04 23:38:10,918 INFO [services.retrieval.store] 向量库构建完成: 4976 条, dim=512
+L01347: 2026-11-04 23:38:11,269 INFO [services.retrieval.store] 向量库已保存: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\tools\vector_index_v3（4976 条）
+L01348: 2026-11-04 23:38:16,836 INFO [services.dialogue_interject.sessions] [interject] finalize session=030c81fa-ddb1-4637-818d-dee0e02c91a6 dialogue=5a814f57-3fe9-4312-92b4-f292cfc758d5 transcript=4 appended=3 total=4
+L01349: 2026-11-04 23:38:30,229 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01350: 2026-11-04 23:38:47,136 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01351: 2026-11-04 23:38:48,138 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01352: 2026-11-04 23:38:53,468 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01353: 2026-11-04 23:38:54,001 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01354: 2026-11-04 23:39:59,211 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01355: 2026-11-04 23:40:02,421 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01356: 2026-11-04 23:40:02,928 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01357: 2026-11-04 23:40:02,951 INFO [services.dialogue.delegation] 对话修改委派未受理（任务 200011 发布时没挂对话重写标记）: npc=冷兵器商人 trigger=重要任务
+L01358: 2026-11-04 23:40:02,951 INFO [api.integration_api] [integration] task-completed slot=crazyflasher7_saves task_id=200011 accepted=False detail=任务 200011 发布时没挂对话重写标记
+L01359: 2026-11-04 23:41:15,666 INFO [services.dialogue_interject.api] [interject] request mode=task action=- dialogue=c0fbb677-94d5-449c-9486-c93bf8f2d4f9 turn=500eb284-dcfa-45fe-9351-0e12efec0b9e
+L01360: 2026-11-04 23:41:15,669 INFO [services.dialogue_interject.sessions] [interject] session=a9a0aa31-21db-4122-bd12-f3348908786d 种入已播 1 行 seq=[0]
+L01361: 2026-11-04 23:41:15,669 INFO [services.dialogue_interject.sessions] [interject] session=a9a0aa31-21db-4122-bd12-f3348908786d dialogue=c0fbb677-94d5-449c-9486-c93bf8f2d4f9 created=True turn_dup=False mode=task kind=task_pre
+L01362: 2026-11-04 23:41:15,744 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=task dialogue=c0fbb677-94d5-449c-9486-c93bf8f2d4f9 turn=500eb284-dcfa-45fe-9351-0e12efec0b9e model=glm-5.3-flash tools=2 system_chars=3290 user_chars=4867
+L01363: 2026-11-04 23:41:19,769 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01364: 2026-11-04 23:41:21,049 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=5304ms 首字=4513ms prompt=5896 completion=49 cached=640
+L01365: 2026-11-04 23:41:21,049 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=task dialogue=c0fbb677-94d5-449c-9486-c93bf8f2d4f9 turn=500eb284-dcfa-45fe-9351-0e12efec0b9e first_content_ms=4513 chars=54 tools=0 elapsed_ms=5305
+L01366: 2026-11-04 23:41:21,049 INFO [services.dialogue_interject.orchestrator] [interject] plan dialogue=c0fbb677-94d5-449c-9486-c93bf8f2d4f9 turn=500eb284-dcfa-45fe-9351-0e12efec0b9e end=None edits=0 implied_nochange=[] rejected=[]
+L01367: 2026-11-04 23:41:26,530 INFO [services.dialogue_interject.sessions] [interject] finalize session=a9a0aa31-21db-4122-bd12-f3348908786d dialogue=c0fbb677-94d5-449c-9486-c93bf8f2d4f9 transcript=5 appended=4 total=5
+L01368: 2026-11-04 23:59:19,465 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01369: 2026-11-04 23:59:20,213 INFO [api.integration_api] [integration] shutdown requested
+L01370: 2026-11-04 23:59:20 [embedded] 已收到游戏侧退出请求，服务已停止，进程退出
+L01371: 2026-11-08 11:40:48,629 INFO [core.startup] ==================================================
+L01372: 2026-11-08 11:40:48,629 INFO [core.startup] 开始执行后端启动任务...
+L01373: 2026-11-08 11:40:48,674 INFO [core.startup] 会话存储（SQLite/WAL）就绪，摘要 worker 已启动
+L01374: 2026-11-08 11:40:48,678 INFO [core.startup] 对话修改后台 worker 已启动
+L01375: 2026-11-08 11:40:48,678 INFO [core.startup] NPC 状态库加载完成（92 个 NPC）
+L01376: 2026-11-08 11:40:49,943 INFO [services.game_data.shop_registry] 商店数据来源: npc-shop.v2，50 个 NPC 商店
+L01377: 2026-11-08 11:40:49,977 INFO [services.game_data.kshop_registry] K 点商城数据来源: 新版逐店文件，231 条
+L01378: 2026-11-08 11:40:50,171 INFO [core.startup] GameDataRegistry 加载完成
+L01379: 2026-11-08 11:40:50,303 INFO [services.retrieval.hybrid] 向量库不可用（语料指纹不匹配，需要重建索引），将重建
+L01380: 2026-11-08 11:40:50,303 INFO [core.startup] 检索初始化: embedder 就绪，向量库未命中（后台构建中）（1.67s）
+L01381: 2026-11-08 11:40:50,303 INFO [core.startup] 所有启动任务完成（1.68s），服务就绪
+L01382: 2026-11-08 11:40:50,303 INFO [core.startup] ==================================================
+L01383: 2026-11-08 11:40:50,352 INFO [services.retrieval.loader] 跳过黑名单任务配置（不参与检索/向量化）: agent_tasks.json
+L01384: 2026-11-08 11:40:50,352 INFO [services.retrieval.loader] 跳过黑名单任务配置（不参与检索/向量化）: mercenary_tasks_old.json
+L01385: 2026-11-08 11:40:54,524 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01386: 2026-11-08 11:40:58,174 INFO [services.retrieval.loader] 情报语料来源: intelligence_h5（h5 优先），608 块
+L01387: 2026-11-08 11:40:58,188 INFO [services.retrieval.loader] 术语表加载: 20 条（world_lore）
+L01388: 2026-11-08 11:40:58,880 INFO [services.retrieval.loader] 设定文档切分: 12 个原文档 -> 221 个块
+L01389: 2026-11-08 11:40:58,883 INFO [services.retrieval.loader] 语料加载完成: 4977 条节点（对话=371 任务=1727 世界观块=241 loading=99 情报=608 实体=1931）
+L01390: 2026-11-08 11:42:13,827 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01391: 2026-11-08 11:42:16,595 INFO [services.retrieval.store] 向量库构建完成: 4977 条, dim=512
+L01392: 2026-11-08 11:42:17,123 INFO [services.retrieval.store] 向量库已保存: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\tools\vector_index_v3（4977 条）
+L01393: 2026-11-08 11:42:21,630 INFO [core.startup] 向量库后台构建完成（4977 条）
+L01394: 2026-11-08 11:43:14,146 INFO [services.dialogue_interject.api] [interject] request mode=daily action=- dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=549f6e41-590a-4d7e-93b0-81a420a45610
+L01395: 2026-11-08 11:43:14,153 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d 种入已播 2 行 seq=[0, 1]
+L01396: 2026-11-08 11:43:14,153 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 created=True turn_dup=False mode=daily kind=daily
+L01397: 2026-11-08 11:43:14,781 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=549f6e41-590a-4d7e-93b0-81a420a45610 model=glm-5.3-flash tools=6 system_chars=4466 user_chars=5614
+L01398: 2026-11-08 11:43:21,381 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01399: 2026-11-08 11:43:24,968 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=10187ms 首字=6609ms prompt=8091 completion=119 cached=0
+L01400: 2026-11-08 11:43:24,968 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=549f6e41-590a-4d7e-93b0-81a420a45610 first_content_ms=6609 chars=196 tools=0 elapsed_ms=10188
+L01401: 2026-11-08 11:43:49,574 INFO [services.dialogue_interject.api] [interject] request mode=daily action=- dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=ad9d178d-5615-4ac6-a717-7e74057f5cf3
+L01402: 2026-11-08 11:43:49,576 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d 种入已播 3 行 seq=[2, 3, 4]
+L01403: 2026-11-08 11:43:49,576 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 created=False turn_dup=False mode=daily kind=daily
+L01404: 2026-11-08 11:43:49,785 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=ad9d178d-5615-4ac6-a717-7e74057f5cf3 model=glm-5.3-flash tools=6 system_chars=4466 user_chars=6011
+L01405: 2026-11-08 11:44:16,558 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01406: 2026-11-08 11:44:17,386 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=27601ms 首字=26932ms prompt=8381 completion=32 cached=0
+L01407: 2026-11-08 11:44:17,386 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=ad9d178d-5615-4ac6-a717-7e74057f5cf3 first_content_ms=26932 chars=48 tools=0 elapsed_ms=27602
+L01408: 2026-11-08 11:45:14,866 INFO [services.dialogue_interject.api] [interject] request mode=daily action=- dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=c5e5fe9a-1b18-4068-9ec0-047cedde0e1d
+L01409: 2026-11-08 11:45:14,868 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d 种入已播 2 行 seq=[5, 6]
+L01410: 2026-11-08 11:45:14,868 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 created=False turn_dup=False mode=daily kind=daily
+L01411: 2026-11-08 11:45:15,081 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=c5e5fe9a-1b18-4068-9ec0-047cedde0e1d model=glm-5.3-flash tools=6 system_chars=4466 user_chars=5648
+L01412: 2026-11-08 11:45:17,164 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01413: 2026-11-08 11:45:19,213 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=4132ms 首字=2274ms prompt=8036 completion=102 cached=0
+L01414: 2026-11-08 11:45:19,213 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=c5e5fe9a-1b18-4068-9ec0-047cedde0e1d first_content_ms=2274 chars=167 tools=0 elapsed_ms=4132
+L01415: 2026-11-08 11:45:41,316 INFO [services.dialogue_interject.api] [interject] request mode=daily action=- dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=b284b02c-738c-4a08-ad32-37249b8a0cb0
+L01416: 2026-11-08 11:45:41,317 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d 种入已播 2 行 seq=[7, 8]
+L01417: 2026-11-08 11:45:41,318 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 created=False turn_dup=False mode=daily kind=daily
+L01418: 2026-11-08 11:45:41,516 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=b284b02c-738c-4a08-ad32-37249b8a0cb0 model=glm-5.3-flash tools=6 system_chars=4466 user_chars=6024
+L01419: 2026-11-08 11:45:46,053 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01420: 2026-11-08 11:45:46,056 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=4540ms prompt=8300 completion=29 cached=0
+L01421: 2026-11-08 11:45:46,057 INFO [services.subagents.task_runner] TaskRunner 启动: kind=task_draft mode=draft task_type=待 prepare 决定 rounds=4
+L01422: 2026-11-08 11:46:08,048 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01423: 2026-11-08 11:46:08,057 INFO [services.llm.client] LLM 调用 purpose=subagent model=glm-5.3-flash stream=非流式 耗时=22000ms prompt=3117 completion=147 cached=0
+L01424: 2026-11-08 11:46:08,075 INFO [services.subagents.task_runner] TaskRunner R1 tools=prepare statuses=['None']
+L01425: 2026-11-08 11:46:08,075 INFO [services.subagents.task_runner] TaskRunner 候选池已就绪（task_type=挑战），切换至 draft 节点并请求过渡话
+L01426: 2026-11-08 11:46:08,076 INFO [services.subagents.task_runner] TaskRunner 按 prepare 选型补投定价卡: task_type=挑战
+L01427: 2026-11-08 11:46:09,365 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01428: 2026-11-08 11:46:09,779 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=1697ms 首字=1284ms prompt=6820 completion=30 cached=0
+L01429: 2026-11-08 11:46:17,020 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01430: 2026-11-08 11:46:17,021 INFO [services.llm.client] LLM 调用 purpose=subagent model=glm-5.3-flash stream=非流式 耗时=8944ms prompt=4859 completion=377 cached=0
+L01431: 2026-11-08 11:46:17,026 INFO [services.subagents.task_runner] TaskRunner R2 tools=draft statuses=['draft_created']
+L01432: 2026-11-08 11:46:20,955 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01433: 2026-11-08 11:46:24,759 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=7630ms 首字=3828ms prompt=6482 completion=141 cached=0
+L01434: 2026-11-08 11:46:24,759 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=b284b02c-738c-4a08-ad32-37249b8a0cb0 first_content_ms=39441 chars=251 tools=1 elapsed_ms=43243
+L01435: 2026-11-08 11:46:52,192 INFO [services.dialogue_interject.api] [interject] request mode=daily action=- dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=4eb93bf0-f2e0-4eab-b4a8-3e47be73f98e
+L01436: 2026-11-08 11:46:52,193 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d 种入已播 4 行 seq=[9, 10, 11, 12]
+L01437: 2026-11-08 11:46:52,193 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 created=False turn_dup=False mode=daily kind=daily
+L01438: 2026-11-08 11:46:52,484 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=4eb93bf0-f2e0-4eab-b4a8-3e47be73f98e model=glm-5.3-flash tools=7 system_chars=4027 user_chars=6898
+L01439: 2026-11-08 11:46:57,023 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01440: 2026-11-08 11:46:58,880 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=6395ms prompt=9046 completion=83 cached=0
+L01441: 2026-11-08 11:46:58,881 INFO [services.subagents.task_runner] TaskRunner 启动: kind=task_update mode=update task_type=挑战 rounds=4
+L01442: 2026-11-08 11:47:10,819 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01443: 2026-11-08 11:47:10,819 INFO [services.llm.client] LLM 调用 purpose=subagent model=glm-5.3-flash stream=非流式 耗时=11938ms prompt=4128 completion=308 cached=0
+L01444: 2026-11-08 11:47:10,820 INFO [services.subagents.task_runner] TaskRunner 校验失败 [V7][rewards] 奖励总价值 1000000 高于允许区间 [140000, 630000]，需减少 ≥370000。
+L01445: 2026-11-08 11:47:10,821 INFO [services.subagents.task_runner] TaskRunner R1 tools=update+prepare statuses=['validation_failed']
+L01446: 2026-11-08 11:47:12,030 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01447: 2026-11-08 11:47:13,216 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01448: 2026-11-08 11:47:13,217 INFO [services.llm.client] LLM 调用 purpose=subagent model=glm-5.3-flash stream=非流式 耗时=2397ms prompt=4710 completion=53 cached=4096
+L01449: 2026-11-08 11:47:13,219 INFO [services.subagents.task_runner] TaskRunner 后端自动微调: ['已自动微调：奖励「K点」数量 12600→8400（总值 630000→420000，区间 [140000, 420000]，按 100 取整）。']
+L01450: 2026-11-08 11:47:13,219 INFO [services.subagents.task_runner] TaskRunner R2 tools=update+prepare statuses=['draft_updated']
+L01451: 2026-11-08 11:47:14,424 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01452: 2026-11-08 11:47:18,132 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=4853ms 首字=1146ms prompt=7068 completion=149 cached=0
+L01453: 2026-11-08 11:47:18,132 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=4eb93bf0-f2e0-4eab-b4a8-3e47be73f98e first_content_ms=21941 chars=245 tools=1 elapsed_ms=25648
+L01454: 2026-11-08 11:47:31,921 INFO [services.dialogue_interject.api] [interject] request mode=daily action=- dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=a1592214-d6d2-4b84-8953-6d50ccb11982
+L01455: 2026-11-08 11:47:31,923 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d 种入已播 3 行 seq=[13, 14, 15]
+L01456: 2026-11-08 11:47:31,923 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 created=False turn_dup=False mode=daily kind=daily
+L01457: 2026-11-08 11:47:32,120 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=a1592214-d6d2-4b84-8953-6d50ccb11982 model=glm-5.3-flash tools=7 system_chars=4027 user_chars=6837
+L01458: 2026-11-08 11:47:34,353 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01459: 2026-11-08 11:47:35,680 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=3560ms 首字=2234ms prompt=9047 completion=92 cached=0
+L01460: 2026-11-08 11:47:35,681 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=a1592214-d6d2-4b84-8953-6d50ccb11982 first_content_ms=2234 chars=152 tools=0 elapsed_ms=3561
+L01461: 2026-11-08 11:47:51,194 INFO [services.dialogue_interject.api] [interject] request mode=daily action=- dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=70fc1fd7-1aa8-49d0-88e7-f70ba14e4ae6
+L01462: 2026-11-08 11:47:51,197 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d 种入已播 2 行 seq=[16, 17]
+L01463: 2026-11-08 11:47:51,197 INFO [services.dialogue_interject.sessions] [interject] session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 created=False turn_dup=False mode=daily kind=daily
+L01464: 2026-11-08 11:47:51,329 INFO [services.dialogue_interject.llm] [interject] LLM 请求 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=70fc1fd7-1aa8-49d0-88e7-f70ba14e4ae6 model=glm-5.3-flash tools=7 system_chars=4027 user_chars=7239
+L01465: 2026-11-08 11:47:53,384 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01466: 2026-11-08 11:47:53,687 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=2356ms prompt=9378 completion=25 cached=4864
+L01467: 2026-11-08 11:48:07,217 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01468: 2026-11-08 11:48:07,218 INFO [services.llm.client] LLM 调用 purpose=subagent model=glm-5.3-flash stream=非流式 耗时=13531ms prompt=7681 completion=306 cached=0
+L01469: 2026-11-08 11:48:07,218 INFO [services.dialogue_interject.tools] [interject] confirm 文案 dialogue=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d draft=cc35c160 source=generated warnings=0
+L01470: 2026-11-08 11:48:07,316 INFO [services.dialogue_interject.tools] [interject] confirm applied session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d draft=cc35c160 task=200012
+L01471: 2026-11-08 11:48:08,630 INFO [httpx2] HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+L01472: 2026-11-08 11:48:10,941 INFO [services.llm.client] LLM 调用 purpose=chat model=glm-5.3-flash stream=流式 耗时=3516ms 首字=1206ms prompt=6734 completion=79 cached=0
+L01473: 2026-11-08 11:48:10,941 INFO [services.dialogue_interject.llm] [interject] LLM 完成 mode=daily dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 turn=70fc1fd7-1aa8-49d0-88e7-f70ba14e4ae6 first_content_ms=17301 chars=146 tools=1 elapsed_ms=19612
+L01474: 2026-11-08 11:48:37,164 INFO [services.dialogue_interject.sessions] [interject] finalize session=ca1fa8ed-c0b7-40c8-b7e5-fb96fa623c3d dialogue=c2b40920-0c55-48d9-9a12-46b3326052f4 transcript=22 appended=4 total=22
+L01475: 2026-11-08 11:53:18,586 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01476: 2026-11-08 11:53:39,305 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01477: 2026-11-08 11:53:39,794 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01478: 2026-11-08 11:53:40,713 INFO [api.integration_api] [integration] bind slot=crazyflasher7_saves mode=embedded
+L01479: 2026-11-08 11:53:41,033 INFO [core.startup] 已创建默认 JSON 文件: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\data\rag\agent_saves\bookrun_cfa4045572758fa9b8b02f0c\agent_tasks.json
+L01480: 2026-11-08 11:53:41,044 INFO [core.startup] 已创建默认 JSON 文件: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\data\rag\agent_saves\bookrun_cfa4045572758fa9b8b02f0c\agent_text.json
+L01481: 2026-11-08 11:53:41,593 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01482: 2026-11-08 11:53:42,105 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01483: 2026-11-08 11:53:42,663 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01484: 2026-11-08 11:53:44,433 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01485: 2026-11-08 11:53:54,433 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01486: 2026-11-08 11:54:07,015 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01487: 2026-11-08 11:55:56,766 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01488: 2026-11-08 11:56:19,855 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01489: 2026-11-08 11:56:30,363 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01490: 2026-11-08 11:57:50,873 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01491: 2026-11-08 12:00:38,427 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01492: 2026-11-08 12:01:28,878 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01493: 2026-11-08 12:01:36,753 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01494: 2026-11-08 12:01:38,575 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01495: 2026-11-08 12:02:04,905 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01496: 2026-11-08 12:03:15,924 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01497: 2026-11-08 12:03:21,798 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01498: 2026-11-08 12:04:04,553 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01499: 2026-11-08 12:05:14,152 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01500: 2026-11-08 12:05:51,283 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01501: 2026-11-08 12:08:10,897 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01502: 2026-11-08 12:09:13,393 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01503: 2026-11-08 12:10:39,047 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01504: 2026-11-08 12:11:47,438 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01505: 2026-11-08 12:12:39,091 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01506: 2026-11-08 12:12:44,943 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01507: 2026-11-08 12:12:55,703 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01508: 2026-11-08 12:14:06,776 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01509: 2026-11-08 12:16:10,101 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01510: 2026-11-08 12:16:48,523 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01511: 2026-11-08 12:17:18,521 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01512: 2026-11-08 12:17:28,709 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01513: 2026-11-08 12:17:32,149 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01514: 2026-11-08 12:17:52,483 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01515: 2026-11-08 12:17:53,038 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01516: 2026-11-08 12:18:09,626 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01517: 2026-11-08 12:18:53,504 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01518: 2026-11-08 12:19:39,081 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01519: 2026-11-08 12:21:26,083 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01520: 2026-11-08 12:21:41,379 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01521: 2026-11-08 12:21:49,980 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01522: 2026-11-08 12:22:01,613 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01523: 2026-11-08 12:22:38,773 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01524: 2026-11-08 12:22:41,766 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01525: 2026-11-08 12:22:47,413 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01526: 2026-11-08 12:22:51,773 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01527: 2026-11-08 12:22:54,622 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01528: 2026-11-08 12:24:52,533 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01529: 2026-11-08 12:25:05,603 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01530: 2026-11-08 12:25:46,312 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01531: 2026-11-08 12:25:49,283 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01532: 2026-11-08 12:25:59,893 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01533: 2026-11-08 12:26:13,935 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01534: 2026-11-08 12:26:16,574 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01535: 2026-11-08 12:26:29,382 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01536: 2026-11-08 12:26:31,280 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01537: 2026-11-08 12:26:48,931 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01538: 2026-11-08 12:27:03,279 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01539: 2026-11-08 12:27:05,099 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01540: 2026-11-08 12:27:17,723 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01541: 2026-11-08 12:28:00,966 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01542: 2026-11-08 12:28:07,482 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01543: 2026-11-08 12:28:24,677 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01544: 2026-11-08 22:52:52,350 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01545: 2026-11-08 22:54:14,252 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01546: 2026-11-08 22:54:50,887 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01547: 2026-11-08 22:54:53,060 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01548: 2026-11-08 22:54:54,363 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01549: 2026-11-08 22:55:03,114 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01550: 2026-11-08 22:58:07,152 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01551: 2026-11-08 22:58:24,746 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01552: 2026-11-08 22:58:25,287 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01553: 2026-11-08 22:58:27,536 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01554: 2026-11-08 22:58:37,567 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01555: 2026-11-08 22:59:00,806 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01556: 2026-11-08 22:59:11,939 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01557: 2026-11-08 22:59:16,708 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01558: 2026-11-08 22:59:46,550 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01559: 2026-11-08 22:59:48,638 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01560: 2026-11-08 23:00:22,058 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01561: 2026-11-08 23:00:33,458 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01562: 2026-11-08 23:00:48,436 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01563: 2026-11-08 23:01:00,543 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01564: 2026-11-08 23:01:03,787 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01565: 2026-11-08 23:01:17,916 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01566: 2026-11-08 23:04:18,691 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01567: 2026-11-08 23:04:32,603 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01568: 2026-11-08 23:05:08,640 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01569: 2026-11-08 23:06:24,183 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01570: 2026-11-08 23:07:02,794 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01571: 2026-11-08 23:08:11,009 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01572: 2026-11-08 23:08:28,315 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01573: 2026-11-08 23:09:09,471 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01574: 2026-11-08 23:30:09,615 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01575: 2026-11-08 23:30:26,790 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01576: 2026-11-08 23:30:33,596 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01577: 2026-11-08 23:30:37,732 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01578: 2026-11-08 23:31:11,007 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01579: 2026-11-08 23:31:18,156 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01580: 2026-11-08 23:31:36,099 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01581: 2026-11-08 23:31:46,789 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01582: 2026-11-08 23:31:53,963 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01583: 2026-11-08 23:31:57,254 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01584: 2026-11-08 23:32:17,172 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01585: 2026-11-08 23:32:17,858 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01586: 2026-11-08 23:32:34,917 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01587: 2026-11-08 23:32:37,209 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01588: 2026-11-08 23:32:49,793 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01589: 2026-11-08 23:33:09,177 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01590: 2026-11-08 23:33:35,331 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01591: 2026-11-08 23:33:38,056 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01592: 2026-11-08 23:33:43,566 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01593: 2026-11-08 23:33:45,140 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01594: 2026-11-08 23:35:17,017 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01595: 2026-11-08 23:36:25,243 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01596: 2026-11-08 23:36:26,787 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01597: 2026-11-08 23:36:32,115 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01598: 2026-11-08 23:38:21,579 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01599: 2026-11-08 23:38:24,840 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01600: 2026-11-08 23:38:29,969 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01601: 2026-11-08 23:38:32,727 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01602: 2026-11-08 23:38:38,511 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01603: 2026-11-08 23:38:40,787 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01604: 2026-11-08 23:38:46,314 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01605: 2026-11-08 23:40:34,328 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01606: 2026-11-08 23:40:35,114 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01607: 2026-11-08 23:40:38,073 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01608: 2026-11-08 23:41:00,016 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01609: 2026-11-08 23:41:03,287 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01610: 2026-11-08 23:41:19,292 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01611: 2026-11-08 23:41:21,395 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01612: 2026-11-08 23:41:24,835 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01613: 2026-11-08 23:41:29,566 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01614: 2026-11-08 23:41:34,087 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01615: 2026-11-08 23:41:46,913 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01616: 2026-11-08 23:41:52,548 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01617: 2026-11-08 23:41:55,954 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01618: 2026-11-08 23:42:11,373 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01619: 2026-11-08 23:42:19,391 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01620: 2026-11-08 23:42:33,873 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01621: 2026-11-08 23:43:12,805 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01622: 2026-11-08 23:43:14,088 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01623: 2026-11-08 23:43:24,979 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01624: 2026-11-08 23:44:37,894 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01625: 2026-11-08 23:44:56,400 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01626: 2026-11-08 23:45:00,328 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01627: 2026-11-08 23:45:50,885 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01628: 2026-11-08 23:46:09,004 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01629: 2026-11-08 23:46:10,224 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01630: 2026-11-08 23:46:19,951 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01631: 2026-11-08 23:46:22,948 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01632: 2026-11-08 23:49:31,320 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01633: 2026-11-08 23:49:39,099 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01634: 2026-11-08 23:50:47,003 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01635: 2026-11-08 23:50:58,874 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01636: 2026-11-08 23:51:48,544 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01637: 2026-11-08 23:52:08,301 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01638: 2026-11-08 23:52:12,163 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01639: 2026-11-08 23:52:24,838 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01640: 2026-11-08 23:52:27,830 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01641: 2026-11-08 23:52:32,498 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01642: 2026-11-08 23:53:02,611 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01643: 2026-11-08 23:53:26,485 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01644: 2026-11-08 23:54:32,991 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01645: 2026-11-08 23:55:37,499 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01646: 2026-11-08 23:56:10,138 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01647: 2026-11-08 23:56:19,432 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01648: 2026-11-08 23:56:42,099 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01649: 2026-11-08 23:56:45,094 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01650: 2026-11-08 23:57:03,932 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01651: 2026-11-08 23:57:22,393 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01652: 2026-11-08 23:57:48,040 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01653: 2026-11-08 23:57:51,389 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01654: 2026-11-08 23:57:53,913 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01655: 2026-11-08 23:57:59,879 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01656: 2026-11-08 23:59:10,660 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01657: 2026-11-08 23:59:28,199 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01658: 2026-11-09 00:00:28,105 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01659: 2026-11-09 00:00:48,649 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01660: 2026-11-09 00:00:53,945 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01661: 2026-11-09 00:00:55,090 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01662: 2026-11-09 00:01:05,837 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01663: 2026-11-09 00:01:11,056 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01664: 2026-11-09 00:01:24,333 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01665: 2026-11-09 00:02:07,416 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01666: 2026-11-09 00:02:34,196 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01667: 2026-11-09 00:03:49,645 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01668: 2026-11-09 00:03:59,691 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01669: 2026-11-09 00:04:05,098 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01670: 2026-11-09 00:05:38,734 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01671: 2026-11-09 00:05:39,884 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01672: 2026-11-09 00:05:58,595 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01673: 2026-11-09 00:06:09,539 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01674: 2026-11-09 00:06:46,864 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01675: 2026-11-09 00:06:59,494 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01676: 2026-11-09 00:07:01,441 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01677: 2026-11-09 00:08:42,669 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01678: 2026-11-09 00:08:56,262 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01679: 2026-11-09 00:09:21,067 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01680: 2026-11-09 00:09:26,724 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01681: 2026-11-09 00:09:48,352 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01682: 2026-11-09 00:10:26,127 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01683: 2026-11-09 00:10:34,684 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01684: 2026-11-09 00:11:00,503 INFO [api.integration_api] [integration] shutdown requested
+L01685: 2026-11-09 00:11:00 [embedded] 已收到游戏侧退出请求，服务已停止，进程退出
+
+## [3] 文件末尾最后 60 行逐行未折叠原文 (L01626..L01685)
+L01626: 2026-11-08 23:45:00,328 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01627: 2026-11-08 23:45:50,885 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01628: 2026-11-08 23:46:09,004 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01629: 2026-11-08 23:46:10,224 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01630: 2026-11-08 23:46:19,951 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01631: 2026-11-08 23:46:22,948 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01632: 2026-11-08 23:49:31,320 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01633: 2026-11-08 23:49:39,099 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01634: 2026-11-08 23:50:47,003 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01635: 2026-11-08 23:50:58,874 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01636: 2026-11-08 23:51:48,544 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01637: 2026-11-08 23:52:08,301 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01638: 2026-11-08 23:52:12,163 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01639: 2026-11-08 23:52:24,838 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01640: 2026-11-08 23:52:27,830 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01641: 2026-11-08 23:52:32,498 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01642: 2026-11-08 23:53:02,611 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01643: 2026-11-08 23:53:26,485 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01644: 2026-11-08 23:54:32,991 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01645: 2026-11-08 23:55:37,499 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01646: 2026-11-08 23:56:10,138 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01647: 2026-11-08 23:56:19,432 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01648: 2026-11-08 23:56:42,099 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01649: 2026-11-08 23:56:45,094 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01650: 2026-11-08 23:57:03,932 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01651: 2026-11-08 23:57:22,393 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01652: 2026-11-08 23:57:48,040 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01653: 2026-11-08 23:57:51,389 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01654: 2026-11-08 23:57:53,913 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01655: 2026-11-08 23:57:59,879 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01656: 2026-11-08 23:59:10,660 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01657: 2026-11-08 23:59:28,199 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01658: 2026-11-09 00:00:28,105 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01659: 2026-11-09 00:00:48,649 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01660: 2026-11-09 00:00:53,945 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01661: 2026-11-09 00:00:55,090 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01662: 2026-11-09 00:01:05,837 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01663: 2026-11-09 00:01:11,056 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01664: 2026-11-09 00:01:24,333 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01665: 2026-11-09 00:02:07,416 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01666: 2026-11-09 00:02:34,196 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01667: 2026-11-09 00:03:49,645 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01668: 2026-11-09 00:03:59,691 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01669: 2026-11-09 00:04:05,098 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01670: 2026-11-09 00:05:38,734 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01671: 2026-11-09 00:05:39,884 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01672: 2026-11-09 00:05:58,595 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01673: 2026-11-09 00:06:09,539 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01674: 2026-11-09 00:06:46,864 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01675: 2026-11-09 00:06:59,494 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01676: 2026-11-09 00:07:01,441 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01677: 2026-11-09 00:08:42,669 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01678: 2026-11-09 00:08:56,262 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01679: 2026-11-09 00:09:21,067 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01680: 2026-11-09 00:09:26,724 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01681: 2026-11-09 00:09:48,352 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01682: 2026-11-09 00:10:26,127 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01683: 2026-11-09 00:10:34,684 INFO [api.integration_api] [integration] bind slot=bookrun_cfa4045572758fa9b8b02f0c mode=embedded
+L01684: 2026-11-09 00:11:00,503 INFO [api.integration_api] [integration] shutdown requested
+L01685: 2026-11-09 00:11:00 [embedded] 已收到游戏侧退出请求，服务已停止，进程退出

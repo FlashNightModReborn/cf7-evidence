@@ -1,0 +1,9 @@
+{
+  "schema": "cf7-game-save-evidence-v1",
+  "issue_number": 241,
+  "file": "game-save.json",
+  "sha256": "d1ea2fee397cdb3291e569ec4ad0c40aac6be13f10bb3d1787ced0fbae53a202",
+  "size_bytes": 34493,
+  "source_sha256": "d1ea2fee397cdb3291e569ec4ad0c40aac6be13f10bb3d1787ced0fbae53a202",
+  "role_name_hidden": false
+}

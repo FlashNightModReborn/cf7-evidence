@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 206,
+  "file_id": 2,
+  "original_filename": "对体育老师击溃失效.mp4",
+  "sender_nick": "fs",
+  "generated_at_utc": "2026-11-08T12:36:02Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "对体育老师击溃失效.mp4",
+      "asset_name": "issue206-file2-.mp4",
+      "size_bytes": 18514781,
+      "sha256": "d859175eb21d055cac84386e935e3638944f7476c96103e0f9fcde1eaa03ebd4",
+      "release_download_url": "https://github.com/FlashNightModReborn/cf7-evidence/releases/download/test-evidence-assets/issue206-file2-.mp4",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-206/file-2-.mp4/issue206-file2-.mp4"
+    }
+  ]
+}

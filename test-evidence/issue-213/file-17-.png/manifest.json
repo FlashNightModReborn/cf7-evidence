@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 213,
+  "file_id": 17,
+  "original_filename": "技能学习面板_可学角标异常截图.png",
+  "sender_nick": "清水結衣",
+  "generated_at_utc": "2026-11-08T16:42:27Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "技能学习面板_可学角标异常截图.png",
+      "asset_name": "issue213-file17-.png",
+      "size_bytes": 100388,
+      "sha256": "cd68c2ceb9104d1708266c63ed237522d638c8eb73d143198cf7a988ee7c428e",
+      "release_download_url": "",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-213/file-17-.png/issue213-file17-.png"
+    }
+  ]
+}

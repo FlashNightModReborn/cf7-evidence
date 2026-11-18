@@ -1,0 +1,32 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 213,
+  "file_id": 15,
+  "original_filename": "cfn-rag.log",
+  "sender_nick": "布鲁.谍沃齐格",
+  "generated_at_utc": "2026-11-08T16:19:22Z",
+  "redaction_policy": "Windows user profile folder replaced with <USER_REDACTED>; line numbers 100% preserved.",
+  "files": [
+    {
+      "role": "original_raw_log",
+      "name": "cfn-rag.log",
+      "size_bytes": 228106,
+      "line_count": 1685,
+      "sha256": "2e7eca4714590b13759206307e998291dc89580921ab3d5d92833f5a1d8e8f55"
+    },
+    {
+      "role": "redacted_full_log",
+      "name": "cfn-rag.redacted.log",
+      "size_bytes": 228113,
+      "line_count": 1685,
+      "sha256": "842cea51a879cb421955824fcfda0d13a99e0f9b4a0a53f6eb5e2dbcfbe05054"
+    },
+    {
+      "role": "fault_window_verbatim",
+      "name": "fault_window_verbatim.txt",
+      "size_bytes": 67891,
+      "line_count": 489,
+      "sha256": "628e1725cf240f4db42181d2288f97677b5bb46b87482ef60f3ce4f68bc6e2ae"
+    }
+  ]
+}
