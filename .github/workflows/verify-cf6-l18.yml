@@ -1,0 +1,45 @@
+name: Verify CF6 C6 evidence archive
+
+on:
+  push:
+    branches: [verify/issue287-cf6-l18]
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    name: Restore and read (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, ubuntu-24.04]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: verification/cf6-l18
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: FlashNightModReborn/CrazyFlashNight
+          ref: 9f1192f1aa932eeac152f98e00882926e3dc3d65
+          path: frozen-game
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/cf6-elder-assets/evidence-path-map.json
+            /tools/cf6-elder-assets/test_evidence_paths.py
+            /tools/cf6-elder-assets/analyze-arena.py
+            /tools/swf-function-sizes.js
+            /tools/swf-metadata.js
+      - name: Download the pinned archive through its index
+        shell: bash
+        run: python -X utf8 -B verification/cf6-l18/verify.py --game frozen-game --proof "$RUNNER_TEMP/cf6-l18-proof.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: cf6-l18-${{ matrix.os }}
+          path: ${{ runner.temp }}/cf6-l18-proof.json
+          if-no-files-found: error
+          retention-days: 14
