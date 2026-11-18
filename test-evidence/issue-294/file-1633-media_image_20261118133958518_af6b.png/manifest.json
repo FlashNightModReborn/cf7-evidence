@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 294,
+  "file_id": 1633,
+  "original_filename": "media_image_20261118133958518_af6b.png",
+  "sender_nick": "布鲁.谍沃齐格",
+  "generated_at_utc": "2026-11-18T13:50:42Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "media_image_20261118133958518_af6b.png",
+      "asset_name": "issue294-file1633-media_image_20261118133958518_af6b.png",
+      "size_bytes": 957562,
+      "sha256": "9b283ae1ac83ec9ddd09d1a4c95c84d6cb7574876d7f28d9f1c1b18f6b6617fb",
+      "release_download_url": "",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-294/file-1633-media_image_20261118133958518_af6b.png/issue294-file1633-media_image_20261118133958518_af6b.png"
+    }
+  ]
+}
