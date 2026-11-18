@@ -12,6 +12,10 @@ jobs:
     name: Restore and read (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
+    env:
+      GIT_CONFIG_COUNT: 1
+      GIT_CONFIG_KEY_0: core.autocrlf
+      GIT_CONFIG_VALUE_0: 'false'
     strategy:
       fail-fast: false
       matrix:
@@ -29,6 +33,7 @@ jobs:
           persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |
+            /.gitattributes
             /tools/cf6-elder-assets/evidence-path-map.json
             /tools/cf6-elder-assets/test_evidence_paths.py
             /tools/cf6-elder-assets/analyze-arena.py

@@ -35,6 +35,9 @@ def main():
     game = args.game.resolve(strict=True)
     require(command('git', '-C', str(game), 'rev-parse', 'HEAD').stdout.strip() == BASE, 'Wrong baseline checkout.')
     require(not (game / PREFIX).exists(), 'The sparse checkout already contains archived payloads.')
+    status_command = ('git', '-C', str(game), 'status', '--porcelain=v1', '--untracked-files=all')
+    before = command(*status_command).stdout
+    require(not before.strip(), f'Frozen sparse checkout was dirty before replay:\n{before}')
     tree = subprocess.check_output(['git', '-C', str(game), 'ls-tree', '-r', '-l', '-z', BASE, '--', PREFIX])
     original = {}
     for item in filter(None, tree.split(b'\0')):
@@ -93,8 +96,8 @@ def main():
         rejected = command(sys.executable, '-X', 'utf8', '-B', str(tool / 'restore_evidence.py'), PREFIX + '/summary.json',
                            '--archive', str(corrupt), '--output', str(reject_to), check=False)
         require(rejected.returncode != 0 and 'SHA-256' in rejected.stderr and not reject_to.exists(), 'Wrong archive was not safely rejected.')
-        require(not (game / PREFIX).exists() and not command('git', '-C', str(game), 'status', '--porcelain').stdout.strip(),
-                'The game checkout changed during the replay.')
+        after = command(*status_command).stdout
+        require(not (game / PREFIX).exists() and before == after, f'The game checkout changed during replay:\n{after}')
 
         proof = {
             'platform': platform.platform(), 'gameCommit': BASE, 'archivedPrefix': PREFIX, 'legacyLookup': old_receipt,
