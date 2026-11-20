@@ -32,7 +32,6 @@ ALL_RETIRED_PREFIXES = (
 )
 
 EXPECTED_COUNTS = {
-    'tools/cf6-elder-assets/e/l18': 309,
     'tools/cf6-elder-assets/e/c17': 4774,
     'tools/cf6-elder-assets/evidence/20261017': 1987,
     'tools/cf6-elder-assets/evidence/20261017-playtest': 492,
@@ -131,6 +130,7 @@ def main():
     before = command(*status_command).stdout
     require(not before.strip(), f'Frozen sparse checkout was dirty before replay:\n{before}')
 
+    require(len(git_tree_map(game, 'tools/cf6-elder-assets/e/l18')) == 0, 'l18 unexpectedly present in current BASE tree')
     originals = {}
     for prefix, count in EXPECTED_COUNTS.items():
         tree_map = git_tree_map(game, prefix)
@@ -157,7 +157,14 @@ def main():
         # 1. Restore e/l18 & e/c17, verify cross-batch linkage & run active analyze-arena.py
         l18_out, l18_picked = run_restore('tools/cf6-elder-assets/evidence/20261018-loader-size-followup/summary.json', 'l18')
         require(l18_picked == l18_out / 'tools/cf6-elder-assets/e/l18/summary.json', 'l18 alias resolution failed')
-        l18_stats = verify_restored_tree(l18_out, 'tools/cf6-elder-assets/e/l18', originals['tools/cf6-elder-assets/e/l18'])
+        l18_recovered = {p.relative_to(l18_out).as_posix(): p for p in l18_out.rglob('*') if p.is_file()}
+        require(len(l18_recovered) == 309, f'Unexpected l18 file count: {len(l18_recovered)}')
+        l18_integ = json.loads((l18_out / 'tools/cf6-elder-assets/e/l18/integrity.json').read_text('utf-8-sig'))
+        for entry in l18_integ['files']:
+            data = l18_recovered['tools/cf6-elder-assets/e/l18/' + entry['path']].read_bytes()
+            require(len(data) == entry['bytes'] and sha256_bytes(data) == entry['sha256'], 'l18 integrity mismatch')
+        require(l18_integ['fileCount'] == len(l18_integ['files']) == 308, 'l18 integrity count mismatch')
+        l18_stats = {'files': len(l18_recovered), 'integrityRows': len(l18_integ['files'])}
         l18_summary = json.loads(l18_picked.read_text('utf-8-sig'))
 
         c17_out, c17_picked = run_restore('tools/cf6-elder-assets/evidence/20261017-calibration/summary.json', 'c17')
