@@ -1,0 +1,79 @@
+name: Verify CF6 closeout evidence archives
+
+on:
+  push:
+    branches: [verify/issue287-cf6-closeout]
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    name: Restore and verify (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      GIT_CONFIG_COUNT: 1
+      GIT_CONFIG_KEY_0: core.autocrlf
+      GIT_CONFIG_VALUE_0: 'false'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, ubuntu-24.04]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: verification/cf6-closeout
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: FlashNightModReborn/CrazyFlashNight
+          ref: e4846cb1b69e974ac80f3793c618c06fd4110386
+          path: frozen-game
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.gitattributes
+            /tools/cf6-elder-assets/evidence-path-map.json
+            /tools/cf6-elder-assets/test_evidence_paths.py
+            /tools/cf6-elder-assets/analyze-arena.py
+            /tools/cf6-elder-assets/evidence/20261017-playtest-closeout/**
+            /tools/cf6-audio/extract.py
+            /tools/cf6-audio/audit.py
+            /tools/cf6-audio/source.py
+            /tools/cf6-audio/evidence/20261017-combat-audio-closeout/**
+            /tools/swf-audit/swfscan.py
+            /scripts/引擎/引擎_lsy_等级与经验值.as
+            /scripts/逻辑/单位函数/单位函数_fs_aka_玩家模板迁移.as
+            /scripts/类定义/org/flashNight/arki/component/Damage/CrumbleDamageHandle.as
+            /flashswf/arts/things5/LIBRARY/敌人-方舟兽王.xml
+            /flashswf/arts/things5/LIBRARY/Symbol 2151.xml
+      - name: Prepare isolated Python venv with numpy and ensure ffmpeg
+        shell: bash
+        run: |
+          PY_SYS=$(command -v python3 || command -v python)
+          "$PY_SYS" -m venv "$RUNNER_TEMP/cf6-venv"
+          if [ -x "$RUNNER_TEMP/cf6-venv/bin/python" ]; then
+            VENV_PY="$RUNNER_TEMP/cf6-venv/bin/python"
+          else
+            VENV_PY="$RUNNER_TEMP/cf6-venv/Scripts/python.exe"
+          fi
+          "$VENV_PY" -m pip install --disable-pip-version-check --no-cache-dir numpy
+          echo "VENV_PY=$VENV_PY" >> "$GITHUB_ENV"
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            if [ "${{ runner.os }}" = "Linux" ]; then
+              sudo apt-get update && sudo apt-get install -y ffmpeg
+            else
+              choco install ffmpeg -y --no-progress
+            fi
+          fi
+          ffmpeg -version | head -n 1
+      - name: Download pinned archives and run cross-batch + consumer checks
+        shell: bash
+        run: '"$VENV_PY" -X utf8 -B verification/cf6-closeout/verify.py --game frozen-game --proof "$RUNNER_TEMP/cf6-closeout-proof.json"'
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: cf6-closeout-${{ matrix.os }}
+          path: ${{ runner.temp }}/cf6-closeout-proof.json
+          if-no-files-found: error
+          retention-days: 14
