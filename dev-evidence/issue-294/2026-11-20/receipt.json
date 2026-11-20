@@ -1,0 +1,160 @@
+{
+  "schema": "cf7-issue294-visual-evidence-v1",
+  "issue": "https://github.com/FlashNightModReborn/CrazyFlashNight/issues/294",
+  "date": "2026-11-20",
+  "releaseVerificationState": "standard_entry_verified",
+  "implementation": {
+    "dressupExporterAndAssets": "8404d0dd7b3c7fa6230ab772d026e8e50fd92a82",
+    "nativePortraitCache": "9fac3c525acd4543662f0aa35bcdc038f411f25c"
+  },
+  "sourceSwf": {
+    "repositoryPath": "flashswf/arts/new/雾人装备调整.swf",
+    "sha256": "3ab90359a522b3d5fa19286aa81f7cf25d4c4e5aca42db30c4a7a818e5b488b8"
+  },
+  "subjects": {
+    "male": {
+      "linkage": "男变装-A兵团精致战术背心身体",
+      "parentSpriteId": 534,
+      "childSpriteId": 531,
+      "logicalFrames": 18,
+      "distinctImages": 6,
+      "holdFramesPerImage": 3
+    },
+    "female": {
+      "linkage": "女变装-A兵团精致战术背心身体",
+      "parentSpriteId": 549,
+      "childSpriteId": 531,
+      "logicalFrames": 18,
+      "distinctImages": 6,
+      "holdFramesPerImage": 3
+    }
+  },
+  "figure": {
+    "file": "ribbon-same-frame.png",
+    "sha256": "e2fb05d880231ea4212c3bfc352ee1d2631640e853698ab536b20987a03dbae8",
+    "maleFrame": 1,
+    "femaleFrame": 10,
+    "columns": [
+      "original Windows WebView2 panel renderer",
+      "patched assets in the installed Windows WebView2 panel renderer",
+      "standalone Adobe Flash Player reference for the same SWF"
+    ]
+  },
+  "releasedPixelComparison": {
+    "nativeProjectorVersion": "WIN 20,0,0,228",
+    "nativeProjectorSha256": "30ba7cf81d10556bb123506693c72f62ba27db1f37a7a2d546e96ac3a8d31b91",
+    "naturalPlaybackCycles": 2,
+    "sampleCount": 36,
+    "fixedCanvasPx": [
+      1000,
+      1120
+    ],
+    "dpr": 1,
+    "bodyToCanvasMatrix": [
+      2,
+      0,
+      0,
+      2,
+      834.5,
+      242.1
+    ],
+    "stableInteriorPixelObservations": 2273064,
+    "maxInteriorChannelDifferenceOn255Scale": 1,
+    "webAlphaUnchanged": true,
+    "affectedOpaqueRgbMeanAbsoluteErrorRange": {
+      "before": [
+        64.90702956122527,
+        68.61817624023243
+      ],
+      "after": [
+        0.36880515402522873,
+        0.4339389052465252
+      ]
+    }
+  },
+  "linuxProductionExports": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "pillow": "12.1.0",
+    "focusedTestsPassed": 6,
+    "independentExports": 2,
+    "pngsPerRun": 14,
+    "samePngBytesBetweenLinuxRuns": true,
+    "identicalRgbaImagesLinuxVsWindows": 14,
+    "identicalEncodedPngsLinuxVsWindows": 2,
+    "encodingDifference": "Twelve recolored PNGs differ only in the compressed IDAT stream: decompressed scanlines and all other chunks match."
+  },
+  "portraitCache": {
+    "scope": "Production portrait consumers, isolated cache directory and fresh process for disk readback",
+    "actualWebView2": "154.0.4258.53",
+    "bakeRequestsByPhase": {
+      "old": 2,
+      "updated": 2,
+      "restart": 0
+    },
+    "bothRestartImagesMatchUpdated": true,
+    "changedAlphaPixelsAt256Px": {
+      "男": 0,
+      "女": 0
+    }
+  },
+  "formalRelease": {
+    "state": "standard_entry_verified",
+    "sourceCommit": "48b9f2ce796f53e48d18c85191a18e73d26ba3ea",
+    "releaseCommit": "fa021d62540b9f3cc138eb7d037f7709b7973279",
+    "buildIdentity": "279078FC4DACECBCD7321DBF0BD7E0025C90B97EBE37474583B9D55464DCC6C8",
+    "payloadClosure": "7A84AB798B072F948741F1B5D6963E545039FC110C36B7099AFE5076382D354A",
+    "coreSha256": "73BB678A850A874816A7C096979C87E78D93E5EE9993BC5534525930126D7F82",
+    "promotedAtUtc": "2026-11-20T02:43:11.7229244Z",
+    "verifiedReleaseFiles": 43,
+    "cloudRun": "https://github.com/FlashNightModReborn/CrazyFlashNight/actions/runs/44660964225",
+    "policyChecksPassed": 50,
+    "standardEntryPostPromotion": {
+      "normalNoArgumentWelcomeLoaded": true,
+      "welcomeExitCode": 0,
+      "bothGendersRenderedUpdatedTextures": true,
+      "allFourValidationSessionsExitedCleanly": true,
+      "webFramesByteIdenticalWithAndWithoutObserver": 36
+    }
+  },
+  "embeddedFlash": {
+    "state": "verified",
+    "male": {
+      "linkage": "男变装-A兵团精致战术背心身体",
+      "playerVersion": "WIN 20,0,0,228",
+      "logicalFrames": 18,
+      "naturalCycles": 2,
+      "poses": 6,
+      "pointsPerPose": 2,
+      "logicalFramePointComparisons": 36,
+      "matchesPublishedPlacement": true,
+      "matchesSourceColorMatrix": true,
+      "maxChannelDifferenceVsReleasedWebView2On255Scale": 1
+    },
+    "female": {
+      "linkage": "女变装-A兵团精致战术背心身体",
+      "playerVersion": "WIN 20,0,0,228",
+      "logicalFrames": 18,
+      "naturalCycles": 2,
+      "poses": 6,
+      "pointsPerPose": 2,
+      "logicalFramePointComparisons": 36,
+      "matchesPublishedPlacement": true,
+      "matchesSourceColorMatrix": true,
+      "maxChannelDifferenceVsReleasedWebView2On255Scale": 1
+    }
+  },
+  "restoredObservationModules": {
+    "state": "verified",
+    "independentRestoreReceipts": 2,
+    "moduleSha256": {
+      "scripts/asLoaderShared.swf": "260b7cce7a4c3f3fa215973da5dc1193b4994cdc370946df247e4789e3fd374d"
+    }
+  },
+  "maintainerAcceptance": {
+    "visualReview": "confirmed",
+    "date": "2026-11-20",
+    "scope": "男、女背心同帧对照图的飘带颜色",
+    "closeAfter": "正式入口复验通过",
+    "conditionMet": true
+  }
+}
