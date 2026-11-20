@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 323,
+  "file_id": 2346,
+  "original_filename": "media_image_20261120191019788_7fc5.png",
+  "sender_nick": "屑化添加剂",
+  "generated_at_utc": "2026-11-20T19:11:40Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "media_image_20261120191019788_7fc5.png",
+      "asset_name": "issue323-file2346-media_image_20261120191019788_7fc5.png",
+      "size_bytes": 1367442,
+      "sha256": "3746423883b546a526cf91d80fde2609f7f33e9ef26f1ebf0f95fc3679297211",
+      "release_download_url": "",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-323/file-2346-media_image_20261120191019788_7fc5.png/issue323-file2346-media_image_20261120191019788_7fc5.png"
+    }
+  ]
+}
