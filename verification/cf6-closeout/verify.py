@@ -58,13 +58,14 @@ def sha256_bytes(data: bytes) -> str:
 
 
 def git_tree_map(game: Path, prefix: str) -> dict:
-    raw = subprocess.check_output(['git', '-C', str(game), 'ls-tree', '-r', '-l', '-z', BASE, '--', prefix])
+    env = {**os.environ, 'GIT_NO_LAZY_FETCH': '1', 'GIT_TERMINAL_PROMPT': '0'}
+    raw = subprocess.check_output(['git', '-C', str(game), 'ls-tree', '-r', '-z', BASE, '--', prefix], env=env)
     entries = {}
     for item in filter(None, raw.split(b'\0')):
         header, rel = item.split(b'\t', 1)
-        mode, kind, oid, size = header.decode('ascii').split()
+        mode, kind, oid = header.decode('ascii').split()
         require(kind == 'blob', f'Unexpected git object kind: {kind}')
-        entries[rel.decode('utf-8')] = (mode, oid, int(size))
+        entries[rel.decode('utf-8')] = (mode, oid)
     return entries
 
 
@@ -72,10 +73,10 @@ def verify_restored_tree(output_dir: Path, prefix: str, original: dict, check_in
     recovered = {p.relative_to(output_dir).as_posix(): p for p in output_dir.rglob('*') if p.is_file()}
     require(set(recovered) == set(original), f'Recovered file set mismatch for {prefix}')
     for name, path in recovered.items():
-        mode, oid, size = original[name]
+        mode, oid = original[name]
         data = path.read_bytes()
         actual_blob = hashlib.sha1(f'blob {len(data)}\0'.encode('ascii') + data).hexdigest()
-        require(mode == '100644' and size == len(data) and oid == actual_blob, f'Git blob mismatch: {name}')
+        require(mode == '100644' and oid == actual_blob, f'Git blob mismatch: {name}')
     integrity_count = 0
     if check_integrity:
         integ_path = output_dir / prefix / 'integrity.json'
@@ -154,6 +155,7 @@ def main():
                              req_path, '--output', str(out)).stdout.strip()
             return out, Path(picked)
 
+        print('[verify] git ls-tree check done; restoring e/l18 & e/c17...', flush=True)
         # 1. Restore e/l18 & e/c17, verify cross-batch linkage & run active analyze-arena.py
         l18_out, l18_picked = run_restore('tools/cf6-elder-assets/evidence/20261018-loader-size-followup/summary.json', 'l18')
         require(l18_picked == l18_out / 'tools/cf6-elder-assets/e/l18/summary.json', 'l18 alias resolution failed')
@@ -189,10 +191,8 @@ def main():
             dst = c17_src / rel
             dst.parent.mkdir(parents=True, exist_ok=True)
             src_file = game / rel
-            if src_file.is_file():
-                shutil.copyfile(src_file, dst)
-            else:
-                dst.write_bytes(subprocess.check_output(['git', '-C', str(game), 'show', f'{BASE}:{rel}']))
+            require(src_file.is_file(), f'Missing sparse file: {rel}')
+            shutil.copyfile(src_file, dst)
         with zipfile.ZipFile(io.BytesIO(c17_src_zip)) as zf:
             zf.extractall(c17_src)
         c17_out_json = root / 'c17-r22.json'
@@ -205,6 +205,7 @@ def main():
         require(c17_analysis['fullMatrix'] is True and len(c17_analysis['rows']) == 36 and len(c17_analysis['groups']) == 6,
                 'analyze-arena.py R22 verification failed')
 
+        print('[verify] e/l18 & e/c17 + analyze-arena.py OK; restoring evidence/20261017...', flush=True)
         # 2. Restore evidence/20261017, verify integrity, lossless mapping & recompute R15 matrix
         d17_out, d17_picked = run_restore('tools/cf6-elder-assets/evidence/20261017/summary.json', 'd17')
         require(d17_picked == d17_out / 'tools/cf6-elder-assets/evidence/20261017/summary.json', 'd17 path mismatch')
@@ -242,6 +243,7 @@ def main():
                                 ('meanPercent', statistics.mean(vals)), ('medianPercent', statistics.median(vals))):
                 require(abs(grp[metric] - val) < 1e-9, f'd17 group metric mismatch: {metric}')
 
+        print('[verify] evidence/20261017 OK; restoring evidence/20261017-playtest...', flush=True)
         # 3. Restore evidence/20261017-playtest, verify integrity, lossless mapping & closeout binding
         p17_out, p17_picked = run_restore('tools/cf6-elder-assets/evidence/20261017-playtest/summary.json', 'p17')
         require(p17_picked == p17_out / 'tools/cf6-elder-assets/evidence/20261017-playtest/summary.json', 'p17 path mismatch')
@@ -255,6 +257,7 @@ def main():
         with zipfile.ZipFile(p17_dir / 'current-source-and-assets.zip') as zf:
             require(zf.testzip() is None and zf.namelist() == [r['path'] for r in p17_src_idx], 'p17 source zip index mismatch')
 
+        print('[verify] evidence/20261017-playtest OK; restoring 20261017-combat-audio...', flush=True)
         # 4. Restore 20261017-combat-audio, verify integrity, lossless mapping & run active audit.py + extract.py
         a17_out, a17_picked = run_restore('tools/cf6-audio/evidence/20261017-combat-audio/summary.json', 'a17')
         require(a17_picked == a17_out / 'tools/cf6-audio/evidence/20261017-combat-audio/summary.json', 'a17 path mismatch')
@@ -325,6 +328,7 @@ def main():
                     wav_max_diff = max(wav_max_diff, diff)
                     require(diff <= 2, f'Envelope WAV sample drift > 2 LSB ({diff}) on {r_old["name"]}')
 
+        print('[verify] combat-audio + audit/extract OK; checking path guards & rejects...', flush=True)
         # 5. Path guards, unit tests, corrupt archive & in-checkout output rejection
         alias_suite = command(sys.executable, '-X', 'utf8', '-B', str(tool / 'test_evidence_paths.py'))
         for retired in ALL_RETIRED_PREFIXES:
