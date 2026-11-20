@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 311,
+  "file_id": 2104,
+  "original_filename": "QQ20261120-124017.mp4",
+  "sender_nick": "屑化添加剂",
+  "generated_at_utc": "2026-11-20T05:34:59Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "QQ20261120-124017.mp4",
+      "asset_name": "issue311-file2104-QQ20261120-124017.mp4",
+      "size_bytes": 40333442,
+      "sha256": "7091285cadb27b89d094c8bd146e3106c3c43a6cd35e8e0636b681c0900de364",
+      "release_download_url": "https://github.com/FlashNightModReborn/cf7-evidence/releases/download/test-evidence-assets/issue311-file2104-QQ20261120-124017.mp4",
+      "repo_raw_url": ""
+    }
+  ]
+}
