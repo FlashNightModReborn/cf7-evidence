@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 332,
+  "file_id": 2539,
+  "original_filename": "QQ20261122-034433.mp4",
+  "sender_nick": "废土",
+  "generated_at_utc": "2026-11-21T19:46:58Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "QQ20261122-034433.mp4",
+      "asset_name": "issue332-file2539-QQ20261122-034433.mp4",
+      "size_bytes": 5872663,
+      "sha256": "89f4688ba3114c1f18e547e451f8f03d87bd238ce48736cfb6d5eb3d0388e80c",
+      "release_download_url": "https://github.com/FlashNightModReborn/cf7-evidence/releases/download/test-evidence-assets/issue332-file2539-QQ20261122-034433.mp4",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-332/file-2539-QQ20261122-034433.mp4/issue332-file2539-QQ20261122-034433.mp4"
+    }
+  ]
+}
