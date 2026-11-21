@@ -1,0 +1,504 @@
+# 现场日志关键时窗逐行原文 (`auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142.zip` | 总行数: 1,029 行 | 脱敏规则: Windows 用户名替换为 <USER_REDACTED>)
+
+## [1] 启动与运行身份锚点 (Boot & Identity Anchors)
+L00001: 【ZIP 压缩包内容清单 (18 个文件)】：auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\auto-collection.json, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\bootstrap.log, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\cf7-runtime-manifest.tsv, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\config.toml, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\diagnostic-context.json, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\file-hashes.json, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\focus-events.txt, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\focus-trace.log, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\focus-trace.log.1, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\focus-trace.log.2, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\launcher.log, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\launcher.log.1, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\perf-latest.jsonl, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\recording-context.json, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\runtime-release-consensus.json, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\webview-failures-manifest.json, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\webview-failures.jsonl, auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\采集说明.txt
+L00002: 
+L00003: === 子文件: auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\auto-collection.json ===
+L00004: {
+L00005:   "session": "3ba962a988f243d998f74a8eac927142",
+L00006:   "collectionTrigger": "game_exit",
+L00007:   "requestedAtUtc": "2026-11-21T15:02:25.7954132Z",
+L00008:   "collectionWarnings": [
+L00009:     "webview-failures: webview report omitted (outside_allowed_root): E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\launcher\\webview2_overlay_userdata\\fixed-154.0.4258.53\\EBWebView\\Crashpad\\reports",
+L00010:     "webview-failures: webview report omitted (outside_allowed_root): E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\launcher\\webview2_overlay_userdata\\fixed-154.0.4258.53\\EBWebView\\Crashpad\\reports",
+L00011:     "webview-failures: webview report omitted (outside_allowed_root): E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\launcher\\webview2_overlay_userdata\\fixed-154.0.4258.53\\EBWebView\\Crashpad\\reports",
+L00012:     "webview-failures: webview report omitted (outside_allowed_root): E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\launcher\\webview2_overlay_userdata\\fixed-154.0.4258.53\\EBWebView\\Crashpad\\reports",
+L00013:     "webview-failures: webview report omitted (too_old): launcher/webview2_overlay_userdata/EBWebView/Crashpad/reports/8909cef4-bc36-41d9-a5fc-0cf3b645d39f.dmp",
+L00014:     "webview-failures: webview report omitted (too_old): launcher/webview2_overlay_userdata/EBWebView/Crashpad/reports/4d50c6c7-9a94-4ca9-bae4-d71481643109.dmp",
+L00015:     "webview-failures: webview report omitted (too_old): launcher/webview2_overlay_userdata/EBWebView/Crashpad/reports/37b54426-2730-460e-b77b-aed57d679831.dmp",
+L00016:     "webview-failures: webview report omitted (too_old): launcher/webview2_overlay_userdata/EBWebView/Crashpad/reports/2e83e40f-b483-46d9-9004-f5d4dd1122f0.dmp"
+L00017:   ],
+L00018:   "webviewFailures": {
+L00019:     "logIncluded": true,
+L00020:     "logBytes": 6875,
+L00021:     "logTruncated": false,
+L00022:     "rotatedIncluded": false,
+L00023:     "filesIncluded": 0,
+L00024:     "bytesIncluded": 0,
+L00025:     "omissions": 8
+L00026:   }
+L00027: }
+L00028: 
+L00029: === 子文件: auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\bootstrap.log ===
+L00030: [2026-08-04 09:27:47.102] [bootstrap] [INFO] ==== bootstrap start ====
+L00031: [2026-08-04 09:27:47.102] [bootstrap] [INFO] exeDir = E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight
+L00032: [2026-08-04 09:27:47.102] [bootstrap] [INFO] cmdLine = (empty)
+L00033: [2026-08-04 09:27:47.102] [bootstrap] [INFO] bootstrap pid=28372
+L00034: [2026-08-04 09:27:47.102] [bootstrap] [INFO] [preflight] Core apphost file ok size=261120 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\CRAZYFLASHER7MercenaryEmpire.Core.exe
+L00035: [2026-08-04 09:27:47.102] [bootstrap] [INFO] [preflight] Core assembly file ok size=3150336 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\CRAZYFLASHER7MercenaryEmpire.Core.dll
+... (中段关键状态与加载锚点摘录) ...
+L00036: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] Core deps file ok size=15866 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\CRAZYFLASHER7MercenaryEmpire.Core.deps.json
+L00037: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] Core runtimeconfig file ok size=554 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\CRAZYFLASHER7MercenaryEmpire.Core.runtimeconfig.json
+L00038: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] Runtime manifest file ok size=4088 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\cf7-runtime-manifest.tsv
+L00039: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] WebView2 loader file ok size=161864 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\WebView2Loader.dll
+L00040: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] WebView2 managed file ok size=649800 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\Microsoft.Web.WebView2.Core.dll
+L00041: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] ClearScript V8 native file ok size=22564752 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\ClearScriptV8.win-x64.dll
+L00042: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] miniaudio sidecar file ok size=778240 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\miniaudio.dll
+L00043: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] sol_parser sidecar file ok size=225280 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CrazyFlashNight\runtime\sol_parser.dll
+L00044: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=cf7-runtime-manifest.tsv size=4088
+L00045: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.Core.dll size=479680
+L00046: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.V8.dll size=332720
+L00047: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.V8.ICUData.dll size=10742920
+L00048: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScriptV8.win-x64.dll size=22564752
+L00049: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.deps.json size=15866
+L00050: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.dll size=3150336
+L00051: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.exe size=261120
+L00052: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.runtimeconfig.json size=554
+L00053: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=ExCSS.dll size=347136
+L00054: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=HarfBuzzSharp.dll size=122400
+L00055: [2026-08-04 09:27:47.118] [bootstrap] [INFO] [preflight] runtime entry file name=libHarfBuzzSharp.dll size=1816088
+... (省略中间 576 条同类状态锚点) ...
+L00835: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] ClearScript V8 native file ok size=22564752 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\ClearScriptV8.win-x64.dll
+L00836: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] miniaudio sidecar file ok size=778240 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\miniaudio.dll
+L00837: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] sol_parser sidecar file ok size=225280 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\sol_parser.dll
+L00838: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=cf7-runtime-manifest.tsv size=4088
+L00839: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.Core.dll size=479680
+L00840: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.V8.dll size=332720
+L00841: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.V8.ICUData.dll size=10742920
+L00842: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScriptV8.win-x64.dll size=22564752
+L00843: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.deps.json size=15866
+L00844: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.dll size=3150336
+L00845: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.exe size=261120
+L00846: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.runtimeconfig.json size=554
+L00847: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=ExCSS.dll size=347136
+L00848: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=HarfBuzzSharp.dll size=122400
+L00849: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=libHarfBuzzSharp.dll size=1816088
+L00850: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=libSkiaSharp.dll size=11628896
+L00851: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.Core.dll size=649800
+L00852: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.WinForms.dll size=39496
+L00853: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.Wpf.dll size=83016
+L00854: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=miniaudio.dll size=778240
+L00855: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Newtonsoft.Json.dll size=712464
+L00856: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=SharpGen.Runtime.COM.dll size=168960
+L00857: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=SharpGen.Runtime.dll size=79872
+L00858: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=ShimSkiaSharp.dll size=218624
+L00859: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=SkiaSharp.dll size=489824
+L00860: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=sol_parser.dll size=225280
+L00861: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Animation.dll size=124416
+L00862: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Custom.dll size=1020416
+L00863: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry fi
+L00899:     "error":  null,
+
+## [2] 尾部非指针原文 (L00680..L01029)
+L00680: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Model.dll size=160768
+L00681: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.SceneGraph.dll size=1186816
+L00682: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Skia.dll size=292864
+L00683: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime entry file name=THIRD-PARTY-NOTICES.txt size=145974
+L00684: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime entry file name=Vortice.DirectX.dll size=274944
+L00685: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime entry file name=Vortice.DXGI.dll size=91136
+L00686: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime entry file name=Vortice.Mathematics.dll size=125440
+L00687: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime entry file name=WebView2Loader.dll size=161864
+L00688: [2026-08-04 10:16:44.996] [bootstrap] [INFO] [preflight] runtime inventory complete count=33
+L00689: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [manifest] verification OK files=33 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\cf7-runtime-manifest.tsv
+L00690: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [preflight] runtime payload check OK
+L00691: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [preflight] Flash Player file ok size=16408296 mtime=2026-08-04 02:18:44 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\Adobe Flash Player 20.exe
+L00692: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [preflight] Game SWF file ok size=472599 mtime=2026-08-04 02:18:44 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CRAZYFLASHER7MercenaryEmpire.swf
+L00693: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [preflight] bootstrap HTML file ok size=8442 mtime=2026-08-04 02:20:17 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\web\bootstrap.html
+L00694: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [preflight] crossdomain policy file ok size=82 mtime=2026-08-04 02:18:46 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\crossdomain.xml
+L00695: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [preflight] config.toml file ok size=7067 mtime=2026-08-04 02:18:46 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\config.toml
+L00696: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [preflight] hotkey guard file ok size=7168 mtime=2026-08-04 02:20:07 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\hotkey_guard.exe
+L00697: [2026-08-04 10:16:45.871] [bootstrap] [INFO] [preflight] critical file check OK
+L00698: [2026-08-04 10:16:45.871] [bootstrap] [INFO] verify-only succeeded
+L00699: [2026-08-04 10:16:46.272] [core-startup] [INFO] core.environment pid=32944 exe=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.exe baseDir=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\ cwd=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources clr=.NET 10.0.8 os=Microsoft Windows 10.0.19045 process64=True os64=True busOnly=False forceWebViewFail=False args=0
+L00700: [2026-08-04 10:16:46.309] [core-startup] [INFO] file_probe:Core.dll ok size=3150336 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.dll
+L00701: [2026-08-04 10:16:46.313] [core-startup] [INFO] file_probe:Core.deps ok size=15866 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.deps.json
+L00702: [2026-08-04 10:16:46.317] [core-startup] [INFO] file_probe:Core.runtimeconfig ok size=554 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.runtimeconfig.json
+L00703: [2026-08-04 10:16:46.321] [core-startup] [INFO] file_probe:WebView2Loader ok size=161864 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\WebView2Loader.dll
+L00704: [2026-08-04 10:16:46.325] [core-startup] [INFO] file_probe:WebView2.Core ok size=649800 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\Microsoft.Web.WebView2.Core.dll
+L00705: [2026-08-04 10:16:46.329] [core-startup] [INFO] file_probe:ClearScriptV8.native ok size=22564752 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\ClearScriptV8.win-x64.dll
+L00706: [2026-08-04 10:16:46.334] [core-startup] [INFO] file_probe:miniaudio ok size=778240 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\miniaudio.dll
+L00707: [2026-08-04 10:16:46.338] [core-startup] [INFO] file_probe:sol_parser ok size=225280 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\sol_parser.dll
+L00708: [2026-08-04 10:16:46.341] [core-startup] [INFO] core.run_start busOnly=False controlPlane=agent_runtime
+L00709: [2026-08-04 10:16:46.354] [core-startup] [INFO] launcher_log.early_ready path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\logs\launcher.log
+L00710: [2026-08-04 10:16:46.491] [core-startup] [INFO] webview2.precheck_ok version=118.0.2088.46
+L00711: [2026-08-04 10:16:46.495] [core-startup] [INFO] config.load_start
+L00712: [2026-08-04 10:16:46.514] [core-startup] [INFO] config.load_ok useNativeHud=True preparationNavigationV1=True webView2DisableGpu=False webView2DeveloperMode=False gpuPreference=off
+L00713: [2026-08-04 10:16:46.520] [core-startup] [INFO] dir_probe:projectRoot ok path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources
+L00714: [2026-08-04 10:16:46.523] [core-startup] [INFO] file_probe:config.toml ok size=7067 mtime=2026-08-04 02:18:46 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\config.toml
+L00715: [2026-08-04 10:16:46.528] [core-startup] [INFO] file_probe:crossdomain.xml ok size=82 mtime=2026-08-04 02:18:46 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\crossdomain.xml
+L00716: [2026-08-04 10:16:46.531] [core-startup] [INFO] dir_probe:launcher.web ok path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\web
+L00717: [2026-08-04 10:16:46.536] [core-startup] [INFO] file_probe:bootstrap.html ok size=8442 mtime=2026-08-04 02:20:17 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\web\bootstrap.html
+L00718: [2026-08-04 10:16:46.540] [core-startup] [INFO] file_probe:overlay.html ok size=14295 mtime=2026-08-04 02:20:22 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\web\overlay.html
+L00719: [2026-08-04 10:16:46.544] [core-startup] [INFO] file_probe:map_hud_data ok size=175763 mtime=2026-08-04 02:20:07 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\data\map_hud_data.json
+L00720: [2026-08-04 10:16:46.549] [core-startup] [INFO] file_probe:save_schema ok size=31527 mtime=2026-08-04 02:20:07 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\data\save_schema.json
+L00721: [2026-08-04 10:16:46.553] [core-startup] [INFO] file_probe:FlashPlayer ok size=16408296 mtime=2026-08-04 02:18:44 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\Adobe Flash Player 20.exe
+L00722: [2026-08-04 10:16:46.556] [core-startup] [INFO] file_probe:GameSWF ok size=472599 mtime=2026-08-04 02:18:44 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CRAZYFLASHER7MercenaryEmpire.swf
+L00723: [2026-08-04 10:16:46.560] [core-startup] [INFO] guardian.form_construct_start bootstrapWebDir=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\web
+L00724: [2026-08-04 10:16:47.256] [core-startup] [INFO] guardian.form_construct_ok
+L00725: [2026-08-04 10:16:47.261] [core-startup] [INFO] launcher_log.ready path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\logs\launcher.log
+L00726: [2026-08-04 10:16:47.412] [core-startup] [INFO] steam.check_start
+L00727: [2026-08-04 10:16:47.419] [core-startup] [INFO] steam.check_ok
+L00728: [2026-08-04 10:16:47.422] [core-startup] [INFO] flash_trust.start
+L00729: [2026-08-04 10:16:47.445] [core-startup] [INFO] flash_trust.ok
+L00730: [2026-08-04 10:16:47.451] [core-startup] [INFO] audio.init_start
+L00731: [2026-08-04 10:16:48.937] [core-startup] [INFO] audio.init_ok
+L00732: [2026-08-04 10:16:49.099] [bootstrap] [INFO] Core still running after 5000 ms; bootstrap handoff considered alive
+L00733: [2026-08-04 10:16:49.099] [bootstrap] [INFO] ==== bootstrap exit OK ====
+L00734: [2026-08-04 10:16:49.235] [core-startup] [INFO] socket.start_ok port=1924
+L00735: [2026-08-04 10:16:49.241] [core-startup] [INFO] http.legacy_privileged_disabled controlPlane=agent_runtime
+L00736: [2026-08-04 10:16:49.466] [core-startup] [INFO] http.start_ok port=1192
+L00737: [2026-08-04 10:16:49.967] [core-startup] [INFO] webview2.runtime_check_ok version=118.0.2088.46
+L00738: [2026-08-04 10:16:49.973] [core-startup] [INFO] web_overlay.construct_start
+L00739: [2026-08-04 10:16:50.341] [core-startup] [INFO] web_overlay.construct_ok
+L00740: [2026-08-04 10:16:50.771] [core-startup] [INFO] task.registry_register_all_ok
+L00741: [2026-08-04 10:16:50.833] [core-startup] [INFO] ports.write_ok {"httpPort":1192,"socketPort":1924,"pid":32944,"legacyHttpAuthFile":null}
+L00742: [2026-08-04 10:16:50.838] [core-startup] [INFO] bus.ready http=1192 socket=1924
+L00743: [2026-08-04 10:16:50.985] [core-startup] [INFO] hotkey_guard.started pid=33580
+L00744: [2026-08-04 10:16:51.408] [core-startup] [INFO] agent_runtime.started controlPlane=agent_runtime
+L00745: [2026-08-04 10:16:51.412] [core-startup] [INFO] bootstrap.ready
+L00746: [2026-08-04 10:16:51.426] [core-startup] [INFO] bootstrap.webview2.init_start webDir=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\web
+L00747: [2026-08-04 10:16:51.440] [core-startup] [INFO] bootstrap.webview2.user_data_writable path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\webview2_userdata
+L00748: [2026-08-04 10:16:51.446] [core-startup] [INFO] bootstrap.webview2.create_environment_start userDataDir=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\webview2_userdata
+L00749: [2026-08-04 10:16:51.465] [core-startup] [INFO] bootstrap.webview2.create_environment_ok
+L00750: [2026-08-04 10:16:51.470] [core-startup] [INFO] bootstrap.webview2.ensure_core_start
+L00751: [2026-08-04 10:16:54.537] [core-startup] [INFO] bootstrap.webview2.ensure_core_ok
+L00752: [2026-08-04 10:16:54.541] [core-startup] [INFO] bootstrap.webview2.navigate_start https://bootstrap.local/bootstrap.html
+L00753: [2026-08-04 10:16:54.545] [core-startup] [INFO] bootstrap.webview2.init_ok
+L00754: [2026-08-04 10:16:57.175] [core-startup] [INFO] launch.state Spawning silent=True
+L00755: [2026-08-04 10:16:59.124] [core-startup] [INFO] launch.state WaitingConnect silent=True
+L00756: [2026-08-04 10:16:59.136] [core-startup] [INFO] bootstrap.webview2.navigation_completed success=True status=Unknown
+L00757: [2026-08-04 10:17:02.851] [core-startup] [INFO] launch.state WaitingHandshake silent=True
+L00758: [2026-08-04 10:17:02.864] [core-startup] [INFO] launch.state PrewarmHandshakeHeld silent=True
+L00759: [2026-08-04 10:17:15.422] [core-startup] [INFO] launch.state Embedding silent=False
+L00760: [2026-08-04 10:17:15.725] [core-startup] [INFO] launch.state WaitingGameReady silent=False
+L00761: [2026-08-04 10:17:15.769] [core-startup] [INFO] launch.state Ready silent=False
+L00762: [2026-08-04 10:23:11.789] [core-startup] [INFO] application.run_returned
+L00763: [2026-08-04 10:23:11.823] [core-startup] [INFO] guardian.shutdown_start
+L00764: [2026-08-04 10:23:11.864] [core-startup] [INFO] guardian.shutdown_complete
+L00765: [2026-08-04 10:23:11.890] [core-startup] [INFO] core.run_finally_complete
+L00766: [2026-08-04 10:23:11.896] [core-startup] [INFO] core.main_exit
+L00767: [2026-08-04 22:57:37.565] [bootstrap] [INFO] ==== bootstrap start ====
+L00768: [2026-08-04 22:57:37.566] [bootstrap] [INFO] exeDir = E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources
+L00769: [2026-08-04 22:57:37.566] [bootstrap] [INFO] cmdLine = (empty)
+L00770: [2026-08-04 22:57:37.566] [bootstrap] [INFO] bootstrap pid=35484
+L00771: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] Core apphost file ok size=261120 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.exe
+L00772: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] Core assembly file ok size=3150336 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.dll
+L00773: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] Core deps file ok size=15866 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.deps.json
+L00774: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] Core runtimeconfig file ok size=554 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.runtimeconfig.json
+L00775: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] Runtime manifest file ok size=4088 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\cf7-runtime-manifest.tsv
+L00776: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] WebView2 loader file ok size=161864 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\WebView2Loader.dll
+L00777: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] WebView2 managed file ok size=649800 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\Microsoft.Web.WebView2.Core.dll
+L00778: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] ClearScript V8 native file ok size=22564752 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\ClearScriptV8.win-x64.dll
+L00779: [2026-08-04 22:57:37.566] [bootstrap] [INFO] [preflight] miniaudio sidecar file ok size=778240 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\miniaudio.dll
+L00780: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] sol_parser sidecar file ok size=225280 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\sol_parser.dll
+L00781: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=cf7-runtime-manifest.tsv size=4088
+L00782: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.Core.dll size=479680
+L00783: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.V8.dll size=332720
+L00784: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.V8.ICUData.dll size=10742920
+L00785: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScriptV8.win-x64.dll size=22564752
+L00786: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.deps.json size=15866
+L00787: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.dll size=3150336
+L00788: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.exe size=261120
+L00789: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.runtimeconfig.json size=554
+L00790: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=ExCSS.dll size=347136
+L00791: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=HarfBuzzSharp.dll size=122400
+L00792: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=libHarfBuzzSharp.dll size=1816088
+L00793: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=libSkiaSharp.dll size=11628896
+L00794: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.Core.dll size=649800
+L00795: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.WinForms.dll size=39496
+L00796: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.Wpf.dll size=83016
+L00797: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=miniaudio.dll size=778240
+L00798: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Newtonsoft.Json.dll size=712464
+L00799: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=SharpGen.Runtime.COM.dll size=168960
+L00800: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=SharpGen.Runtime.dll size=79872
+L00801: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=ShimSkiaSharp.dll size=218624
+L00802: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=SkiaSharp.dll size=489824
+L00803: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=sol_parser.dll size=225280
+L00804: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Animation.dll size=124416
+L00805: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Custom.dll size=1020416
+L00806: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Model.dll size=160768
+L00807: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.SceneGraph.dll size=1186816
+L00808: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Skia.dll size=292864
+L00809: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=THIRD-PARTY-NOTICES.txt size=145974
+L00810: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Vortice.DirectX.dll size=274944
+L00811: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Vortice.DXGI.dll size=91136
+L00812: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=Vortice.Mathematics.dll size=125440
+L00813: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime entry file name=WebView2Loader.dll size=161864
+L00814: [2026-08-04 22:57:37.567] [bootstrap] [INFO] [preflight] runtime inventory complete count=33
+L00815: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [manifest] verification OK files=33 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\cf7-runtime-manifest.tsv
+L00816: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [preflight] runtime payload check OK
+L00817: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [preflight] Flash Player file ok size=16408296 mtime=2026-08-04 02:18:44 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\Adobe Flash Player 20.exe
+L00818: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [preflight] Game SWF file ok size=472599 mtime=2026-08-04 02:18:44 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\CRAZYFLASHER7MercenaryEmpire.swf
+L00819: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [preflight] bootstrap HTML file ok size=8442 mtime=2026-08-04 02:20:17 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\launcher\web\bootstrap.html
+L00820: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [preflight] crossdomain policy file ok size=82 mtime=2026-08-04 02:18:46 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\crossdomain.xml
+L00821: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [preflight] config.toml file ok size=7067 mtime=2026-08-04 02:18:46 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\config.toml
+L00822: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [preflight] hotkey guard file ok size=7168 mtime=2026-08-04 02:20:07 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\hotkey_guard.exe
+L00823: [2026-08-04 22:57:38.374] [bootstrap] [INFO] [preflight] critical file check OK
+L00824: [2026-08-04 22:57:38.382] [bootstrap] [INFO] scanning runtime: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\10.*
+L00825: [2026-08-04 22:57:38.383] [bootstrap] [INFO] runtime detected: 10.0.8 @ C:\Program Files\dotnet (system default)
+L00826: [2026-08-04 22:57:38.383] [bootstrap] [INFO] runtime already present (version=10.0.8 @ C:\Program Files\dotnet)
+L00827: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [dump] Core crash dump capture enabled: E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\logs\dumps\Core-%p-%t.dmp
+L00828: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] Core apphost file ok size=261120 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.exe
+L00829: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] Core assembly file ok size=3150336 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.dll
+L00830: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] Core deps file ok size=15866 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.deps.json
+L00831: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] Core runtimeconfig file ok size=554 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\CRAZYFLASHER7MercenaryEmpire.Core.runtimeconfig.json
+L00832: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] Runtime manifest file ok size=4088 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\cf7-runtime-manifest.tsv
+L00833: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] WebView2 loader file ok size=161864 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\WebView2Loader.dll
+L00834: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] WebView2 managed file ok size=649800 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\Microsoft.Web.WebView2.Core.dll
+L00835: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] ClearScript V8 native file ok size=22564752 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\ClearScriptV8.win-x64.dll
+L00836: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] miniaudio sidecar file ok size=778240 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\miniaudio.dll
+L00837: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] sol_parser sidecar file ok size=225280 mtime=2026-08-04 02:20:24 path=E:\steam\steamapps\common\CRAZYFLASHER7StandAloneStarter\resources\runtime\sol_parser.dll
+L00838: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=cf7-runtime-manifest.tsv size=4088
+L00839: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.Core.dll size=479680
+L00840: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.V8.dll size=332720
+L00841: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScript.V8.ICUData.dll size=10742920
+L00842: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=ClearScriptV8.win-x64.dll size=22564752
+L00843: [2026-08-04 22:57:38.383] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.deps.json size=15866
+L00844: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.dll size=3150336
+L00845: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.exe size=261120
+L00846: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=CRAZYFLASHER7MercenaryEmpire.Core.runtimeconfig.json size=554
+L00847: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=ExCSS.dll size=347136
+L00848: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=HarfBuzzSharp.dll size=122400
+L00849: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=libHarfBuzzSharp.dll size=1816088
+L00850: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=libSkiaSharp.dll size=11628896
+L00851: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.Core.dll size=649800
+L00852: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.WinForms.dll size=39496
+L00853: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Microsoft.Web.WebView2.Wpf.dll size=83016
+L00854: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=miniaudio.dll size=778240
+L00855: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Newtonsoft.Json.dll size=712464
+L00856: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=SharpGen.Runtime.COM.dll size=168960
+L00857: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=SharpGen.Runtime.dll size=79872
+L00858: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=ShimSkiaSharp.dll size=218624
+L00859: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=SkiaSharp.dll size=489824
+L00860: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=sol_parser.dll size=225280
+L00861: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Animation.dll size=124416
+L00862: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry file name=Svg.Custom.dll size=1020416
+L00863: [2026-08-04 22:57:38.384] [bootstrap] [INFO] [preflight] runtime entry fi
+L00864: 
+L00865: === 子文件: auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\diagnostic-context.json ===
+L00866: {
+L00867:     "collectedAtUtc":  "2026-11-21T15:02:32.5159240Z",
+L00868:     "requestedAtUtc":  "2026-11-21T15:02:25.7954132Z",
+L00869:     "collectOnly":  true,
+L00870:     "collectionTrigger":  "game_exit",
+L00871:     "runtimeMode":  "formal_runtime",
+L00872:     "process":  {
+L00873:                     "pid":  9228,
+L00874:                     "path":  "E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\runtime\\CRAZYFLASHER7MercenaryEmpire.Core.exe",
+L00875:                     "startedAtUtc":  "2026-11-21T14:58:33.9165577Z"
+L00876:                 },
+L00877:     "files":  [
+L00878:                   {
+L00879:                       "path":  "E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\runtime\\CRAZYFLASHER7MercenaryEmpire.Core.dll",
+L00880:                       "sha256":  "2DCF96F6B839B705A2B7AE2FB348389AB3BBA1871BF87C3913B9710519495AA5"
+L00881:                   },
+L00882:                   {
+L00883:                       "path":  "scripts/asLoader.swf",
+L00884:                       "sha256":  "93E5E9EC56EFBB53332F3C62A09CC5043CF2DE7438E0E4CA27D7E44764F642E7"
+L00885:                   },
+L00886:                   {
+L00887:                       "path":  "scripts/asLoaderShared.swf",
+L00888:                       "sha256":  "17FFA499744FB7A185EE67D68405E978AE32C6CBDBD9B21215E0D73E0590CFA4"
+L00889:                   },
+L00890:                   {
+L00891:                       "path":  "scripts/asLoaderLogic.swf",
+L00892:                       "sha256":  "371C9A4FEDE6F350B2B818A2A8397EBD3E7A471FD5A9410913C91608625CD720"
+L00893:                   },
+L00894:                   {
+L00895:                       "path":  "runtime/cf7-runtime-manifest.tsv",
+L00896:                       "sha256":  "4F8F1B8841AAD4F0B048E1A3ADAFBE36545DA8B2B684C30ABC9D9341E020E057"
+L00897:                   }
+L00898:               ],
+L00899:     "error":  null,
+L00900:     "recording":  {
+L00901:                       "schema":  "cf7-focus-recording.v1",
+L00902:                       "session":  "3ba962a988f243d998f74a8eac927142",
+L00903:                       "mode":  "rolling",
+L00904:                       "startedAtUtc":  "2026-11-21T14:58:43.0401847Z",
+L00905:                       "runtimeMode":  "formal_runtime",
+L00906:                       "process":  {
+L00907:                                       "pid":  9228,
+L00908:                                       "path":  "E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\runtime\\CRAZYFLASHER7MercenaryEmpire.Core.exe",
+L00909:                                       "startedAtUtc":  "2026-11-21T14:58:33.9165577Z"
+L00910:                                   },
+L00911:                       "files":  [
+L00912:                                     {
+L00913:                                         "path":  "E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\runtime\\CRAZYFLASHER7MercenaryEmpire.Core.dll",
+L00914:                                         "sha256":  "2DCF96F6B839B705A2B7AE2FB348389AB3BBA1871BF87C3913B9710519495AA5"
+L00915:                                     },
+L00916:                                     {
+L00917:                                         "path":  "scripts/asLoader.swf",
+L00918:                                         "sha256":  "93E5E9EC56EFBB53332F3C62A09CC5043CF2DE7438E0E4CA27D7E44764F642E7"
+L00919:                                     },
+L00920:                                     {
+L00921:                                         "path":  "scripts/asLoaderShared.swf",
+L00922:                                         "sha256":  "17FFA499744FB7A185EE67D68405E978AE32C6CBDBD9B21215E0D73E0590CFA4"
+L00923:                                     },
+L00924:                                     {
+L00925:                                         "path":  "scripts/asLoaderLogic.swf",
+L00926:                                         "sha256":  "371C9A4FEDE6F350B2B818A2A8397EBD3E7A471FD5A9410913C91608625CD720"
+L00927:                                     },
+L00928:                                     {
+L00929:                                         "path":  "runtime/cf7-runtime-manifest.tsv",
+L00930:                                         "sha256":  "4F8F1B8841AAD4F0B048E1A3ADAFBE36545DA8B2B684C30ABC9D9341E020E057"
+L00931:                                     }
+L00932:                                 ],
+L00933:                       "retention":  {
+L00934:                                         "files":  3,
+L00935:                                         "bytesPerFile":  8388608
+L00936:                                     },
+L00937:                       "status":  "stopped",
+L00938:                       "as2ObserveReadySeen":  true,
+L00939:                       "stoppedAtUtc":  "2026-11-21T15:02:25.5825640Z"
+L00940:                   },
+L00941:     "captureStatus":  "partial_snapshot",
+L00942:     "focusEventsSource":  "rolling",
+L00943:     "focusEventCount":  2093,
+L00944:     "as2ObserveReadySeen":  true,
+L00945:     "collectionWarnings":  [
+L00946:                                "webview-failures: webview report omitted (outside_allowed_root): E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\launcher\\webview2_overlay_userdata\\fixed-154.0.4258.53\\EBWebView\\Crashpad\\reports",
+L00947:                                "webview-failures: webview report omitted (outside_allowed_root): E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\launcher\\webview2_overlay_userdata\\fixed-154.0.4258.53\\EBWebView\\Crashpad\\reports",
+L00948:                                "webview-failures: webview report omitted (outside_allowed_root): E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\launcher\\webview2_overlay_userdata\\fixed-154.0.4258.53\\EBWebView\\Crashpad\\reports",
+L00949:                                "webview-failures: webview report omitted (outside_allowed_root): E:\\steam\\steamapps\\common\\CRAZYFLASHER7StandAloneStarter\\resources\\launcher\\webview2_overlay_userdata\\fixed-154.0.4258.53\\EBWebView\\Crashpad\\reports",
+L00950:                                "webview-failures: webview report omitted (too_old): launcher/webview2_overlay_userdata/EBWebView/Crashpad/reports/8909cef4-bc36-41d9-a5fc-0cf3b645d39f.dmp",
+L00951:                                "webview-failures: webview report omitted (too_old): launcher/webview2_overlay_userdata/EBWebView/Crashpad/reports/4d50c6c7-9a94-4ca9-bae4-d71481643109.dmp",
+L00952:                                "webview-failures: webview report omitted (too_old): launcher/webview2_overlay_userdata/EBWebView/Crashpad/reports/37b54426-2730-460e-b77b-aed57d679831.dmp",
+L00953:                                "webview-failures: webview report omitted (too_old): launcher/webview2_overlay_userdata/EBWebView/Crashpad/reports/2e83e40f-b483-46d9-9004-f5d4dd1122f0.dmp"
+L00954:                            ],
+L00955:     "webviewFailures":  null
+L00956: }
+L00957: 
+L00958: 
+L00959: === 子文件: auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142\file-hashes.json ===
+L00960: [
+L00961:     {
+L00962:         "file":  "auto-collection.json",
+L00963:         "Hash":  "69C27F369F09BF6D37BB80C21486EFAC99914A23CFF5B5592AF3891A852983F2"
+L00964:     },
+L00965:     {
+L00966:         "file":  "bootstrap.log",
+L00967:         "Hash":  "B97FE30C1B78555046FAC8FD4301E0B6A9D41A9222E03DC3927AE1753B11B867"
+L00968:     },
+L00969:     {
+L00970:         "file":  "cf7-runtime-manifest.tsv",
+L00971:         "Hash":  "4F8F1B8841AAD4F0B048E1A3ADAFBE36545DA8B2B684C30ABC9D9341E020E057"
+L00972:     },
+L00973:     {
+L00974:         "file":  "config.toml",
+L00975:         "Hash":  "A92615899886A72904CE94DB8B2AB6D432C1428ECA4CBEB8360272FB6C2997E5"
+L00976:     },
+L00977:     {
+L00978:         "file":  "diagnostic-context.json",
+L00979:         "Hash":  "C00EAA0E1A64B654444D5DC868DE2E6D59CB99149CBA0BED5C421BC582D48BDC"
+L00980:     },
+L00981:     {
+L00982:         "file":  "focus-events.txt",
+L00983:         "Hash":  "FBDED21345999C347D4E51C7BBADFDE216EBC9E623D0E3044D1521043173312C"
+L00984:     },
+L00985:     {
+L00986:         "file":  "focus-trace.log",
+L00987:         "Hash":  "CF9F58A3B0DC2AC0B137279E463FE15AB0C95F30AEB1816D253A40A3EE6A7411"
+L00988:     },
+L00989:     {
+L00990:         "file":  "focus-trace.log.1",
+L00991:         "Hash":  "500E15E193E27AABDECE59FA1B8B3683BCD28EE396CB9C2AE7F6E691BC801F70"
+L00992:     },
+L00993:     {
+L00994:         "file":  "focus-trace.log.2",
+L00995:         "Hash":  "7A69FF969D3EF9B917DB46474D2A0384B4B5C3342E727249BC44673F55B29585"
+L00996:     },
+L00997:     {
+L00998:         "file":  "launcher.log",
+L00999:         "Hash":  "73D10C6EDF0CAC96BDD46E8FBE5E3D9EC1131B2EC5204BBC068AAF6463EC7967"
+L01000:     },
+L01001:     {
+L01002:         "file":  "launcher.log.1",
+L01003:         "Hash":  "43BDD14B085D4DBFE7E5603B5499EEDE2803BA7EF3D0F3FC6E6EEB9DCA94496E"
+L01004:     },
+L01005:     {
+L01006:         "file":  "perf-latest.jsonl",
+L01007:         "Hash":  "D527BFC9CC9EA49C67D2EBB30D05C6C42B98AACE1708B72D717DE1AAECFA6FED"
+L01008:     },
+L01009:     {
+L01010:         "file":  "recording-context.json",
+L01011:         "Hash":  "BCD7AC25101F52F03B00C2FF3E275CADDEEAFAB7624ABE821EF692F3418697AC"
+L01012:     },
+L01013:     {
+L01014:         "file":  "runtime-release-consensus.json",
+L01015:         "Hash":  "91E7FB30907052C8D4D9E815220584745F6813A86A50AC969BDF9DB7440DEFB8"
+L01016:     },
+L01017:     {
+L01018:         "file":  "webview-failures-manifest.json",
+L01019:         "Hash":  "BB5070B8C3348A92E90EA8F3FAEFCC6E5C99E4EDF3DC5E321478814A9F4186BB"
+L01020:     },
+L01021:     {
+L01022:         "file":  "webview-failures.jsonl",
+L01023:         "Hash":  "951E5375D0F64A5FFF3BEC4A9375576103F866AF0C70C88E5B055FD3081232EE"
+L01024:     },
+L01025:     {
+L01026:         "file":  "采集说明.txt",
+L01027:         "Hash":  "1E6FA4D11FA2ACAB3713F4C6F85A5137E63D1D2487185EFBE753904A321C7CE7"
+L01028:     }
+L01029: ]
+
+## [3] 文件末尾最后 60 行逐行未折叠原文 (L00970..L01029)
+L00970:         "file":  "cf7-runtime-manifest.tsv",
+L00971:         "Hash":  "4F8F1B8841AAD4F0B048E1A3ADAFBE36545DA8B2B684C30ABC9D9341E020E057"
+L00972:     },
+L00973:     {
+L00974:         "file":  "config.toml",
+L00975:         "Hash":  "A92615899886A72904CE94DB8B2AB6D432C1428ECA4CBEB8360272FB6C2997E5"
+L00976:     },
+L00977:     {
+L00978:         "file":  "diagnostic-context.json",
+L00979:         "Hash":  "C00EAA0E1A64B654444D5DC868DE2E6D59CB99149CBA0BED5C421BC582D48BDC"
+L00980:     },
+L00981:     {
+L00982:         "file":  "focus-events.txt",
+L00983:         "Hash":  "FBDED21345999C347D4E51C7BBADFDE216EBC9E623D0E3044D1521043173312C"
+L00984:     },
+L00985:     {
+L00986:         "file":  "focus-trace.log",
+L00987:         "Hash":  "CF9F58A3B0DC2AC0B137279E463FE15AB0C95F30AEB1816D253A40A3EE6A7411"
+L00988:     },
+L00989:     {
+L00990:         "file":  "focus-trace.log.1",
+L00991:         "Hash":  "500E15E193E27AABDECE59FA1B8B3683BCD28EE396CB9C2AE7F6E691BC801F70"
+L00992:     },
+L00993:     {
+L00994:         "file":  "focus-trace.log.2",
+L00995:         "Hash":  "7A69FF969D3EF9B917DB46474D2A0384B4B5C3342E727249BC44673F55B29585"
+L00996:     },
+L00997:     {
+L00998:         "file":  "launcher.log",
+L00999:         "Hash":  "73D10C6EDF0CAC96BDD46E8FBE5E3D9EC1131B2EC5204BBC068AAF6463EC7967"
+L01000:     },
+L01001:     {
+L01002:         "file":  "launcher.log.1",
+L01003:         "Hash":  "43BDD14B085D4DBFE7E5603B5499EEDE2803BA7EF3D0F3FC6E6EEB9DCA94496E"
+L01004:     },
+L01005:     {
+L01006:         "file":  "perf-latest.jsonl",
+L01007:         "Hash":  "D527BFC9CC9EA49C67D2EBB30D05C6C42B98AACE1708B72D717DE1AAECFA6FED"
+L01008:     },
+L01009:     {
+L01010:         "file":  "recording-context.json",
+L01011:         "Hash":  "BCD7AC25101F52F03B00C2FF3E275CADDEEAFAB7624ABE821EF692F3418697AC"
+L01012:     },
+L01013:     {
+L01014:         "file":  "runtime-release-consensus.json",
+L01015:         "Hash":  "91E7FB30907052C8D4D9E815220584745F6813A86A50AC969BDF9DB7440DEFB8"
+L01016:     },
+L01017:     {
+L01018:         "file":  "webview-failures-manifest.json",
+L01019:         "Hash":  "BB5070B8C3348A92E90EA8F3FAEFCC6E5C99E4EDF3DC5E321478814A9F4186BB"
+L01020:     },
+L01021:     {
+L01022:         "file":  "webview-failures.jsonl",
+L01023:         "Hash":  "951E5375D0F64A5FFF3BEC4A9375576103F866AF0C70C88E5B055FD3081232EE"
+L01024:     },
+L01025:     {
+L01026:         "file":  "采集说明.txt",
+L01027:         "Hash":  "1E6FA4D11FA2ACAB3713F4C6F85A5137E63D1D2487185EFBE753904A321C7CE7"
+L01028:     }
+L01029: ]
