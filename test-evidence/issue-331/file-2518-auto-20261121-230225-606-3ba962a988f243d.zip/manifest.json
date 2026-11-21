@@ -1,0 +1,32 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 331,
+  "file_id": 2518,
+  "original_filename": "auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142.zip",
+  "sender_nick": "布鲁.谍沃齐格",
+  "generated_at_utc": "2026-11-21T15:33:05Z",
+  "redaction_policy": "Windows user profile folder replaced with <USER_REDACTED>; line numbers 100% preserved.",
+  "files": [
+    {
+      "role": "original_raw_log",
+      "name": "auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142.zip",
+      "size_bytes": 132605,
+      "line_count": 1029,
+      "sha256": "828a9a3980e0d9505b4477cc807db17547ba39428cecaadf4ea35439156057be"
+    },
+    {
+      "role": "redacted_full_log",
+      "name": "auto-20261121-230225-606-3ba962a988f243d998f74a8eac927142.zip.redacted.log",
+      "size_bytes": 132605,
+      "line_count": 1029,
+      "sha256": "828a9a3980e0d9505b4477cc807db17547ba39428cecaadf4ea35439156057be"
+    },
+    {
+      "role": "fault_window_verbatim",
+      "name": "fault_window_verbatim.txt",
+      "size_bytes": 52420,
+      "line_count": 504,
+      "sha256": "e30dfc1d07205392c8c63d9dffe2568326188479c9a34c6e303bfab7c41cb7da"
+    }
+  ]
+}
