@@ -1,6 +1,6 @@
 {
   "issue": 335,
-  "revision": "r2",
+  "revision": "r3",
   "githubLogin": true,
   "moves": {
     "U01": {
@@ -175,7 +175,7 @@
       ]
     },
     "U24": {
-      "version": "3682950fe418fc97823906a3ffdc0099bb13551eafc3fe1c53a721034137e8ac",
+      "version": "9c303735a238a438a106cd714d9324d3ef2e7430e0a3d631250ee4780378f86a",
       "durationMs": 1167,
       "choices": [
         "match",
@@ -211,7 +211,7 @@
       ]
     },
     "S04": {
-      "version": "bc464829fc391c849dca5b74d8ee1599d43c24bf49930a7968d52794420f0104",
+      "version": "5224ab26fa41e498bab6f4c1c0c2381344148647d01297e6e547c4d93673e413",
       "durationMs": 2800,
       "choices": [
         "match",
@@ -346,7 +346,7 @@
       ]
     },
     "E06": {
-      "version": "cc62a74b5187c862bca47dc696b6611141dc608c20a4d65f075947edcd01fdb3",
+      "version": "8a32323da4ca0383eae2ec036c7aa01b9c9df2bc9dae3ded344a9786441eaf2c",
       "durationMs": 2800,
       "choices": [
         "match",

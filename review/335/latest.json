@@ -1,7 +1,7 @@
 {
   "issue": 335,
-  "revision": "r2",
+  "revision": "r3",
   "api": "https://cf7-art-review-receipts.crazyfs.chatgpt.site",
-  "manifest": "r2/manifest.json",
-  "manifestSha256": "5b01289b45dc0489afdc1f9db01d2d35d3136b462559dcab3d8e896954d40b03"
+  "manifest": "r3/manifest.json",
+  "manifestSha256": "c3d9318f1189745ff9f6b08714bd430294cbf664d0248c21f63c2c3aa9046002"
 }
