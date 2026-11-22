@@ -8,7 +8,7 @@ const acceptedChoices = new Set(["match","mismatch","unclear","use","other","yes
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 class ApiFault extends Error {
-  constructor(status, message) { super(message); this.status = status; }
+  constructor(status, message, code) { super(message); this.status = status; this.code = code; }
 }
 function verify(condition,status,message) {
   if (!condition) throw new ApiFault(status,message);
@@ -25,7 +25,8 @@ function json(body,status=200) {
 async function policyFor(issue) {
   const entry=policies.get(issue);
   if (entry && entry.expires>Date.now()) return entry.value;
-  const r=await fetch(policyRoot+issue+"/policy.json",{headers:{Accept:"application/json"},cf:{cacheTtl:15}});
+  // Use a distinct cache entry from older public policies without GitHub login.
+  const r=await fetch(policyRoot+issue+"/policy.json?schema=github-1",{headers:{Accept:"application/json"},cf:{cacheTtl:15}});
   verify(r.status!==404,404,"找不到这张校对单");
   verify(r.ok,503,"暂时读不到校对版本");
   const value=await r.json();
@@ -40,7 +41,9 @@ async function grantFor(request,policy,lane,db) {
   const h=request.headers.get("Authorization") || "";
   if(h.startsWith("Bearer cfr1.")){
     const user=await githubIdentity(db,h.slice(7));
-    verify(user && lane==="art" && policy.githubLogin===true,403,"请重新使用 GitHub 登录本单");
+    if(!user)throw new ApiFault(401,"校对页的登录已失效，草稿已保留。","session_expired");
+    if(lane!=="art" || policy.githubLogin===false)throw new ApiFault(403,"此账号不能在这个分组发表。","writing_disabled");
+    if(policy.githubLogin!==true)throw new ApiFault(503,"校对单的账号设置正在更新，稍后会自动重试。","policy_updating");
     return {author:"github:"+user.accountId,display:"@"+user.login};
   }
   verify(/^Bearer [a-zA-Z0-9_-]{40,96}$/.test(h),403,"请使用 GitHub 账号登录后发表");
@@ -121,13 +124,13 @@ export async function reviewApi(request,env,loadPolicy=policyFor) {
       verify(/^\d{1,14}$/.test(raw),400,"回执位置无效");
       const result=await env.DB.prepare("SELECT "+fields+" FROM feedback_events WHERE issue=? AND lane=? AND seq>? ORDER BY seq LIMIT 201")
         .bind(issue,lane,Number(raw)).all();
-      return json({issue,revision:policy.revision,events:result.results.slice(0,200),more:result.results.length>200});
+      return json({issue,revision:policy.revision,githubLogin:policy.githubLogin===true,events:result.results.slice(0,200),more:result.results.length>200});
     }
     verify(request.method==="POST",405,"请求方式无效");
     const grant=await grantFor(request,policy,lane,env.DB);
     return await writeEvent(env.DB,issue,lane,grant,policy,await limitedBody(request));
   }catch(error){
-    if(error instanceof ApiFault)return json({error:error.message},error.status);
+    if(error instanceof ApiFault)return json({error:error.message,...(error.code?{code:error.code}:{})},error.status);
     console.error("Review API error",error instanceof Error?error.name:"unknown");
     return json({error:"回执服务暂时不可用，请稍后重试"},503);
   }

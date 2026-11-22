@@ -27,11 +27,11 @@
 </main>
 <dialog id="detail" aria-labelledby="detailTitle">
   <div class="detail-head"><h2 id="detailTitle"></h2><button class="plain" id="back" type="button">返回总览</button></div>
-  <div id="playerBox"><div id="absent" hidden>原稿待配</div><video id="single" playsinline controls preload="none"></video></div>
+  <div id="playerBox"><div id="absent" hidden>原稿待配</div><video id="single" playsinline controls preload="auto"></video></div>
   <section class="composer" aria-labelledby="noteLabel">
     <div class="composer-head"><label id="noteLabel" for="note">写评论</label><span id="noteTime"></span></div>
     <textarea id="note" maxlength="180" rows="2" placeholder="写下你看到的问题，例如「右手抬得太早」。"></textarea>
-    <div class="compose-actions"><button id="sendNote" class="primary" type="button">用 GitHub 账号发表</button><span id="commentHint">登录后会带回当前文字和画面。</span></div>
+    <div class="compose-actions"><button id="sendNote" class="primary" type="button">用 GitHub 账号发表</button><span id="commentHint">首次发表时，在 GitHub 确认账号。</span></div>
     <p id="result" role="status"></p>
   </section>
   <p id="question"></p>

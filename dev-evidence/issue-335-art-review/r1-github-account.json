@@ -1,0 +1,24 @@
+{
+  "issue": 335,
+  "revision": "r1",
+  "publicPage": "https://flashnightmodreborn.github.io/cf7-evidence/review/335/",
+  "publicService": {
+    "providerRegistered": true,
+    "issueAllowsGitHub": true,
+    "oauthRedirect": "https://github.com/login/oauth/authorize",
+    "pkce": "S256",
+    "invalidSiteCredentialStatus": 401
+  },
+  "isolatedBrowser": {
+    "environment": "Chromium、校对页、workerd 和 D1，GitHub 上游使用测试身份",
+    "passed": [
+      "首次访问无过期提示；取消授权后原草稿与动作保留，没有发表",
+      "授权一次后自动回到 U01 并发表在 0.54 秒；发帖权限暂未就绪会自动恢复，没有重复登录",
+      "同浏览器的另一个标签页自动显示同一账号，保留其独立草稿",
+      "重开校对页直接发表，独立浏览器能读回署名和时间；重开没有重复提交",
+      "会话在输入期间确实失效时，点发表会接续授权，原草稿仅发表一次",
+      "退出也同步到另一个标签页，并保留未发表草稿"
+    ]
+  },
+  "publicTestComments": 0
+}

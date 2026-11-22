@@ -4,7 +4,7 @@ import {DatabaseSync} from "node:sqlite";
 import {createHash, randomBytes, randomUUID} from "node:crypto";
 import {test} from "node:test";
 import {reviewApi} from "./reviews.mjs";
-import {Receipts} from "../app/v3/receipts.js";
+import {Receipts} from "../app/v4/receipts.js";
 
 test("persisted choices, versioned replay, edit conflicts and withdrawals",async()=>{
   const sql=new DatabaseSync(":memory:");

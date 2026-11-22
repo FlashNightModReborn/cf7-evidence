@@ -43,7 +43,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("bundle",type=Path,help="Directory containing manifest.json and its media")
     parser.add_argument("--api",required=True,help="Public HTTPS origin of the receipt API")
-    parser.add_argument("--new-invites",type=Path,help="Private output directory for the first round of a new issue")
+    parser.add_argument("--new-invites",type=Path,help="Optionally create private review and QA links for a new issue")
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     source=args.bundle.resolve(strict=True)
@@ -63,12 +63,13 @@ def main():
         raise ValueError("现用入口不能退回旧轮次")
     if previous:
         grants=previous["grants"]
-    else:
-        if not args.new_invites:raise ValueError("首次发布需要私下交付校对链接的目录")
+    elif args.new_invites:
         vault=args.new_invites.resolve()
         if vault.is_relative_to(root.parent) or vault.is_relative_to(source):
             raise ValueError("填写链接需存放在仓库和公开素材之外")
         grants=[make_grant(vault,issue,lane) for lane in ("art","qa")]
+    else:
+        grants=[]
     keys=set()
     expected={"manifest.json"}
     for move in data["moves"]:
@@ -97,7 +98,7 @@ def main():
             dest.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(file,dest)
     template=(root/"tools/page.html").read_text(encoding="utf8")
-    for dest,app,base,media,round_name in [(holder,"../app/v3","./",revision+"/","latest"),(version,"../../app/v3","../","./",revision)]:
+    for dest,app,base,media,round_name in [(holder,"../app/v4","./",revision+"/","latest"),(version,"../../app/v4","../","./",revision)]:
         page=template
         tags={"__ISSUE__":str(issue),"__TITLE__":data["title"],"__APP__":app,"__ROOT__":base,
               "__MEDIA__":media,"__ROUND__":round_name,"__DISPLAY__":revision.upper(),"__API_ORIGIN__":api}

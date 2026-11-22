@@ -104,7 +104,7 @@ export async function githubAuth(request,env,send=fetch){
       const slug=app.slug || new URL(app.html_url).pathname.split("/").filter(Boolean).pop();
       await db.prepare("INSERT INTO github_provider(slot,client_id,secret_box,slug,owner_id) VALUES(1,?,?,?,?) ON CONFLICT(slot) DO NOTHING")
         .bind(app.client_id,await wrap(env,app.client_secret,"app-secret"),slug,ORG_ID).run();
-      return html('<h1>GitHub 登录已启用</h1><p><a href="'+REVIEW+'335/?ui=3#U01">回到 U01，使用 GitHub 发表评论</a></p>',{"Set-Cookie":clockCookie("registration","",0)});
+      return html('<h1>GitHub 登录已启用</h1><p><a href="'+REVIEW+'335/?ui=4#U01">回到 U01，使用 GitHub 发表评论</a></p>',{"Set-Cookie":clockCookie("registration","",0)});
     }
     if(op==="start" && request.method==="GET"){
       const provider=await config(db);
@@ -119,7 +119,7 @@ export async function githubAuth(request,env,send=fetch){
     }
     if(op==="callback" && request.method==="GET"){
       const state=await stateFrom(request,env,url,"github");
-      if(url.searchParams.has("error"))return redirect(reviewUrl(state)+"?ui=3#gh_cancel=1&move="+state.move,clockCookie("github","",0));
+      if(url.searchParams.has("error"))return redirect(reviewUrl(state)+"?ui=4#gh_cancel=1&move="+state.move,clockCookie("github","",0));
       const provider=await config(db),code=url.searchParams.get("code")||"";
       requireThat(provider&&/^[a-zA-Z0-9_-]{8,256}$/.test(code),400,"GitHub 登录回执无效。");
       const token=await ghJson(send,GH+"/login/oauth/access_token",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
@@ -133,7 +133,7 @@ export async function githubAuth(request,env,send=fetch){
         db.prepare("DELETE FROM github_sessions WHERE expires<=?").bind(now()),
         db.prepare("INSERT INTO github_handoffs(digest,challenge,issue,account_id,login,expires) VALUES(?,?,?,?,?,?)")
           .bind(await sha(proof),state.hand,Number(state.issue),String(user.id),user.login,now()+180)]);
-      return redirect(reviewUrl(state)+"?ui=3#gh_return="+proof+"&move="+state.move,clockCookie("github","",0));
+      return redirect(reviewUrl(state)+"?ui=4#gh_return="+proof+"&move="+state.move,clockCookie("github","",0));
     }
     if(op==="exchange" && request.method==="POST"){
       requireThat(request.headers.get("Content-Type")?.startsWith("application/json"),415,"需要 JSON。");
@@ -161,7 +161,7 @@ export async function githubAuth(request,env,send=fetch){
     if(!(e instanceof LoginFault))console.error("GH identity service",e?.name||"unavailable");
     const message=e instanceof LoginFault?e.message:"GitHub 登录服务暂时不可用，请重试。";
     return isApi?json({error:message},e instanceof LoginFault?e.status:503):new Response(
-      '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><main style="max-width:36rem;margin:14vh auto;font:18px system-ui"><p>'+safe(message)+'</p><a href="'+REVIEW+'335/?ui=3">回到校对页</a></main>',
+      '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><main style="max-width:36rem;margin:14vh auto;font:18px system-ui"><p>'+safe(message)+'</p><a href="'+REVIEW+'335/?ui=4">回到校对页</a></main>',
       {status:e instanceof LoginFault?e.status:503,headers:{...headers,"Content-Type":"text/html; charset=utf-8"}});
   }
 }

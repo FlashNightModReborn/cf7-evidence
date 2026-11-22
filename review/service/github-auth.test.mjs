@@ -62,15 +62,23 @@ test("organization bootstrap, PKCE login, signed feedback, safe callback retry, 
   assert.match(saved.token,/^cfr1\./);assert.equal((await (await exchange(verifier)).json()).token,saved.token);
   assert.equal(sql.prepare("select count(*) n from github_sessions").get().n,1);
   assert.equal(sql.prepare("select count(*) n from github_handoffs").get().n,0);
-  const policy=async()=>({issue:335,revision:"r1",githubLogin:true,grants:[],moves:{U01:{version:"a".repeat(64),durationMs:770,choices:["match","mismatch","unclear"]}}});
+  let loginSetting=true;
+  const policy=async()=>({issue:335,revision:"r1",githubLogin:loginSetting,grants:[],moves:{U01:{version:"a".repeat(64),durationMs:770,choices:["match","mismatch","unclear"]}}});
   const api=(endpoint,options={})=>reviewApi(new Request(base+"/api/v1/reviews/335/"+endpoint,{...options,headers:{
     Authorization:"Bearer "+saved.token,"Content-Type":"application/json",...options.headers}}),env,policy);
+  assert.equal((await (await api("session")).json()).display,"@ExampleArtist");
+  loginSetting=undefined;
+  const updating=await api("session");assert.equal(updating.status,503);assert.equal((await updating.json()).code,"policy_updating");
+  loginSetting=false;
+  const closed=await api("session");assert.equal(closed.status,403);assert.equal((await closed.json()).code,"writing_disabled");
+  loginSetting=true;
   assert.equal((await (await api("session")).json()).display,"@ExampleArtist");
   const event=await api("events",{method:"POST",body:JSON.stringify({revision:"r1",requestId:randomUUID(),action:"U01",asset:"a".repeat(64),
     choice:"comment",note:"测试留言",positionMs:540,previous:0})});
   assert.equal(event.status,201);const e=(await event.json()).event;assert.equal(e.author,"github:23017");assert.equal(e.authorLabel,"@ExampleArtist");assert.equal(e.positionMs,540);
   assert.equal((await api("session?lane=qa")).status,403);
   assert.equal((await req("logout",{method:"POST",headers:{Authorization:"Bearer "+saved.token}})).status,200);
-  assert.equal((await api("session")).status,403);
+  const expired=await api("session");
+  assert.equal(expired.status,401);assert.equal((await expired.json()).code,"session_expired");
   sql.close();
 });
