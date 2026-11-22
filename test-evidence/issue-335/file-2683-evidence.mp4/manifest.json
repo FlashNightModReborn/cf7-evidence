@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 335,
+  "file_id": 2683,
+  "original_filename": "教官-全部动作同屏.mp4",
+  "sender_nick": "Greatly anti-cloud",
+  "generated_at_utc": "2026-11-22T13:18:34Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "教官-全部动作同屏.mp4",
+      "asset_name": "issue335-file2683-evidence.mp4",
+      "size_bytes": 7247809,
+      "sha256": "6684997cd869baeaedfee00d7e54881bd5fe607db3f958c9a668a29ee3566614",
+      "release_download_url": "https://github.com/FlashNightModReborn/cf7-evidence/releases/download/test-evidence-assets/issue335-file2683-evidence.mp4",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-335/file-2683-evidence.mp4/issue335-file2683-evidence.mp4"
+    }
+  ]
+}
