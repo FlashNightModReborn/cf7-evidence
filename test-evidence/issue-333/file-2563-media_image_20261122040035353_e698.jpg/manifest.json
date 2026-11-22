@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 333,
+  "file_id": 2563,
+  "original_filename": "media_image_20261122040035353_e698.jpg",
+  "sender_nick": "时光流淌在心间",
+  "generated_at_utc": "2026-11-22T04:16:51Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "media_image_20261122040035353_e698.jpg",
+      "asset_name": "issue333-file2563-media_image_20261122040035353_e698.jpg",
+      "size_bytes": 5375154,
+      "sha256": "57fbd4a9a33763e8ddc6b828857d6fc51bcc2086df0575081d227ca049ad53d8",
+      "release_download_url": "",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-333/file-2563-media_image_20261122040035353_e698.jpg/issue333-file2563-media_image_20261122040035353_e698.jpg"
+    }
+  ]
+}
