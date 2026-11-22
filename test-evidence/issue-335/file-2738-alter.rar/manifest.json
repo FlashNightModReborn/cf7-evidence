@@ -1,0 +1,19 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 335,
+  "file_id": 2738,
+  "original_filename": "特种兵alter.rar",
+  "sender_nick": "fs",
+  "generated_at_utc": "2026-11-22T12:29:33Z",
+  "files": [
+    {
+      "role": "binary_attachment",
+      "name": "特种兵alter.rar",
+      "asset_name": "issue335-file2738-alter.rar",
+      "size_bytes": 5642900,
+      "sha256": "18d67edb76a1516fe895be9fa71b8cb9fa7abb45c243f6b5f0d7481b672b1e6b",
+      "release_download_url": "https://github.com/FlashNightModReborn/cf7-evidence/releases/download/test-evidence-assets/issue335-file2738-alter.rar",
+      "repo_raw_url": "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/test-evidence/issue-335/file-2738-alter.rar/issue335-file2738-alter.rar"
+    }
+  ]
+}
