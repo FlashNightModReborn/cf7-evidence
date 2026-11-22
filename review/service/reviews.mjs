@@ -1,7 +1,8 @@
+import {githubIdentity} from "./github-auth.mjs";
 const origin = "https://flashnightmodreborn.github.io";
 const policyRoot = "https://raw.githubusercontent.com/FlashNightModReborn/cf7-evidence/main/review/";
 const policies = new Map();
-const fields = "seq,issue,lane,author,revision,action,asset,choice,note,position_ms AS positionMs,previous,created_at AS createdAt";
+const fields = "seq,issue,lane,author,COALESCE(NULLIF(author_login,''),author) AS authorLabel,revision,action,asset,choice,note,position_ms AS positionMs,previous,created_at AS createdAt";
 const latestSQL = "SELECT "+fields+" FROM feedback_events WHERE issue=? AND lane=? AND author=? AND action=? ORDER BY seq DESC LIMIT 1";
 const acceptedChoices = new Set(["match","mismatch","unclear","use","other","yes","no"]);
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -35,9 +36,14 @@ async function policyFor(issue) {
   return value;
 }
 
-async function grantFor(request,policy,lane) {
+async function grantFor(request,policy,lane,db) {
   const h=request.headers.get("Authorization") || "";
-  verify(/^Bearer [a-zA-Z0-9_-]{40,96}$/.test(h),403,"请使用本单的专属校对链接");
+  if(h.startsWith("Bearer cfr1.")){
+    const user=await githubIdentity(db,h.slice(7));
+    verify(user && lane==="art" && policy.githubLogin===true,403,"请重新使用 GitHub 登录本单");
+    return {author:"github:"+user.accountId,display:"@"+user.login};
+  }
+  verify(/^Bearer [a-zA-Z0-9_-]{40,96}$/.test(h),403,"请使用 GitHub 账号登录后发表");
   const encoded=new TextEncoder().encode(h.slice(7));
   const bytes=new Uint8Array(await crypto.subtle.digest("SHA-256",encoded));
   const digest=Array.from(bytes,x=>x.toString(16).padStart(2,"0")).join("");
@@ -63,7 +69,8 @@ async function limitedBody(request) {
   catch{throw new ApiFault(400,"反馈格式无效");}
 }
 
-async function writeEvent(db,issue,lane,author,policy,b) {
+async function writeEvent(db,issue,lane,grant,policy,b) {
+  const author=grant.author;
   verify(b && typeof b==="object" && uuid.test(b.requestId || "") && typeof b.action==="string" && /^[A-Z]\d{2}$/.test(b.action),400,"动作或回执编号无效");
   verify(typeof b.note==="string" && [...b.note].length<=180 && Number.isSafeInteger(b.previous) && b.previous>=0 &&
     typeof b.asset==="string" && /^[a-f0-9]{64}$/.test(b.asset) && Number.isSafeInteger(b.positionMs) && b.positionMs>=0,400,"反馈字段无效");
@@ -78,12 +85,12 @@ async function writeEvent(db,issue,lane,author,policy,b) {
   verify(move && move.version===b.asset,409,"动作版本已更新，请重新查看");
   verify(b.choice==="clear" || (b.choice==="comment" && b.note.trim().length>0) || (acceptedChoices.has(b.choice) && move.choices.includes(b.choice)),400,"请选择有效判断或填写评论");
   verify(b.positionMs<=move.durationMs,400,"播放位置超出本段画面");
-  const insert=`INSERT INTO feedback_events(issue,lane,author,request_id,revision,action,asset,choice,note,position_ms,previous,created_at)
-    SELECT ?,?,?,?,?,?,?,?,?,?,?,strftime('%Y-%m-%dT%H:%M:%fZ','now')
+  const insert=`INSERT INTO feedback_events(issue,lane,author,author_login,request_id,revision,action,asset,choice,note,position_ms,previous,created_at)
+    SELECT ?,?,?,?,?,?,?,?,?,?,?,?,strftime('%Y-%m-%dT%H:%M:%fZ','now')
     WHERE COALESCE((SELECT seq FROM feedback_events WHERE issue=? AND lane=? AND author=? AND action=? ORDER BY seq DESC LIMIT 1),0)=?
     AND (SELECT COUNT(*) FROM feedback_events WHERE issue=? AND lane=? AND author=? AND created_at>strftime('%Y-%m-%dT%H:%M:%fZ','now','-1 minute'))<60
     ON CONFLICT(issue,lane,author,request_id) DO NOTHING`;
-  await db.prepare(insert).bind(issue,lane,author,b.requestId,b.revision,b.action,b.asset,b.choice,b.note,b.positionMs,b.previous,
+  await db.prepare(insert).bind(issue,lane,author,grant.display||"",b.requestId,b.revision,b.action,b.asset,b.choice,b.note,b.positionMs,b.previous,
     issue,lane,author,b.action,b.previous,issue,lane,author).run();
   const receipt=await lookup();
   if(receipt){verify(same(receipt),409,"回执编号已经用于另一条反馈");return json({event:receipt},201);}
@@ -105,8 +112,8 @@ export async function reviewApi(request,env,loadPolicy=policyFor) {
     const policy=await loadPolicy(issue);
     if(endpoint==="session"){
       verify(request.method==="GET",405,"请求方式无效");
-      const grant=await grantFor(request,policy,lane);
-      return json({issue,revision:policy.revision,lane,author:grant.author});
+      const grant=await grantFor(request,policy,lane,env.DB);
+      return json({issue,revision:policy.revision,lane,author:grant.author,display:grant.display||grant.author});
     }
     verify(env.DB,503,"反馈存储尚未就绪");
     if(request.method==="GET"){
@@ -117,8 +124,8 @@ export async function reviewApi(request,env,loadPolicy=policyFor) {
       return json({issue,revision:policy.revision,events:result.results.slice(0,200),more:result.results.length>200});
     }
     verify(request.method==="POST",405,"请求方式无效");
-    const grant=await grantFor(request,policy,lane);
-    return await writeEvent(env.DB,issue,lane,grant.author,policy,await limitedBody(request));
+    const grant=await grantFor(request,policy,lane,env.DB);
+    return await writeEvent(env.DB,issue,lane,grant,policy,await limitedBody(request));
   }catch(error){
     if(error instanceof ApiFault)return json({error:error.message},error.status);
     console.error("Review API error",error instanceof Error?error.name:"unknown");

@@ -4,11 +4,12 @@ import {DatabaseSync} from "node:sqlite";
 import {createHash, randomBytes, randomUUID} from "node:crypto";
 import {test} from "node:test";
 import {reviewApi} from "./reviews.mjs";
-import {Receipts} from "../app/v2/receipts.js";
+import {Receipts} from "../app/v3/receipts.js";
 
 test("persisted choices, versioned replay, edit conflicts and withdrawals",async()=>{
   const sql=new DatabaseSync(":memory:");
   sql.exec(await readFile(new URL("./001-feedback.sql",import.meta.url),"utf8"));
+  sql.exec(await readFile(new URL("./002-github-identity.sql",import.meta.url),"utf8"));
   const DB={prepare(statement){return{bind(...args){const q=sql.prepare(statement);return{
     first:async()=>q.get(...args),all:async()=>({results:q.all(...args)}),run:async()=>q.run(...args),
   };}};}};

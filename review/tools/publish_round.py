@@ -97,14 +97,14 @@ def main():
             dest.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(file,dest)
     template=(root/"tools/page.html").read_text(encoding="utf8")
-    for dest,app,base,media,round_name in [(holder,"../app/v2","./",revision+"/","latest"),(version,"../../app/v2","../","./",revision)]:
+    for dest,app,base,media,round_name in [(holder,"../app/v3","./",revision+"/","latest"),(version,"../../app/v3","../","./",revision)]:
         page=template
         tags={"__ISSUE__":str(issue),"__TITLE__":data["title"],"__APP__":app,"__ROOT__":base,
               "__MEDIA__":media,"__ROUND__":round_name,"__DISPLAY__":revision.upper(),"__API_ORIGIN__":api}
         for marker,value in tags.items():page=page.replace(marker,html.escape(value,quote=True))
         (dest/"index.html").write_text(page,encoding="utf8")
     moves={m["id"]:{k:m[k] for k in ("version","durationMs","choices")} for m in data["moves"]}
-    write_json(registry,{"issue":issue,"revision":revision,"moves":moves,"grants":grants})
+    write_json(registry,{"issue":issue,"revision":revision,"githubLogin":True,"moves":moves,"grants":grants})
     write_json(holder/"latest.json",{"issue":issue,"revision":revision,"api":api,"manifest":revision+"/manifest.json",
                                      "manifestSha256":digest(version/"manifest.json")})
     print(f"#{issue} {revision.upper()} · {len(keys)} 个可定位画面 · {len(bundle_files)} 份清单及媒体")

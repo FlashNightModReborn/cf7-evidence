@@ -1,6 +1,7 @@
 {
   "issue": 335,
   "revision": "r1",
+  "githubLogin": true,
   "moves": {
     "U01": {
       "version": "e945684e5d01f71bd84d6f6b36fd212d515d2a388678911e5c49aa3a28938709",
