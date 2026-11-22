@@ -105,7 +105,7 @@ def main():
         (dest/"index.html").write_text(page,encoding="utf8")
     moves={m["id"]:{k:m[k] for k in ("version","durationMs","choices")} for m in data["moves"]}
     write_json(registry,{"issue":issue,"revision":revision,"moves":moves,"grants":grants})
-    write_json(holder/"latest.json",{"issue":issue,"revision":revision,"manifest":revision+"/manifest.json",
+    write_json(holder/"latest.json",{"issue":issue,"revision":revision,"api":api,"manifest":revision+"/manifest.json",
                                      "manifestSha256":digest(version/"manifest.json")})
     print(f"#{issue} {revision.upper()} · {len(keys)} 个可定位画面 · {len(bundle_files)} 份清单及媒体")
 

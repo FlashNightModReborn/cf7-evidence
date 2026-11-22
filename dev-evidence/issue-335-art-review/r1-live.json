@@ -1,0 +1,24 @@
+{
+  "issue": 335,
+  "round": "r1",
+  "target": "https://flashnightmodreborn.github.io/cf7-evidence/review/335/",
+  "run": "f272d5a9",
+  "passed": [
+    "首屏 38 格，横竖屏只载对应总览，填写凭据未留在地址栏",
+    "真实美术链接授权有效，公共只读与测试写入范围分离",
+    "填写端离开后，独立只读浏览器读回 U19 的轮次、备注及 0.23 秒原画面",
+    "丢失回执的同一请求重放保持单条，冲突内容收到明确反馈",
+    "离线仅显示待同步，恢复并重开后只收到一条回执",
+    "改选与撤回保留历史，真实美术轮次未混入联通测试"
+  ],
+  "errors": [],
+  "testLane": "qa",
+  "firstReceipt": 1,
+  "secondReceipt": 2,
+  "withdrawReceipt": 3,
+  "artReceiptsAtStart": 0,
+  "artReceiptsAtFinish": 0,
+  "browserErrors": 0,
+  "ok": true,
+  "finishedUtc": "2026-11-22T10:28:39.127Z"
+}

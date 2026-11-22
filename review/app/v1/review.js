@@ -146,7 +146,7 @@ function openMove(m,ms=null){
   $("detailTitle").textContent=m.id+"　"+m.name;$("still").hidden=true;
   const singleSide=m.sides===1 && m.id!=="C01";
   $("playerBox").classList.toggle("single-sided",singleSide);$("absent").hidden=!singleSide;
-  if(noteMove!==m.id){$("note").value=store.draft(m.id)?.body.note || "";noteMove=m.id;}
+  if(noteMove!==m.id){$("note").value=store.draft(m.id)?.body.note ?? store.mine(m.id)?.note ?? "";noteMove=m.id;}
   single.src=media(m.video);single.playbackRate=speed;
   single.addEventListener("loadedmetadata",()=>{
     if(selected?.id!==m.id)return;

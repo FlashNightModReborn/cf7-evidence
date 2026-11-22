@@ -130,7 +130,7 @@ export class Receipts extends EventTarget {
     if(this.sending || this.auth!=="allowed")return;
     this.sending=true;
     try{
-      for(const item of [...this.pending.values()]){
+      for(const item of this.pending.values()){
         if(item.problem)continue;
         try{
           const data=await this.call("events",{method:"POST",body:item.body,token:true});

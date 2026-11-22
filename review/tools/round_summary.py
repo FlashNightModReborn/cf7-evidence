@@ -1,12 +1,14 @@
 """Print a review round's public art summary. --post maintains one comment per round."""
 import argparse
 import json
+import os
 import re
 import subprocess
 import tempfile
 from collections import Counter
 from pathlib import Path
 from urllib.parse import urlencode
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 LABELS={"match":"对得上","mismatch":"对不上","unclear":"看不清","use":"用左边这版","other":"指的是别的稿",
@@ -25,13 +27,21 @@ def main():
     p.add_argument("issue",type=int)
     p.add_argument("--revision",help="Defaults to the published latest revision")
     p.add_argument("--post",action="store_true",help="Use current gh identity to create/update the human review summary")
+    p.add_argument("--skip-unregistered",action="store_true",help="For issue closure events without a published review")
     args=p.parse_args()
     base=PAGES+str(args.issue)+"/"
-    revision=args.revision or get(base+"latest.json")["revision"]
+    try:entry=get(base+"latest.json")
+    except HTTPError as error:
+        if error.code==404 and args.skip_unregistered:
+            print("此 Issue 没有已发布的校对页");return
+        raise
+    if entry["issue"]!=args.issue:raise ValueError("校对单身份不一致")
+    revision=args.revision or entry["revision"]
     if not re.fullmatch(r"r[1-9]\d*",revision):raise ValueError("轮次无效")
-    page=Path(__file__).resolve().parents[1]/str(args.issue)/revision/"index.html"
-    api=re.search(r'data-api="(https://[^"]+)"',page.read_text(encoding="utf8"))[1]
+    api=entry["api"]
+    if not re.fullmatch(r"https://[a-z0-9.-]+",api):raise ValueError("回执源无效")
     manifest=get(base+revision+"/manifest.json")
+    if manifest["issue"]!=args.issue or manifest["revision"]!=revision:raise ValueError("轮次清单身份不一致")
     moves={m["id"]:m for m in manifest["moves"]}
     by_person={}; cursor=0
     while True:
@@ -54,9 +64,10 @@ def main():
     lines.extend(["",marker,""])
     body="\n".join(lines)
     if not args.post:print(body);return
-    login=subprocess.check_output(["gh","api","user","--jq",".login"],text=True).strip()
+    login="github-actions[bot]" if os.environ.get("GITHUB_ACTIONS")=="true" else subprocess.check_output(["gh","api","user","--jq",".login"],text=True).strip()
     comments=json.loads(subprocess.check_output(["gh","api","--paginate","--slurp",f"repos/{REPO}/issues/{args.issue}/comments"],encoding="utf8"))
-    alternatives=[c for page_ in comments for c in page_ if c["user"]["login"]==login and marker in c["body"]]
+    alternatives=[c for page_ in comments for c in page_ if marker in c["body"] and
+                  (c["user"]["login"] in (login,"github-actions[bot]") or c.get("author_association") in ("OWNER","MEMBER","COLLABORATOR"))]
     if len(alternatives)>1:raise ValueError("发现重复的轮次汇总，请先核对")
     with tempfile.TemporaryDirectory() as tmp:
         if alternatives:

@@ -22,3 +22,7 @@ python -X utf8 review/tools/round_summary.py 335 --revision r1
 ```
 
 制作确认后加 `--post`，以当前维护者身份更新该轮的一条主仓 Issue 评论。汇总只读取实际美术反馈。证据站提供公开的只读媒体和版本数据，写入接口通过专属链接校验这一单的权限，并把每次变更存入独立的回执数据库。
+
+主仓的「美术校对回执」工作流可以指定单号和轮次运行；带校对标记的 Issue 关闭时，它会汇总最新轮次。历史页面和回执可继续查阅。R1 的[公开联通验收](../dev-evidence/issue-335-art-review/r1-live.json)记录了填写端与只读端的实际回读。
+
+回执服务使用独立的 Worker 和 D1。部署版本的处理器和建表 SQL 在 `service/`，可使用 Node 24 运行 `node --test review/service/reviews.test.mjs` 核对权限、重复提交、并发改选和新版复看。新 Issue 使用同一服务，按单号从本仓的 policy.json 读取授权和版本。
