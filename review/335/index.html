@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; media-src 'self'; connect-src 'self' https://cf7-art-review-receipts.crazyfs.chatgpt.site; object-src 'none'; base-uri 'self'; form-action 'none'">
 <title>教官全动作校对 · #335</title>
-<link rel="stylesheet" href="../app/v1/review.css">
+<link rel="stylesheet" href="../app/v2/review.css">
 <link rel="preload" as="image" type="image/webp" media="(orientation: portrait)" href="r1/media/overview-tall.webp">
 <link rel="preload" as="image" type="image/webp" media="(orientation: landscape)" href="r1/media/overview-wide.webp">
 </head>
@@ -22,19 +22,28 @@
   </section>
   <footer><span class="batch"><a href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/335" target="_blank" rel="noopener">#335</a> · <b id="roundLabel">R1</b></span>
     <span id="summary" role="status">正在读取校对记录</span>
-    <div class="controls"><button id="play" type="button">播放全部</button><button id="slow" type="button" aria-pressed="false">半速</button></div>
+    <div class="controls"><button id="chooseComment" class="primary" type="button" aria-pressed="false">写评论</button><button id="play" type="button">播放全部</button><button id="slow" type="button" aria-pressed="false">半速</button></div>
   </footer>
 </main>
 <dialog id="detail" aria-labelledby="detailTitle">
   <div class="detail-head"><h2 id="detailTitle"></h2><button class="plain" id="back" type="button">返回总览</button></div>
   <div id="playerBox"><div id="absent" hidden>原稿待配</div><video id="single" playsinline controls preload="none"></video></div>
+  <section class="composer" aria-labelledby="noteLabel">
+    <div class="composer-head"><label id="noteLabel" for="note">写评论</label><span id="noteTime"></span></div>
+    <textarea id="note" maxlength="180" rows="2" placeholder="写下你看到的问题，例如「右手抬得太早」。"></textarea>
+    <div class="compose-actions"><button id="sendNote" class="primary" type="button">发表评论</button><span id="commentHint">文字会随反馈展示</span><button id="unlock" class="link" type="button" hidden>启用填写</button></div>
+    <div id="inviteBox" hidden>
+      <label for="inviteField">粘贴本单的专属填写链接</label>
+      <div class="invite-actions"><input id="inviteField" type="password" autocomplete="off" spellcheck="false" placeholder="维护者私下发给你的链接"><button id="applyInvite" class="plain" type="button">启用填写</button></div>
+      <span id="inviteMsg" role="status"></span>
+    </div>
+    <p id="result" role="status"></p>
+  </section>
   <p id="question"></p>
-  <details id="noteBox" hidden><summary>补一句（选填）</summary><label for="note">随反馈展示</label><textarea id="note" maxlength="180" rows="2"></textarea></details>
   <div id="answers" class="answers"></div>
-  <p id="result" role="status"></p>
   <img id="still" hidden alt="开始、中段和结束的三格静帧">
   <section id="historyBox" hidden aria-label="反馈历史"><h3>这招的记录</h3><ol id="history"></ol></section>
 </dialog>
-<script type="module" src="../app/v1/review.js"></script>
+<script type="module" src="../app/v2/review.js"></script>
 </body>
 </html>

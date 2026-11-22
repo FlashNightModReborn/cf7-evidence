@@ -12,7 +12,7 @@ from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 LABELS={"match":"对得上","mismatch":"对不上","unclear":"看不清","use":"用左边这版","other":"指的是别的稿",
-        "yes":"是这招","no":"不是这招","clear":"撤回"}
+        "yes":"是这招","no":"不是这招","clear":"撤回","comment":"文字评论"}
 REPO="FlashNightModReborn/CrazyFlashNight"
 PAGES="https://flashnightmodreborn.github.io/cf7-evidence/review/"
 
@@ -43,22 +43,29 @@ def main():
     manifest=get(base+revision+"/manifest.json")
     if manifest["issue"]!=args.issue or manifest["revision"]!=revision:raise ValueError("轮次清单身份不一致")
     moves={m["id"]:m for m in manifest["moves"]}
-    by_person={}; cursor=0
+    decisions={}; notes={}; cursor=0
     while True:
         batch=get(api+"/api/v1/reviews/"+str(args.issue)+"/events?"+urlencode({"after":cursor}))
         for e in batch["events"]:
             cursor=e["seq"]
-            if int(e["revision"][1:])<=int(revision[1:]) and e["action"] in moves:
-                by_person[e["action"],e["author"]]=e
+            if int(e["revision"][1:])>int(revision[1:]) or e["action"] not in moves:continue
+            key=(e["action"],e["author"])
+            if e["choice"]=="clear":
+                decisions.pop(key,None);notes.pop(key,None)
+            elif e["asset"]==moves[e["action"]]["version"]:
+                if e["choice"]=="comment":notes[key]=e
+                else:decisions[key]=e
+            else:
+                decisions.pop(key,None);notes.pop(key,None)
         if not batch["more"]:break
-    current=[e for e in by_person.values() if e["choice"]!="clear" and e["asset"]==moves[e["action"]]["version"]]
+    current=list(decisions.values())+list(notes.values())
     counts=Counter(e["choice"] for e in current)
     marker=f"<!-- cf7-art-round:{args.issue}:{revision} -->"
     lines=[f"## {revision.upper()} 美术校对汇总","",f"[本轮画面与原始反馈]({base}{revision}/)","",
            f"已有 {len({e['action'] for e in current})} 项收到与本轮素材对应的美术反馈。"]
     if counts:lines.extend([""," · ".join(f"{LABELS[k]} {n}" for k,n in counts.items())])
     for e in sorted(current,key=lambda x:(x["action"],x["seq"])):
-        if e["choice"] in {"mismatch","other","unclear","no"}:
+        if e["choice"] in {"mismatch","other","unclear","no","comment"}:
             at=f"{base}{e['revision']}/?t={e['positionMs']}#{e['action']}"
             lines.append(f"- [{e['action']} {moves[e['action']]['name']}]({at})　{LABELS[e['choice']]}")
     lines.extend(["",marker,""])

@@ -97,7 +97,7 @@ def main():
             dest.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(file,dest)
     template=(root/"tools/page.html").read_text(encoding="utf8")
-    for dest,app,base,media,round_name in [(holder,"../app/v1","./",revision+"/","latest"),(version,"../../app/v1","../","./",revision)]:
+    for dest,app,base,media,round_name in [(holder,"../app/v2","./",revision+"/","latest"),(version,"../../app/v2","../","./",revision)]:
         page=template
         tags={"__ISSUE__":str(issue),"__TITLE__":data["title"],"__APP__":app,"__ROOT__":base,
               "__MEDIA__":media,"__ROUND__":round_name,"__DISPLAY__":revision.upper(),"__API_ORIGIN__":api}

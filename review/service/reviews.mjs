@@ -76,7 +76,7 @@ async function writeEvent(db,issue,lane,author,policy,b) {
   verify(policy.revision===b.revision,409,"已发布新一轮，请刷新后再确认");
   const move=Object.hasOwn(policy.moves,b.action)?policy.moves[b.action]:null;
   verify(move && move.version===b.asset,409,"动作版本已更新，请重新查看");
-  verify(b.choice==="clear" || (acceptedChoices.has(b.choice) && move.choices.includes(b.choice)),400,"这个选项不适用于该动作");
+  verify(b.choice==="clear" || (b.choice==="comment" && b.note.trim().length>0) || (acceptedChoices.has(b.choice) && move.choices.includes(b.choice)),400,"请选择有效判断或填写评论");
   verify(b.positionMs<=move.durationMs,400,"播放位置超出本段画面");
   const insert=`INSERT INTO feedback_events(issue,lane,author,request_id,revision,action,asset,choice,note,position_ms,previous,created_at)
     SELECT ?,?,?,?,?,?,?,?,?,?,?,strftime('%Y-%m-%dT%H:%M:%fZ','now')
