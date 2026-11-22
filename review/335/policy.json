@@ -1,6 +1,6 @@
 {
   "issue": 335,
-  "revision": "r1",
+  "revision": "r2",
   "githubLogin": true,
   "moves": {
     "U01": {
@@ -31,79 +31,43 @@
       ]
     },
     "U04": {
-      "version": "d515b153aec71fea3879f22fce1b8f0fd36cca0a847b95f8501d7a0f246a655d",
-      "durationMs": 3000,
+      "version": "9f5a4678d010941f8d11febedcb2a3d3c6ccadc1898c7811bf1439df7d360677",
+      "durationMs": 2967,
       "choices": [
-        "use",
-        "other",
+        "match",
+        "mismatch",
         "unclear"
       ]
     },
     "U05": {
-      "version": "02c6f608288917b530a74d23c2a4591c94d6d00db744519f1ca9cce293efa475",
+      "version": "053e5cc9eb8cb6bcf2f346aa10cb148c015b36171caaa156c6ea9e0dda7d509a",
       "durationMs": 3033,
       "choices": [
-        "use",
-        "other",
+        "match",
+        "mismatch",
         "unclear"
       ]
     },
     "U06": {
-      "version": "83e5cb7010f715ce48aa7fbabadd92ab508758efdb25e92f272d9798d98aaf62",
-      "durationMs": 1333,
+      "version": "4fb894e91971034fa3d395c41b5cd8256ce2a216d7704e82230d88ce6bca0c09",
+      "durationMs": 1167,
       "choices": [
-        "yes",
-        "no",
-        "unclear"
-      ]
-    },
-    "U07": {
-      "version": "ea7c952f1d542d036b541bd73df383306def915e383b1a56340de898d0a097f7",
-      "durationMs": 1066,
-      "choices": [
-        "yes",
-        "no",
+        "match",
+        "mismatch",
         "unclear"
       ]
     },
     "U08": {
-      "version": "9cee183e72ff48fce2f1225efe766ebe36c3978eef9f61ccb2ff0a2d101e64e2",
-      "durationMs": 133,
+      "version": "a7595b239abc290bbece4b6e39601599e3c86b4f9f90f7609bf7415146e6ec84",
+      "durationMs": 700,
       "choices": [
-        "yes",
-        "no",
+        "match",
+        "mismatch",
         "unclear"
       ]
     },
     "U09": {
       "version": "c47c96a2b64e6585cff42db7623ccf4ace5232b808fbf45a2d35785a83119f7b",
-      "durationMs": 1167,
-      "choices": [
-        "yes",
-        "no",
-        "unclear"
-      ]
-    },
-    "U10": {
-      "version": "6ac8c62f8d1f2c1d9b9beb2eab9008b354e84784055578980863f92773fc6b27",
-      "durationMs": 1167,
-      "choices": [
-        "yes",
-        "no",
-        "unclear"
-      ]
-    },
-    "U11": {
-      "version": "fd2f0f5206d2ead7405e502d2dea82792e0e3fafc8e3145fd6c12ab261ce9deb",
-      "durationMs": 1167,
-      "choices": [
-        "yes",
-        "no",
-        "unclear"
-      ]
-    },
-    "U12": {
-      "version": "cd56ebe6aa038b0af0395da92138cde537d2c32c1f345f0a5d6e660f5a5c7f70",
       "durationMs": 1167,
       "choices": [
         "yes",
@@ -157,8 +121,8 @@
       ]
     },
     "U18": {
-      "version": "b52acd8cc6f8eb60f89f125c42246aafd0af098bc94ad60d53e8b1546f7093e2",
-      "durationMs": 600,
+      "version": "180c07ae55a6e032fca823e5f01a41f992bcfd1a025090946f2275cb3d87af57",
+      "durationMs": 266,
       "choices": [
         "match",
         "mismatch",
@@ -166,8 +130,8 @@
       ]
     },
     "U19": {
-      "version": "b6584512427c5081974e52ff06f39d50b1a6fcff6eb4df60b49803f06897c650",
-      "durationMs": 600,
+      "version": "782690b3868f8c09b9b9e547ef984e86ed70d62eb4610aa74df68f1913ea709f",
+      "durationMs": 333,
       "choices": [
         "match",
         "mismatch",
@@ -247,7 +211,7 @@
       ]
     },
     "S04": {
-      "version": "7bdb0be39aafec7dd4e630e2f857d5eb9ce89fab10921a3ff46b2fe824a17ead",
+      "version": "bc464829fc391c849dca5b74d8ee1599d43c24bf49930a7968d52794420f0104",
       "durationMs": 2800,
       "choices": [
         "match",
@@ -256,11 +220,11 @@
       ]
     },
     "S05": {
-      "version": "3d377f8d4ace9df873122755b1440e3548f71e93d01086ee75d06d9999b6523f",
-      "durationMs": 133,
+      "version": "be59f9f22c8780f3705a4190d9e9a59fe187295f1aff1bb03f47ac26d31ac36d",
+      "durationMs": 700,
       "choices": [
-        "yes",
-        "no",
+        "match",
+        "mismatch",
         "unclear"
       ]
     },
@@ -336,9 +300,144 @@
         "unclear"
       ]
     },
-    "C01": {
-      "version": "c89296db2a2a6e44e1a62acb0e1f275343f1acf90e4247c1c2044e9aa9f598c8",
-      "durationMs": 3400,
+    "E01": {
+      "version": "8a8ccf1cddadeb662e2c3312c3287b7b7ea342a9cc3a140ffb2efa917491bd69",
+      "durationMs": 733,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "E02": {
+      "version": "a2ab89b382e0af6e9fff90922a0b52af37176ddb505ee9132fc6d7db101fe3ec",
+      "durationMs": 2967,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "E03": {
+      "version": "bae99cdf5925bd20d2d03795061a08f11e91c5c19e264529222aabb470951d0a",
+      "durationMs": 3033,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "E04": {
+      "version": "ead725c6952d8a2572d8bd0c2f5e691d1e3357aecd4f895815dab36233eb32fd",
+      "durationMs": 1167,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "E05": {
+      "version": "82636f451e9a0b4dae0532af7d227a11eb3d93b262152816d010f3b2ac273859",
+      "durationMs": 700,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "E06": {
+      "version": "cc62a74b5187c862bca47dc696b6611141dc608c20a4d65f075947edcd01fdb3",
+      "durationMs": 2800,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "E07": {
+      "version": "610b498f2dcb97f8c80720176bbbfe55abe66aac3993b90285d8a276233d9bc8",
+      "durationMs": 700,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "E08": {
+      "version": "7b70d67393123eb86be4f81b4b0aebd0cc76246da45951775f9086f28822956a",
+      "durationMs": 600,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "N01": {
+      "version": "41c79f50096ee216d621c2864da7ebcf883bf06a2642df18735b22fd36d5f2da",
+      "durationMs": 733,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "N02": {
+      "version": "83c18bc6a3d06ef0e0e7069104976da5cbea4f5d349a59880f313541b0bcefc6",
+      "durationMs": 700,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "N03": {
+      "version": "0b9d8925eec8858be503435137f2eaa13c5f41edbfed674d0ceed4a6c64dd598",
+      "durationMs": 1133,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "N04": {
+      "version": "06fb48267b4e5d8b2eb37e875a4524b38bce15fefed8c2cab337c1ce8f9c27ba",
+      "durationMs": 1200,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "N05": {
+      "version": "bd89ec9932cc908ae3dda0b070c799d8e5db5ebee0d93ffe5d083e504725720e",
+      "durationMs": 600,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "N06": {
+      "version": "19978c41f5b938e08435fae04953a3c8b37d135492feed32f0f7c85b66069a49",
+      "durationMs": 1967,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "N07": {
+      "version": "742d88576c3eda40ca2e49b09d10a954acdf186f0feafeb82073e8349f25e53b",
+      "durationMs": 700,
+      "choices": [
+        "match",
+        "mismatch",
+        "unclear"
+      ]
+    },
+    "N08": {
+      "version": "dcaf3ddfd8e59911a9576317eef032801f2173fb78fdcacc10f8effebc0fee30",
+      "durationMs": 366,
       "choices": [
         "match",
         "mismatch",
