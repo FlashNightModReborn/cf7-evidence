@@ -1,0 +1,32 @@
+{
+  "schema": "cf7-test-evidence-manifest-v1",
+  "issue_number": 353,
+  "file_id": 3330,
+  "original_filename": "launcher.log",
+  "sender_nick": "布鲁.谍沃齐格",
+  "generated_at_utc": "2026-11-25T15:33:40Z",
+  "redaction_policy": "Windows user profile folder replaced with <USER_REDACTED>; line numbers 100% preserved.",
+  "files": [
+    {
+      "role": "original_raw_log",
+      "name": "launcher.log",
+      "size_bytes": 203505,
+      "line_count": 810,
+      "sha256": "5b66da3a48c748a9b965875497aaa48e56cc485565c6d68daf3a6e370f548421"
+    },
+    {
+      "role": "redacted_full_log",
+      "name": "launcher.redacted.log",
+      "size_bytes": 203545,
+      "line_count": 810,
+      "sha256": "1fa6b952d68bd282d9d50a6ea5bcc4128bb7f5db2076efad30649a9b8ef445e2"
+    },
+    {
+      "role": "fault_window_verbatim",
+      "name": "fault_window_verbatim.txt",
+      "size_bytes": 242883,
+      "line_count": 940,
+      "sha256": "dcdec182e2bd8516f9ce60343f30eee0c539f43b32a861f55df2b8a6e8906a80"
+    }
+  ]
+}
