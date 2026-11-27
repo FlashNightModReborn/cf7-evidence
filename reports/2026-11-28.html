@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>《闪客快打7重置版》工程进展日报 (2026-11-28) — Wings Sol (high) 参谋台</title>
+<style>
+:root {
+  --bg: #0b0f17;
+  --panel: #131a27;
+  --panel-alt: #182132;
+  --border: #26334d;
+  --text: #e6edf3;
+  --muted: #8b9bb4;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.14);
+  --green: #22c55e;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --purple: #a855f7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.68;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 15, 23, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.model-tag {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: var(--panel);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 6px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.tab-btn.active, .tab-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.date-select, .search-input {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.search-input { width: 210px; }
+.ext-btn {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.layout {
+  max-width: 1420px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 24px;
+  padding: 20px;
+}
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; padding: 12px; }
+  .sidebar { position: static !important; max-height: none !important; }
+}
+.sidebar {
+  position: sticky;
+  top: 68px;
+  align-self: start;
+  max-height: calc(100vh - 88px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+.sidebar-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+.quick-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.jump-chip {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+.jump-chip:hover { border-color: var(--accent); color: var(--accent); }
+.toc-link {
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toc-link:hover { background: var(--panel-alt); color: var(--text); text-decoration: none; }
+.toc-h2 { font-weight: 700; color: var(--text); margin-top: 6px; }
+.toc-h3 { padding-left: 18px; font-size: 12.5px; }
+.main-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 34px;
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .main-card { padding: 16px; }
+}
+.report-h1 { font-size: 24px; margin-top: 0; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.report-h2 {
+  font-size: 19px;
+  margin-top: 32px;
+  padding: 8px 12px;
+  background: var(--panel-alt);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+}
+.report-h3 { font-size: 16px; margin-top: 24px; color: #f8fafc; }
+.report-h4 { font-size: 14.5px; margin-top: 18px; color: var(--accent); }
+.report-p { margin: 10px 0; }
+.report-list { margin: 8px 0 14px 0; padding-left: 22px; }
+.report-list li { margin-bottom: 6px; }
+.report-list li.sub-li { margin-left: 18px; list-style-type: circle; color: #cbd5e1; }
+.sec-divider { border: none; border-top: 1px solid var(--border); margin: 26px 0; }
+.report-quote {
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  color: #cbd5e1;
+}
+.table-wrap { overflow-x: auto; margin: 14px 0; }
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.report-table th, .report-table td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.report-table th { background: var(--panel-alt); font-weight: 700; }
+.report-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: rgba(148, 163, 184, 0.15);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 12.5px;
+}
+.code-card {
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #090d14;
+}
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: var(--panel-alt);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+}
+.copy-btn {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 5px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 11.5px;
+}
+.code-card pre { margin: 0; padding: 12px 14px; overflow-x: auto; }
+.code-card pre code { background: none; padding: 0; font-size: 12.5px; line-height: 1.55; }
+.issue-pill {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 5px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  font-weight: 600;
+}
+.commit-pill code {
+  background: rgba(168, 85, 247, 0.18);
+  color: #d8b4fe;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+.tester-pill {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 5px;
+  background: rgba(234, 179, 8, 0.18);
+  color: #fde047;
+  font-weight: 600;
+}
+.status-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge-red { background: rgba(239, 68, 68, 0.18); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+.badge-yellow { background: rgba(234, 179, 8, 0.18); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.4); }
+.badge-green { background: rgba(34, 197, 94, 0.18); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.4); }
+.badge-done { background: rgba(56, 189, 248, 0.18); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4); }
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+.topic-card { background: var(--panel-alt); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.topic-meta { font-size: 11.5px; color: var(--accent); margin-bottom: 6px; font-family: monospace; }
+.hidden { display: none !important; }
+mark.hl { background: rgba(234, 179, 8, 0.35); color: #fff; padding: 0 2px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span>🐉 《闪客快打7重置版》工程与测试情报中心</span>
+    <span class="model-tag">gpt-6.2-sol · high</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('report', this)">📄 每日进展完整报告 (2026-11-28)</button>
+    <button class="tab-btn" onclick="switchTab('radar', this)">🎯 实时待验收雷达</button>
+    
+  </div>
+  <div class="controls">
+    <input type="text" id="searchBox" class="search-input" placeholder="🔍 搜测试员昵称 / #Issue / 文件..." oninput="filterReport(this.value)" />
+    <select class="date-select" onchange="if(this.value) window.location.href=this.value">
+      <option value="2026-11-28.html" selected>📅 2026-11-28 日报</option><option value="2026-11-27.html">📅 2026-11-27 日报</option><option value="2026-11-26.html">📅 2026-11-26 日报</option><option value="2026-11-25.html">📅 2026-11-25 日报</option><option value="2026-11-24.html">📅 2026-11-24 日报</option><option value="2026-11-23.html">📅 2026-11-23 日报</option><option value="2026-11-22.html">📅 2026-11-22 日报</option><option value="2026-11-21.html">📅 2026-11-21 日报</option><option value="2026-11-20.html">📅 2026-11-20 日报</option><option value="2026-11-19.html">📅 2026-11-19 日报</option><option value="2026-11-18.html">📅 2026-11-18 日报</option><option value="2026-11-17.html">📅 2026-11-17 日报</option><option value="2026-11-16.html">📅 2026-11-16 日报</option><option value="2026-11-15.html">📅 2026-11-15 日报</option><option value="2026-11-14.html">📅 2026-11-14 日报</option><option value="2026-11-13.html">📅 2026-11-13 日报</option><option value="2026-11-12.html">📅 2026-11-12 日报</option><option value="2026-11-11.html">📅 2026-11-11 日报</option><option value="2026-11-10.html">📅 2026-11-10 日报</option>
+    </select>
+    <a class="ext-btn" href="https://github.com/FlashNightModReborn/cf7-evidence/blob/main/reports/2026-11-28.md" target="_blank" rel="noopener">GitHub Markdown 原文</a>
+    <a class="ext-btn" href="http://148.135.106.202:18080/reports/2026-11-28.html" target="_blank" rel="noopener">⚡ 国内直连镜像</a>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="tocSidebar">
+    <div class="sidebar-title">⚡ 快速定位章节</div>
+    <div class="quick-jumps">
+      <button class="jump-chip" onclick="jumpByKeyword('总览')">📊 总览</button>
+      <button class="jump-chip" onclick="jumpByKeyword('新增玩家反馈')">🔥 活跃工单</button>
+      <button class="jump-chip" onclick="jumpByKeyword('提交模块聚类')">🧱 提交聚类</button>
+      <button class="jump-chip" onclick="jumpByKeyword('今日测试员求测指南')">🎯 求测指南</button>
+      <button class="jump-chip" onclick="jumpByKeyword('开发者关注重点')">🧭 排期参谋</button>
+      <button class="jump-chip" onclick="jumpByKeyword('顺手消灭')">🍬 顺手修</button>
+      <button class="jump-chip" onclick="jumpByKeyword('今日结论')">📌 结论</button>
+    </div>
+    <div class="sidebar-title">📑 章节目录 (17)</div>
+    <nav id="tocNav">
+      <a href="#sec-2" class="toc-link toc-h2">一、新增玩家反馈与活跃工单进展</a><a href="#sec-3" class="toc-link toc-h3">1. Issue #365：新增中级插件材料「白色涂料」</a><a href="#sec-4" class="toc-link toc-h3">2. Issue #364：兵工厂第三张图刷怪装置遮挡异常</a><a href="#sec-5" class="toc-link toc-h3">3. Issue #363：青蛙血腥死亡后偶发无死亡贴图</a><a href="#sec-6" class="toc-link toc-h3">4. Issue #359：普通、精制与加强子弹配置分布</a><a href="#sec-7" class="toc-link toc-h3">5. Issue #358：兽化变种僵尸攻击时画面消失</a><a href="#sec-8" class="toc-link toc-h3">6. Issue #357：暂停后怪物继续走到边界</a><a href="#sec-9" class="toc-link toc-h3">7. Issue #352：CF6 女僵尸正常击杀不播血腥死亡</a><a href="#sec-10" class="toc-link toc-h2">二、昨日遗留问题追踪与主要工程开发进展</a><a href="#sec-11" class="toc-link toc-h3">2.1 近期重点遗留问题状态追踪</a><a href="#sec-12" class="toc-link toc-h3">2.2 主分支（main）开发提交模块聚类</a><a href="#sec-13" class="toc-link toc-h2">三、🎯 今日测试员求测指南（To 测试群）</a><a href="#sec-14" class="toc-link toc-h2">四、🧭 开发者关注重点与排期参谋</a><a href="#sec-15" class="toc-link toc-h3">4.1 🚨 建议插队处置</a><a href="#sec-16" class="toc-link toc-h3">4.2 🍬 高性价比顺手项</a><a href="#sec-17" class="toc-link toc-h3">4.3 ⚖️ 设计裁决与架构关注</a><a href="#sec-18" class="toc-link toc-h2">今日结论</a>
+    </nav>
+  </aside>
+
+  <main class="main-card">
+    <section id="tab-report">
+      <h1 id="sec-1" class="report-h1">《闪客快打7重置版》GitHub Issues 每日进展报告（2026-11-28）</h1>
+<ul class="report-list"><li><strong>统计窗口</strong>：北京时间 2026-11-27 08:00 至 2026-11-28 08:00。</li><li><strong>Issue</strong>：窗口内活跃 <strong>7</strong> 单，含新增 <strong>3</strong> 单（<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/363" target="_blank" rel="noopener">#363</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/364" target="_blank" rel="noopener">#364</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/365" target="_blank" rel="noopener">#365</a>）、关闭 <strong>1</strong> 单（<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/359" target="_blank" rel="noopener">#359</a>）；截点仍有 <strong>20</strong> 单 Open。<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/352" target="_blank" rel="noopener">#352</a> 虽有“先行关闭”的评论，截点状态仍为 Open。</li><li><strong><code>main</code></strong>：窗口内 <strong>36</strong> 次提交；HEAD <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/9a135febba4d0ab312f7a50af19f20134778e404" target="_blank" rel="noopener"><code>9a135febb</code></a>，<code>✨ feat: 替换不存在的对话表情</code>。</li><li><strong>整体判断：问题收敛复验期，瓶颈是运行包身份。</strong> <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a> 已从“偶发消失”定位到可逐帧验证的素材空帧；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/352" target="_blank" rel="noopener">#352</a> 却在开发复验未复现后，又收到玩家正常击杀仍异常的报告。今天应优先把修复 SHA、候选包、启动器标准入口和玩家实机结果对齐，而不是再按相似症状补一轮代码。<strong><code>compiled</code> → <code>candidate_built</code> → <code>promoted</code> → <code>standard_entry_verified</code> 各自需要证据</strong>；CS6 导出成功、资产专项通过、隔离实机通过都不能替代标准入口验收。</li></ul>
+<h2 id="sec-2" class="report-h2">一、新增玩家反馈与活跃工单进展</h2>
+<h3 id="sec-3" class="report-h3">1. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/365" target="_blank" rel="noopener">#365</a>：新增中级插件材料「白色涂料」（状态徽标：<span class="status-badge badge-red">🔴 待处理</span>）</h3>
+<p class="report-p"><strong>来源</strong>：aa 提案，aka 暂定负责。<strong>实质与源码</strong>：需求是基础抗性 +10、热抗性 +5，使用 <code>&lt;merge&gt;</code>，由大学门外商店售卖。HEAD 搜索仅命中 <code>data/dialogues/npc_dialogue_联合大学.xml:783</code> 的对白；对白有名不等于物品已注册或上架。<strong>分支与下一步</strong>：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/7eeafe77" target="_blank" rel="noopener"><code>7eeafe77</code></a> 是建单时只读快照，不是实现提交。先确认价格、货位与适用装备，再一起交付物品定义和店铺货表；不为该物品改通用合并逻辑。</p>
+<h3 id="sec-4" class="report-h3">2. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/364" target="_blank" rel="noopener">#364</a>：兵工厂第三张图刷怪装置遮挡异常（状态徽标：<span class="status-badge badge-red">🔴 待处理</span>）</h3>
+<p class="report-p"><strong>来源</strong>：不存在报图，fs 参与。<strong>实质与源码</strong>：单位经过装置时像踩在其上。<code>data/stages/地下2层/诺亚前线基地兵工厂.xml:227</code> 引用 <code>诺亚前线基地兵工厂_2_BG.swf</code>，同背景在 <code>:568</code> 再用；这是定位入口，尚未证实装置画在背景内，还是独立实例深度有误。<strong>分支与下一步</strong>：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/663f6980" target="_blank" rel="noopener"><code>663f6980</code></a> 是取证基线，无对应修复 SHA。用原截图对上房间和实例，先修该房间，再查复用背景；别先改全局排序。</p>
+<h3 id="sec-5" class="report-h3">3. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/363" target="_blank" rel="noopener">#363</a>：青蛙血腥死亡后偶发无死亡贴图（状态徽标：<span class="status-badge badge-red">🔴 待处理</span>）</h3>
+<p class="report-p"><strong>来源</strong>：Greatly anti-cloud 在视频中发现，不存在建单；下一张图又正常。<strong>实质与源码</strong>：要区分死亡标签没进入、死亡画面未绘制、尸体实例提前清除，目前三者均未证实。<strong>分支与下一步</strong>：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/4b3947b9" target="_blank" rel="noopener"><code>4b3947b9</code></a> 是素材核对基线，同一提交修的是 <code>攻击动作.xml</code> 的攻击分隔帧，并非死亡分支。先取原视频时间点、房间、致死招式及清场时机，再沿实际加载资产排查；不并入 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a>。</p>
+<h3 id="sec-6" class="report-h3">4. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/359" target="_blank" rel="noopener">#359</a>：普通、精制与加强子弹配置分布（状态徽标：<span class="status-badge badge-yellow">🟡 部分进展·待跟进</span>）</h3>
+<p class="report-p"><strong>来源</strong>：fs 提案，Crazyfs 提交交付回执；GitHub 已关闭。<strong>实质与源码</strong>：按实际弹种盘点 <strong>337 把武器、374 个静态形态</strong>（含直射和枪式联弹单元）。普通弹谱系下限为 1–19 级 <strong>0%</strong>、20–29 级 <strong>25%</strong>、30 级起 <strong>50%</strong>；概率指首次有效命中后获得一次续穿机会，允许按定位提前用高档，75%/100% 延续反器材定位。<strong>分支与下一步</strong>：回执固定引用 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/a0c5137b408" target="_blank" rel="noopener"><code>a0c5137b4</code></a> 的 <code>agentsDoc/game-design.md:24</code>；这是规则锚点，不冒充全量配置提交或运行包。行政关闭保留；现有材料未能核实标准入口验收，更新后抽测 FR506、HK33A2、战术-QBZ-192 和联弹样本。</p>
+<h3 id="sec-7" class="report-h3">5. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a>：兽化变种僵尸攻击时画面消失（状态徽标：<span class="status-badge badge-green">🟢 代码已提交·待实机复验</span>）</h3>
+<p class="report-p"><strong>来源</strong>：清水結衣。<strong>根因</strong>：<code>flashswf/arts/new/3XD做的npc/LIBRARY/兽化变种/蛙型仿生僵尸/动画合集/攻击动作.xml</code> 的 <code>MergedLayer_2</code> 在 index=88（Flash 第 89 帧）移除全部 16 个本体实例；两份同名旧导出都有空帧，不是影子层 <code>_visible</code> 所致。<strong>分支与下一步</strong>：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/4b3947b94f" target="_blank" rel="noopener"><code>4b3947b94</code></a> 已合入 <code>main</code>，从相邻帧补站立本体，不改招式时序、判定和音效。CS6 Compiler <code>0/0</code>；<code>BeastVariantAssetTest</code> 实际 SWF 共查 169 帧，9 过 0 失败，旧版第 89 帧为零像素。待含该提交的包从标准入口更新后复验。</p>
+<h3 id="sec-8" class="report-h3">6. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/357" target="_blank" rel="noopener">#357</a>：暂停后怪物继续走到边界（状态徽标：<span class="status-badge badge-yellow">🟡 部分进展·待跟进</span>）</h3>
+<p class="report-p"><strong>来源</strong>：清水結衣。<strong>根因</strong>：部分素材 <code>enterFrame</code> 直调共享 <code>敌人函数.行走</code>，绕过 AI 暂停门。工作区修法是在共享入口拦位移、清方向输入、冻走跑动画，恢复时不把已换招或倒地的怪物拖回旧状态。<strong>分支与下一步</strong>：HEAD 已见 <code>scripts/run-enemy-pause-tests.ps1</code> 和 <code>EnemyPauseMovementTest</code>；回执报 11/11，练习场经设置面板暂停 1.4 秒位置不变。未取得实现对应 SHA 与 HUD 按钮标准入口证据；先验原入口，不能把行走修复当作全局暂停完成。</p>
+<h3 id="sec-9" class="report-h3">7. Issue <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/352" target="_blank" rel="noopener">#352</a>：CF6 女僵尸正常击杀不播血腥死亡（状态徽标：<span class="status-badge badge-yellow">🟡 部分进展·待跟进</span>）</h3>
+<p class="report-p"><strong>来源</strong>：GitHub 原帖；<code>3xd123456</code> 与测试群 xdxdxd 追报仍异常，未提供包版本。<strong>根因</strong>：此前定位到普通致死后受击结算仍运行，残留浮空/倒地可把「血腥死」覆写为「击倒」；修改器站立清怪走的是另一条路径。<strong>分支与下一步</strong>：已报告在 <code>Antigravity专用素材/LIBRARY/Antigravity/CF6女僵尸/敌人-CF6女僵尸.xml</code> 的状态入口清浮空、倒地、垂直速度和硬直；HEAD 有 <code>scripts/run-cf6-zombie-asset-tests.ps1</code>，但本轮未把修复 diff、实际加载 SWF 和玩家版本串起来。保持 Open，先同包复测正常击杀，不能拿修改器结果销单。</p>
+<h2 id="sec-10" class="report-h2">二、昨日遗留问题追踪与主要工程开发进展</h2>
+<h3 id="sec-11" class="report-h3">2.1 近期重点遗留问题状态追踪</h3>
+<div class="table-wrap"><table class="report-table"><thead><tr><th>工单</th><th>卡点与下一步</th></tr></thead><tbody><tr><td><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/324" target="_blank" rel="noopener">#324</a> 跳跃悬空</td><td><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/c292932148" target="_blank" rel="noopener"><code>c29293214</code></a> 已在 <code>main</code>；<code>AirHandoffTest</code> 32/32，隔离候选 <code>issue324</code> 已人工实机通过。正式 runtime 未部署证据不能由候选替代，等标准入口及原玩家复测。</td></tr><tr><td><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/311" target="_blank" rel="noopener">#311</a> 大机器人丢判</td><td><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/60ea8692da" target="_blank" rel="noopener"><code>60ea8692d</code></a> 沿光束布置 6 个接触盒，独立/全弹激光仍为 10/24 脉冲。待部标包复核真实伤害；激光不出招、砸坑特效跟身、起手转身另记。</td></tr><tr><td><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/248" target="_blank" rel="noopener">#248</a> 背包调制原子性</td><td><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/fda0277f2b" target="_blank" rel="noopener"><code>fda0277f2</code></a> 已上 <code>main</code>；锁释放、联合回滚和写后证明待候选故障注入。风险是装备与材料账不一致，不是已确认玩家坏档。</td></tr><tr><td><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/362" target="_blank" rel="noopener">#362</a> 切图后跑动急停</td><td>清水結衣可稳定复现；焦点争夺是猜测。待采集切图前后焦点、按键事件、移动状态，分清输入丢失与状态被重置。</td></tr><tr><td><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/361" target="_blank" rel="noopener">#361</a> / <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/245" target="_blank" rel="noopener">#245</a> / <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/53" target="_blank" rel="noopener">#53</a></td><td><a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/42555ff2f0" target="_blank" rel="noopener"><code>42555ff2f</code></a> 的尸母暴怒待阵营、半径和叠层压测；<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/39df16f36d" target="_blank" rel="noopener"><code>39df16f36</code></a> 已做马格南第一阶段，其余 68 条待定策略；H5 的 B1 与 C1–C3 已有交付记录，余项按台账划 Ready，不整单关闭。</td></tr></tbody></table></div>
+<h3 id="sec-12" class="report-h3">2.2 主分支（main）开发提交模块聚类</h3>
+<ul class="report-list"><li><strong>对话与任务文本</strong>：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/58e7085cb" target="_blank" rel="noopener"><code>58e7085cb</code></a> 修 <code>data/dialogues/npc_dialogue_A兵团元老.xml</code> 表情引用；<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/9a135febb" target="_blank" rel="noopener"><code>9a135febb</code></a> 覆盖 <code>data/task/text/</code> 下五个 JSON。回归普通对话、情报、铁矛与任务文本的头像渲染和翻页。</li><li><strong>战斗资源与伤害</strong>：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/691f37eec" target="_blank" rel="noopener"><code>691f37eec</code></a> 将吉他喷火器改为热附加伤，涉及子弹 XFL/SWF；对照无热抗与有热抗目标，并抽查同素材库其他弹体。<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a> 的 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/4b3947b94f" target="_blank" rel="noopener"><code>4b3947b94</code></a> 是独立的敌人动作素材修复，重点看分隔帧和招式衔接。</li><li><strong>弹药数据与规则</strong>：<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/359" target="_blank" rel="noopener">#359</a> 有窗口内交付记录，回归应覆盖默认弹种、枪式联弹和续穿，不以面板名称代替实际命中。</li><li><strong>统计边界</strong>：36 是窗口总数；本轮日志回传不全，上述只归类可核实条目。表中历史修复不计为当日提交，未见的提交不补写。</li></ul>
+<h2 id="sec-13" class="report-h2">三、🎯 今日测试员求测指南（To 测试群）</h2>
+<p class="report-p">先记录<strong>启动入口、运行版本/构建号、关卡房间</strong>。没有含目标 SHA 的标准包时，可按步骤取证，但请标「候选」或「现版复现」，不报标准入口通过。</p>
+<ol class="report-list"><li><strong>【求测项 1】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/352" target="_blank" rel="noopener">#352</a>｜<span class="tester-pill">@xdxdxd</span>、<span class="tester-pill">@3xd123456</span>｜修复 SHA 待关联。</strong> 同一房间分别站立击杀、挑空后补刀、倒地后补刀；修改器全死只作对照。通过：确认应进血腥死的正常击杀能播放完整死亡动画，不回浮空/击倒；失败请录致死前后。</li><li><strong>【求测项 2】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/363" target="_blank" rel="noopener">#363</a>｜<span class="tester-pill">@清水結衣</span>、<span class="tester-pill">@不存在</span>、<span class="tester-pill">@Greatly</span> anti-cloud｜<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/4b3947b94f" target="_blank" rel="noopener"><code>4b3947b94</code></a> 仅对应 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a>。</strong> 分别诱发连击刺、崩地，录两招的起手、收尾和交界，本体不闪隐即通过 <a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a>。<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/363" target="_blank" rel="noopener">#363</a> 请在原视频房间和下一张图各重复血腥击杀，记致死招、尸体出现与清场先后，单独报结果。</li><li><strong>【求测项 3】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/357" target="_blank" rel="noopener">#357</a>｜<span class="tester-pill">@清水結衣</span>｜实现 SHA 待关联。</strong> 怪物离边界尚远时点 HUD 暂停，录两秒再恢复；另测设置面板。通过：坐标和走跑帧均冻结，恢复后正常续走，不把倒地或换招状态拉回旧动画。两个入口分开报。</li><li><strong>【求测项 4】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/364" target="_blank" rel="noopener">#364</a>｜<span class="tester-pill">@不存在</span>｜尚无修复提交。</strong> 到兵工厂第三张图，绕刷怪装置远侧、近侧各走一次，并录一只怪经过。当前先补参照视频；修后应远侧被挡、近侧在前，且刷怪和通行不变。</li><li><strong>【求测项 5】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/365" target="_blank" rel="noopener">#365</a>｜<span class="tester-pill">@aa</span>、<span class="tester-pill">@aka</span>｜尚无实现提交，上架后测。</strong> 在大学门外购买，记材料增减；对同一装备抓调制前后面板，再用已有同类属性的装备复测。通过：基础抗性净增 10、热抗性净增 5，按 <code>&lt;merge&gt;</code> 合并而不覆盖既有值。</li><li><strong>【求测项 6】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/359" target="_blank" rel="noopener">#359</a>｜<span class="tester-pill">@fs</span>｜规则锚点 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/a0c5137b408" target="_blank" rel="noopener"><code>a0c5137b4</code></a>，包 SHA 待关联。</strong> 对三把重点枪和一把枪式联弹做两目标对线测试，先记实际弹种，再分开记录首次命中与续穿，按实装档位复核。概率档要多轮采样，不凭一两枪判错。</li><li><strong>【求测项 7】<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/324" target="_blank" rel="noopener">#324</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/311" target="_blank" rel="noopener">#311</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/362" target="_blank" rel="noopener">#362</a>｜<span class="tester-pill">@废土</span>、<span class="tester-pill">@背靠背</span>、<span class="tester-pill">@屑化添加剂</span>、<span class="tester-pill">@Greatly</span> anti-cloud、<span class="tester-pill">@清水結衣</span>。</strong> <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/c292932148" target="_blank" rel="noopener"><code>c29293214</code></a>：空手/持兵器跑跳，各试按住与松开方向，应自然落地。<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/60ea8692da" target="_blank" rel="noopener"><code>60ea8692d</code></a>：目标站光束中段、交点各测多次，确认实际多脉冲扣血，另记是否根本没出招。<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/362" target="_blank" rel="noopener">#362</a> 暂无修复 SHA：鼠标点地图进超市废墟或废墟武器店，按住方向录急停，记重新按键和点击画面哪一种能恢复。</li></ol>
+<p class="report-p">实测后可在群里发 <code>/验收 #编号 通过（或未修复原因）</code> 自动登记到 GitHub；请附版本、入口及视频时间点。</p>
+<h2 id="sec-14" class="report-h2">四、🧭 开发者关注重点与排期参谋</h2>
+<h3 id="sec-15" class="report-h3">4.1 🚨 建议插队处置</h3>
+<ul class="report-list"><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/248" target="_blank" rel="noopener">#248</a> 优先验写入一致性</strong>：装备写成功、材料写失败或写后证明失败，会把局部失败传导成玩家资产不一致。先注入第二容器失败及写后投影失败，核对双边回滚、锁释放和副作用未提前发布，再放行；用隔离存档。</li><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/362" target="_blank" rel="noopener">#362</a> 优先抓原场景；<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/324" target="_blank" rel="noopener">#324</a> 优先走发布复验，不重复改代码</strong>：切场景后基本移动可失效；悬空则可能直接卡流程。前者先关联焦点事件与移动状态，后者先证明标准入口真的带上落地修复。</li><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/311" target="_blank" rel="noopener">#311</a> 剥离判定与 AI 两条验收线</strong>：资源产生判定不等于 AI 能按条件出招；出招录像、接触盒与实际扣血分别取证。<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/352" target="_blank" rel="noopener">#352</a> 则优先核对运行资产身份，避免继续拿不同包互证。</li></ul>
+<h3 id="sec-16" class="report-h3">4.2 🍬 高性价比顺手项</h3>
+<ol class="report-list"><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/356" target="_blank" rel="noopener">#356</a>：给空手栏明确标「威力」。</strong> <code>scripts/类定义/org/flashNight/arki/hud/PlayerHudService.as:625</code> 取 <code>getUnarmedPower()</code>，定义在 <code>scripts/类定义/org/flashNight/arki/unit/PlayerInfoProvider.as:365</code>。先在空手栏展示端加标签或提示，不改 <code>deck.power</code> 接口、存档或 <code>killStats</code>；这是低风险消歧，不代表 22→24 的原因已证实。</li><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/364" target="_blank" rel="noopener">#364</a>：仅在确认装置是独立实例后做局部层位修正。</strong> 从关卡 XML <code>:227</code> 对到 <code>_2_BG</code> 与截图；能独立调层则只动该实例，顺手回归 <code>:568</code> 的复用房间。如果装置烘在背景或需要按脚点动态排序，就退出快修，不动全局 <code>swapDepths</code>。</li><li><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a>：几分钟补齐交付索引，不再动帧。</strong> <code>scripts/run-beast-variant-asset-tests.ps1:3–4</code> 已固定 169 帧验收点。把 <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/4b3947b94f" target="_blank" rel="noopener"><code>4b3947b94</code></a>、专项结果、候选号和标准入口状态集中回填 Issue；后两项无证据就留待补。这是零运行时代价的验收清障。<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/365" target="_blank" rel="noopener">#365</a> 至少涉及物品与货表，不列为单文件快修。</li></ol>
+<h3 id="sec-17" class="report-h3">4.3 ⚖️ 设计裁决与架构关注</h3>
+<p class="report-p"><strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/357" target="_blank" rel="noopener">#357</a></strong> 由 fs 界定真暂停范围：时间轴、AI、投射物、计时器与 UI 哪些继续走，哪些必须冻结。<strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/361" target="_blank" rel="noopener">#361</a></strong> 明确现行 2/3/4 倍是同乘区加算，不是指数叠层；先验半径 100 边界、友军宠物、死亡单位不复活及 HUD 单格，再裁决上限。<strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/245" target="_blank" rel="noopener">#245</a></strong> 先拍板剩余条目的射击模式与补偿权重，不把半自动标记直接变成自动加层。<strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/360" target="_blank" rel="noopener">#360</a></strong> 仅做对齐原型：先证明颜色帧与材质遮罩在动画、遮挡、镜头运动下同步，并量化开销，再扩面。</p>
+<h2 id="sec-18" class="report-h2">今日结论</h2>
+<p class="report-p">先把 <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/248" target="_blank" rel="noopener">#248</a> 写入一致性、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/362" target="_blank" rel="noopener">#362</a> 切图失控</strong>排进优先队列；把 <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/352" target="_blank" rel="noopener">#352</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/357" target="_blank" rel="noopener">#357</a></strong> 拉到带明确版本的标准入口复验，逐条记录是哪一步过门。今天最有价值的进展，不是多关几个 Issue，而是让每个通过结论都能追到<strong>同一份包、同一条入口、同一条复现路径</strong>。</p>
+    </section>
+    <section id="tab-radar" class="hidden">
+      <h2 class="report-h2">🎯 实时待测试群实机复验雷达（支持群内发 `/验收 #编号 通过` 一键回写）</h2>
+      <p class="report-p">【Wings 实机复验雷达 &amp; 求测看板】（当前基线：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/9a135feb" target="_blank" rel="noopener"><code>9a135feb</code></a>）</p>
+<p class="report-p">🤝 <strong>协作者认领 / 报修待测 / 阻塞与现场保留状态</strong> • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a></strong> [🧪 待实机复验 (<code>ready_for_verify</code>) | 反馈：<code>清水結衣</code>] [测试反馈] 兽化变种僵尸攻击动作期间画面消失（反馈人：清水結衣） • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/38" target="_blank" rel="noopener">#38</a></strong> [🧪 待实机复验 (<code>ready_for_verify</code>)] U10 叹号小样与血条/名牌窄投影评估 ↳ 备注：优化原生呈现层弹幕射线与伤害飘字性能并补齐诊断及#38前置铺垫 • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/352" target="_blank" rel="noopener">#352</a></strong> [🧪 待实机复验 (<code>ready_for_verify</code>)] 敌人-CF6女僵尸死亡动画异常 ↳ 备注：修复敌人暂停行走与女僵尸死亡动画（<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/357" target="_blank" rel="noopener">#357</a>、<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/352" target="_blank" rel="noopener">#352</a>） • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/357" target="_blank" rel="noopener">#357</a></strong> [🧪 待实机复验 (<code>ready_for_verify</code>) | 反馈：<code>清水結衣</code>] [测试群反馈] 暂停后怪物继续向原方向行走，抵达边界仍播放行走动作（反馈人：清水結衣） • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/248" target="_blank" rel="noopener">#248</a></strong> [🧪 待实机复验 (<code>ready_for_verify</code>)] [可靠性治理] 背包调制跨容器提交原子性与写后证明加固 ↳ 备注：修复：加固背包调制跨容器提交原子性与写后证明（<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/248" target="_blank" rel="noopener">#248</a>） • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/53" target="_blank" rel="noopener">#53</a></strong> [🧪 待实机复验 (<code>ready_for_verify</code>)] 情报 H5 B/C 档剩余条目 ↳ 备注：feat(情报): 补齐水厂外勤档案、γ-ECHO病理摘要与ECHO-034加密日志H5加密词标注并清零65项告警</p>
+<p class="report-p">🎯 <strong>一、已提交修复代码、等待群友实机复验的开放工单 (OPEN)</strong> • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a></strong> [OPEN] [测试反馈] 兽化变种僵尸攻击动作期间画面消失（反馈人：清水結衣） ↳ 👤 原反馈人：<code>清水結衣</code> | ⏳ <strong>待实机复验 (<code>candidate -&gt; standard_entry_verified</code>)</strong> ↳ 🛠️ 关联修复提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/4b3947b" target="_blank" rel="noopener"><code>4b3947b</code></a> [11-27 21:09] 修复兽化变种攻击分隔帧本体消失（<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/358" target="_blank" rel="noopener">#358</a>），需实机回归两种攻击</p>
+<p class="report-p">📌 <strong>附：近期已结案关闭单据（CLOSED，已关单无需列入待测阻塞，仅备查）</strong> • <strong><a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/359" target="_blank" rel="noopener">#359</a></strong> [CLOSED·已关单备查 | 原反馈：<code>fs</code>] [测试群反馈] 评估并优化枪械普通、精制与加强子弹的配置分布（反馈人：fs）（最近关联提交：<a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/a0c5137" target="_blank" rel="noopener"><code>a0c5137</code></a> 补齐普通弹续穿分档与原生表现（<a class="issue-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/issues/359" target="_blank" rel="noopener">#359</a>））</p>
+<p class="report-p">🧪 <strong>二、近期其他建议游戏内顺路求测的改动提交</strong> • <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/fe4851a" target="_blank" rel="noopener"><code>fe4851a</code></a> [11-28 02:30] 完善阵营徽标白名单与物品标题显示（回归提示：全部NPC别名） • <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/374bcd6" target="_blank" rel="noopener"><code>374bcd6</code></a> [11-28 02:12] 新增诺亚蓝黄徽章并接入注释框（回归提示：文本显示） • <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/663f698" target="_blank" rel="noopener"><code>663f698</code></a> [11-27 22:49] 提高爆炸僵尸生化抗性至80（回归提示：对应伤害结算） • <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/393de49" target="_blank" rel="noopener"><code>393de49</code></a> [11-27 22:44] 提高重型与爆炸僵尸及尸母韧性（回归提示：抗击打断表现） • <a class="commit-pill" href="https://github.com/FlashNightModReborn/CrazyFlashNight/commit/77d8865" target="_blank" rel="noopener"><code>77d8865</code></a> [11-27 22:39] 按档次重算诺亚单位面板（回归提示：实战强度）</p>
+<p class="report-p">💡 <strong>一键回填实机复验回执</strong>：在群内发送 <code><span class="tester-pill">@银色大肥龙</span> 验收 #编号 实测已修复（或：实测仍复现+说明）</code>（支持附带截图/视频），机器人会自动将结构化【实机复验回执】及证据归档至对应 GitHub Issue！</p>
+    </section>
+    
+  </main>
+</div>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['report', 'radar'].forEach(t => {
+    const el = document.getElementById('tab-' + t);
+    if (el) el.classList.toggle('hidden', t !== name);
+  });
+}
+function copyCode(btn) {
+  const code = btn.closest('.code-card').querySelector('code').innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    const old = btn.innerText;
+    btn.innerText = '✅ 已复制';
+    setTimeout(() => btn.innerText = old, 1500);
+  });
+}
+function jumpByKeyword(kw) {
+  switchTab('report', document.querySelector('.tab-btn'));
+  const headings = document.querySelectorAll('#tab-report h2, #tab-report h3');
+  for (const h of headings) {
+    if (h.innerText.includes(kw)) {
+      h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+  }
+}
+function filterReport(q) {
+  const kw = (q || '').trim().toLowerCase();
+  const links = document.querySelectorAll('#tocNav .toc-link');
+  links.forEach(a => {
+    a.style.display = (!kw || a.innerText.toLowerCase().includes(kw)) ? 'block' : 'none';
+  });
+  if (kw.length >= 2) {
+    const allEls = document.querySelectorAll('#tab-report h3, #tab-report li, #tab-report p, #tab-report td');
+    for (const el of allEls) {
+      if (el.innerText.toLowerCase().includes(kw)) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        break;
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>
